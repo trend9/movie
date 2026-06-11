@@ -31,7 +31,8 @@
     "かぞくのよびかた",
     "からだのなまえ",
     "うちのなかのもの",
-    "どうさのことば"
+    "どうさのことば",
+    "かんじょうのひょうげん"
   ],
   "used_words": [
     "こんにちは",
@@ -385,7 +386,18 @@
     "かく",
     "よむ",
     "かう",
-    "する"
+    "する",
+    "うれしい",
+    "かなしい",
+    "たのしい",
+    "おもしろい",
+    "こわい",
+    "おどろく",
+    "いかる",
+    "しんぱい",
+    "はずかしい",
+    "つかれる",
+    "ねむい"
   ],
   "videos": [
     {
@@ -1524,6 +1536,73 @@
           "role": "content",
           "japanese": "する",
           "thai": "ทำ"
+        }
+      ]
+    },
+    {
+      "title": "かんじょうのひょうげん",
+      "timestamp": "20260611_212103",
+      "video_filename": "video_20260611_212103_かんじょうのひょうげん.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "かんじょうのひょうげん",
+          "thai": "คำแสดงอารมณ์ความรู้สึก"
+        },
+        {
+          "role": "content",
+          "japanese": "うれしい",
+          "thai": "ดีใจ"
+        },
+        {
+          "role": "content",
+          "japanese": "かなしい",
+          "thai": "เศร้า"
+        },
+        {
+          "role": "content",
+          "japanese": "たのしい",
+          "thai": "สนุก"
+        },
+        {
+          "role": "content",
+          "japanese": "おもしろい",
+          "thai": "น่าสนใจ / ตลก"
+        },
+        {
+          "role": "content",
+          "japanese": "こわい",
+          "thai": "กลัว"
+        },
+        {
+          "role": "content",
+          "japanese": "おどろく",
+          "thai": "ตกใจ / ประหลาดใจ"
+        },
+        {
+          "role": "content",
+          "japanese": "いかる",
+          "thai": "โกรธ"
+        },
+        {
+          "role": "content",
+          "japanese": "しんぱい",
+          "thai": "เป็นห่วง / กังวล"
+        },
+        {
+          "role": "content",
+          "japanese": "はずかしい",
+          "thai": "อาย"
+        },
+        {
+          "role": "content",
+          "japanese": "つかれる",
+          "thai": "เหนื่อย"
+        },
+        {
+          "role": "content",
+          "japanese": "ねむい",
+          "thai": "ง่วงนอน"
         }
       ]
     }
