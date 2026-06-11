@@ -32,7 +32,8 @@
     "からだのなまえ",
     "うちのなかのもの",
     "どうさのことば",
-    "かんじょうのひょうげん"
+    "かんじょうのひょうげん",
+    "じかんのひょうげん"
   ],
   "used_words": [
     "こんにちは",
@@ -397,7 +398,18 @@
     "しんぱい",
     "はずかしい",
     "つかれる",
-    "ねむい"
+    "ねむい",
+    "いま",
+    "きょう",
+    "あした",
+    "きのう",
+    "あさ",
+    "ひる",
+    "よる",
+    "じかん",
+    "ふん",
+    "びょう",
+    "かれんだー"
   ],
   "videos": [
     {
@@ -1603,6 +1615,73 @@
           "role": "content",
           "japanese": "ねむい",
           "thai": "ง่วงนอน"
+        }
+      ]
+    },
+    {
+      "title": "じかんのひょうげん",
+      "timestamp": "20260611_231840",
+      "video_filename": "video_20260611_231840_じかんのひょうげん.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "じかんのひょうげん",
+          "thai": "คำบอกเวลา"
+        },
+        {
+          "role": "content",
+          "japanese": "いま",
+          "thai": "ตอนนี้"
+        },
+        {
+          "role": "content",
+          "japanese": "きょう",
+          "thai": "วันนี้"
+        },
+        {
+          "role": "content",
+          "japanese": "あした",
+          "thai": "พรุ่งนี้"
+        },
+        {
+          "role": "content",
+          "japanese": "きのう",
+          "thai": "เมื่อวาน"
+        },
+        {
+          "role": "content",
+          "japanese": "あさ",
+          "thai": "เช้า"
+        },
+        {
+          "role": "content",
+          "japanese": "ひる",
+          "thai": "กลางวัน"
+        },
+        {
+          "role": "content",
+          "japanese": "よる",
+          "thai": "กลางคืน"
+        },
+        {
+          "role": "content",
+          "japanese": "じかん",
+          "thai": "เวลา / ชั่วโมง"
+        },
+        {
+          "role": "content",
+          "japanese": "ふん",
+          "thai": "นาที"
+        },
+        {
+          "role": "content",
+          "japanese": "びょう",
+          "thai": "วินาที"
+        },
+        {
+          "role": "content",
+          "japanese": "かれんだー",
+          "thai": "ปฏิทิน"
         }
       ]
     }
