@@ -22,7 +22,8 @@
     "きゅうり",
     "なまえ",
     "とげ",
-    "かいもののことば"
+    "かいもののことば",
+    "れすとらんのことば"
   ],
   "used_words": [
     "こんにちは",
@@ -277,7 +278,18 @@
     "おつり",
     "たかい",
     "やすい",
-    "みせてください"
+    "みせてください",
+    "めにゅー",
+    "ちゅうもん",
+    "おみず",
+    "おかんじょう",
+    "おはし",
+    "すぷーん",
+    "ふぉーく",
+    "こっぷ",
+    "からい",
+    "あまい",
+    "おなかいっぱい"
   ],
   "videos": [
     {
@@ -813,6 +825,73 @@
           "role": "content",
           "japanese": "みせてください",
           "thai": "ขอดูหน่อยครับ/ค่ะ"
+        }
+      ]
+    },
+    {
+      "title": "れすとらんのことば",
+      "timestamp": "20260611_074811",
+      "video_filename": "video_20260611_074811_れすとらんのことば.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "れすとらんのことば",
+          "thai": "คำศัพท์ในร้านอาหาร"
+        },
+        {
+          "role": "content",
+          "japanese": "めにゅー",
+          "thai": "เมนู"
+        },
+        {
+          "role": "content",
+          "japanese": "ちゅうもん",
+          "thai": "สั่งอาหาร"
+        },
+        {
+          "role": "content",
+          "japanese": "おみず",
+          "thai": "น้ำเปล่า"
+        },
+        {
+          "role": "content",
+          "japanese": "おかんじょう",
+          "thai": "เช็คบิล"
+        },
+        {
+          "role": "content",
+          "japanese": "おはし",
+          "thai": "ตะเกียบ"
+        },
+        {
+          "role": "content",
+          "japanese": "すぷーん",
+          "thai": "ช้อน"
+        },
+        {
+          "role": "content",
+          "japanese": "ふぉーく",
+          "thai": "ส้อม"
+        },
+        {
+          "role": "content",
+          "japanese": "こっぷ",
+          "thai": "แก้วน้ำ"
+        },
+        {
+          "role": "content",
+          "japanese": "からい",
+          "thai": "เผ็ด"
+        },
+        {
+          "role": "content",
+          "japanese": "あまい",
+          "thai": "หวาน"
+        },
+        {
+          "role": "content",
+          "japanese": "おなかいっぱい",
+          "thai": "อิ่มแล้ว"
         }
       ]
     }
