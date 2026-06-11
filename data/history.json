@@ -18,7 +18,8 @@
     "べんりなことば",
     "べんりなことば",
     "いろのひょうげん",
-    "うすい"
+    "うすい",
+    "きゅうり"
   ],
   "used_words": [
     "こんにちは",
@@ -229,7 +230,18 @@
     "ひつこく",
     "おどろく",
     "ふらい",
-    "うな"
+    "うな",
+    "もやし",
+    "なす",
+    "ぶどう",
+    "あめ",
+    "みかん",
+    "おにぎ",
+    "おにぎり",
+    "ごはん",
+    "おやつ",
+    "カフェ",
+    "図書館"
   ],
   "videos": [
     {
@@ -497,6 +509,73 @@
           "role": "content",
           "japanese": "うな",
           "thai": "ความรู้"
+        }
+      ]
+    },
+    {
+      "title": "きゅうり",
+      "timestamp": "20260611_063306",
+      "video_filename": "video_20260611_063306_きゅうり.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "きゅうり",
+          "thai": "เกือบ"
+        },
+        {
+          "role": "content",
+          "japanese": "もやし",
+          "thai": "เห็ด"
+        },
+        {
+          "role": "content",
+          "japanese": "なす",
+          "thai": "ผัก"
+        },
+        {
+          "role": "content",
+          "japanese": "ぶどう",
+          "thai": "ผลไม้"
+        },
+        {
+          "role": "content",
+          "japanese": "あめ",
+          "thai": "ฝน"
+        },
+        {
+          "role": "content",
+          "japanese": "みかん",
+          "thai": "ส้ม"
+        },
+        {
+          "role": "content",
+          "japanese": "おにぎ",
+          "thai": "ข้าว"
+        },
+        {
+          "role": "content",
+          "japanese": "おにぎり",
+          "thai": "ข้าวเหนียว"
+        },
+        {
+          "role": "content",
+          "japanese": "ごはん",
+          "thai": "ผัก"
+        },
+        {
+          "role": "content",
+          "japanese": "おやつ",
+          "thai": "ขนม"
+        },
+        {
+          "role": "content",
+          "japanese": "カフェ",
+          "thai": "กาแฟ"
+        },
+        {
+          "role": "content",
+          "japanese": "図書館",
+          "thai": "หนังสือ"
         }
       ]
     }
