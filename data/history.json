@@ -23,7 +23,9 @@
     "なまえ",
     "とげ",
     "かいもののことば",
-    "れすとらんのことば"
+    "れすとらんのことば",
+    "りょこうのことば",
+    "てんきのことば"
   ],
   "used_words": [
     "こんにちは",
@@ -289,7 +291,29 @@
     "こっぷ",
     "からい",
     "あまい",
-    "おなかいっぱい"
+    "おなかいっぱい",
+    "ぱすぽーと",
+    "きっぷ",
+    "えき",
+    "ほてる",
+    "たくしー",
+    "ちず",
+    "こうくうけん",
+    "にもつ",
+    "おみやげ",
+    "どこですか",
+    "かんこう",
+    "はれ",
+    "あめ",
+    "くもり",
+    "ゆき",
+    "かぜ",
+    "あつい",
+    "さむい",
+    "すずしい",
+    "あたたかい",
+    "たいふう",
+    "かみなり"
   ],
   "videos": [
     {
@@ -892,6 +916,140 @@
           "role": "content",
           "japanese": "おなかいっぱい",
           "thai": "อิ่มแล้ว"
+        }
+      ]
+    },
+    {
+      "title": "りょこうのことば",
+      "timestamp": "20260611_075711",
+      "video_filename": "video_20260611_075711_りょこうのことば.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "りょこうのことば",
+          "thai": "คำศัพท์เกี่ยวกับการท่องเที่ยว"
+        },
+        {
+          "role": "content",
+          "japanese": "ぱすぽーと",
+          "thai": "พาสปอร์ต"
+        },
+        {
+          "role": "content",
+          "japanese": "きっぷ",
+          "thai": "ตั๋ว"
+        },
+        {
+          "role": "content",
+          "japanese": "えき",
+          "thai": "สถานี"
+        },
+        {
+          "role": "content",
+          "japanese": "ほてる",
+          "thai": "โรงแรม"
+        },
+        {
+          "role": "content",
+          "japanese": "たくしー",
+          "thai": "แท็กซี่"
+        },
+        {
+          "role": "content",
+          "japanese": "ちず",
+          "thai": "แผนที่"
+        },
+        {
+          "role": "content",
+          "japanese": "こうくうけん",
+          "thai": "ตั๋วเครื่องบิน"
+        },
+        {
+          "role": "content",
+          "japanese": "にもつ",
+          "thai": "กระเป๋าเดินทาง"
+        },
+        {
+          "role": "content",
+          "japanese": "おみやげ",
+          "thai": "ของฝาก"
+        },
+        {
+          "role": "content",
+          "japanese": "どこですか",
+          "thai": "อยู่ที่ไหนครับ/ค่ะ"
+        },
+        {
+          "role": "content",
+          "japanese": "かんこう",
+          "thai": "การท่องเที่ยว"
+        }
+      ]
+    },
+    {
+      "title": "てんきのことば",
+      "timestamp": "20260611_080534",
+      "video_filename": "video_20260611_080534_てんきのことば.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "てんきのことば",
+          "thai": "คำศัพท์เกี่ยวกับสภาพอากาศ"
+        },
+        {
+          "role": "content",
+          "japanese": "はれ",
+          "thai": "แดดออก / แจ่มใส"
+        },
+        {
+          "role": "content",
+          "japanese": "あめ",
+          "thai": "ฝนตก"
+        },
+        {
+          "role": "content",
+          "japanese": "くもり",
+          "thai": "ครึ้มฟ้าครึ้มฝน"
+        },
+        {
+          "role": "content",
+          "japanese": "ゆき",
+          "thai": "หิมะตก"
+        },
+        {
+          "role": "content",
+          "japanese": "かぜ",
+          "thai": "ลม"
+        },
+        {
+          "role": "content",
+          "japanese": "あつい",
+          "thai": "ร้อน"
+        },
+        {
+          "role": "content",
+          "japanese": "さむい",
+          "thai": "หนาว"
+        },
+        {
+          "role": "content",
+          "japanese": "すずしい",
+          "thai": "เย็นสบาย"
+        },
+        {
+          "role": "content",
+          "japanese": "あたたかい",
+          "thai": "อบอุ่น"
+        },
+        {
+          "role": "content",
+          "japanese": "たいふう",
+          "thai": "พายุไต้ฝุ่น"
+        },
+        {
+          "role": "content",
+          "japanese": "かみなり",
+          "thai": "ฟ้าผ่า / ฟ้าร้อง"
         }
       ]
     }
