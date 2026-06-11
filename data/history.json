@@ -16,7 +16,8 @@
     "くだもののなまえ",
     "すうじのひょうげん",
     "べんりなことば",
-    "べんりなことば"
+    "べんりなことば",
+    "いろのひょうげん"
   ],
   "used_words": [
     "こんにちは",
@@ -205,7 +206,18 @@
     "もういちど",
     "てつだって",
     "だいすきです",
-    "がんばって"
+    "がんばって",
+    "あか",
+    "あお",
+    "きいろ",
+    "みどり",
+    "しろ",
+    "くろ",
+    "ちゃいろ",
+    "ぴんく",
+    "むらさき",
+    "おれんじ",
+    "はいいろ"
   ],
   "videos": [
     {
@@ -339,6 +351,73 @@
           "role": "content",
           "japanese": "がんばって",
           "thai": "สู้ๆ นะ"
+        }
+      ]
+    },
+    {
+      "title": "いろのひょうげん",
+      "timestamp": "20260611_052607",
+      "video_filename": "video_20260611_052607_いろのひょうげん.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "いろのひょうげん",
+          "thai": "คำศัพท์เกี่ยวกับสี"
+        },
+        {
+          "role": "content",
+          "japanese": "あか",
+          "thai": "แดง"
+        },
+        {
+          "role": "content",
+          "japanese": "あお",
+          "thai": "น้ำเงิน"
+        },
+        {
+          "role": "content",
+          "japanese": "きいろ",
+          "thai": "เหลือง"
+        },
+        {
+          "role": "content",
+          "japanese": "みどり",
+          "thai": "เขียว"
+        },
+        {
+          "role": "content",
+          "japanese": "しろ",
+          "thai": "ขาว"
+        },
+        {
+          "role": "content",
+          "japanese": "くろ",
+          "thai": "ดำ"
+        },
+        {
+          "role": "content",
+          "japanese": "ちゃいろ",
+          "thai": "น้ำตาล"
+        },
+        {
+          "role": "content",
+          "japanese": "ぴんく",
+          "thai": "ชมพู"
+        },
+        {
+          "role": "content",
+          "japanese": "むらさき",
+          "thai": "ม่วง"
+        },
+        {
+          "role": "content",
+          "japanese": "おれんじ",
+          "thai": "ส้ม"
+        },
+        {
+          "role": "content",
+          "japanese": "はいいろ",
+          "thai": "เทา"
         }
       ]
     }
