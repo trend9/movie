@@ -29,7 +29,8 @@
     "のりもののなまえ",
     "どうぶつのなまえ",
     "かぞくのよびかた",
-    "からだのなまえ"
+    "からだのなまえ",
+    "うちのなかのもの"
   ],
   "used_words": [
     "こんにちは",
@@ -361,7 +362,18 @@
     "おなか",
     "かお",
     "のど",
-    "かみ"
+    "かみ",
+    "てれび",
+    "れいぞうこ",
+    "えあこん",
+    "べっど",
+    "つくえ",
+    "いす",
+    "まど",
+    "どあ",
+    "そうじき",
+    "せんたくき",
+    "とけい"
   ],
   "videos": [
     {
@@ -1366,6 +1378,73 @@
           "role": "content",
           "japanese": "かみ",
           "thai": "ผม"
+        }
+      ]
+    },
+    {
+      "title": "うちのなかのもの",
+      "timestamp": "20260611_143551",
+      "video_filename": "video_20260611_143551_うちのなかのもの.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "うちのなかのもの",
+          "thai": "สิ่งของในบ้าน"
+        },
+        {
+          "role": "content",
+          "japanese": "てれび",
+          "thai": "โทรทัศน์"
+        },
+        {
+          "role": "content",
+          "japanese": "れいぞうこ",
+          "thai": "ตู้เย็น"
+        },
+        {
+          "role": "content",
+          "japanese": "えあこん",
+          "thai": "เครื่องปรับอากาศ"
+        },
+        {
+          "role": "content",
+          "japanese": "べっど",
+          "thai": "เตียง"
+        },
+        {
+          "role": "content",
+          "japanese": "つくえ",
+          "thai": "โต๊ะ"
+        },
+        {
+          "role": "content",
+          "japanese": "いす",
+          "thai": "เก้าอี้"
+        },
+        {
+          "role": "content",
+          "japanese": "まど",
+          "thai": "หน้าต่าง"
+        },
+        {
+          "role": "content",
+          "japanese": "どあ",
+          "thai": "ประตู"
+        },
+        {
+          "role": "content",
+          "japanese": "そうじき",
+          "thai": "เครื่องดูดฝุ่น"
+        },
+        {
+          "role": "content",
+          "japanese": "せんたくき",
+          "thai": "เครื่องซักผ้า"
+        },
+        {
+          "role": "content",
+          "japanese": "とけい",
+          "thai": "นาฬิกา"
         }
       ]
     }
