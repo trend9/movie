@@ -17,7 +17,8 @@
     "すうじのひょうげん",
     "べんりなことば",
     "べんりなことば",
-    "いろのひょうげん"
+    "いろのひょうげん",
+    "うすい"
   ],
   "used_words": [
     "こんにちは",
@@ -217,7 +218,18 @@
     "ぴんく",
     "むらさき",
     "おれんじ",
-    "はいいろ"
+    "はいいろ",
+    "ていこう",
+    "きゅうい",
+    "ほろ",
+    "おぞむ",
+    "くう",
+    "あな",
+    "しぶ",
+    "ひつこく",
+    "おどろく",
+    "ふらい",
+    "うな"
   ],
   "videos": [
     {
@@ -418,6 +430,73 @@
           "role": "content",
           "japanese": "はいいろ",
           "thai": "เทา"
+        }
+      ]
+    },
+    {
+      "title": "うすい",
+      "timestamp": "20260611_061937",
+      "video_filename": "video_20260611_061937_うすい.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "うすい",
+          "thai": "สุภาษิต"
+        },
+        {
+          "role": "content",
+          "japanese": "ていこう",
+          "thai": "ตัวอย่าง"
+        },
+        {
+          "role": "content",
+          "japanese": "きゅうい",
+          "thai": "คน"
+        },
+        {
+          "role": "content",
+          "japanese": "ほろ",
+          "thai": "บางส่วน"
+        },
+        {
+          "role": "content",
+          "japanese": "おぞむ",
+          "thai": "ความคิด"
+        },
+        {
+          "role": "content",
+          "japanese": "くう",
+          "thai": "คน"
+        },
+        {
+          "role": "content",
+          "japanese": "あな",
+          "thai": "คน"
+        },
+        {
+          "role": "content",
+          "japanese": "しぶ",
+          "thai": "การตัดสินใจ"
+        },
+        {
+          "role": "content",
+          "japanese": "ひつこく",
+          "thai": "ความมั่นคง"
+        },
+        {
+          "role": "content",
+          "japanese": "おどろく",
+          "thai": "สิ่งแปลกใหม่"
+        },
+        {
+          "role": "content",
+          "japanese": "ふらい",
+          "thai": "วัฒนธรรม"
+        },
+        {
+          "role": "content",
+          "japanese": "うな",
+          "thai": "ความรู้"
         }
       ]
     }
