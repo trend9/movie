@@ -21,7 +21,8 @@
     "うすい",
     "きゅうり",
     "なまえ",
-    "とげ"
+    "とげ",
+    "かいもののことば"
   ],
   "used_words": [
     "こんにちは",
@@ -265,7 +266,18 @@
     "おしげ",
     "ていね",
     "おしげ",
-    "おめめ"
+    "おめめ",
+    "これください",
+    "ふくろ",
+    "かーど",
+    "げんきん",
+    "れしーと",
+    "わりびき",
+    "ぜいこみ",
+    "おつり",
+    "たかい",
+    "やすい",
+    "みせてください"
   ],
   "videos": [
     {
@@ -734,6 +746,73 @@
           "role": "content",
           "japanese": "おめめ",
           "thai": "ลีลา"
+        }
+      ]
+    },
+    {
+      "title": "かいもののことば",
+      "timestamp": "20260611_074301",
+      "video_filename": "video_20260611_074301_かいもののことば.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "かいもののことば",
+          "thai": "คำศัพท์เกี่ยวกับการช้อปปิ้ง"
+        },
+        {
+          "role": "content",
+          "japanese": "これください",
+          "thai": "ขออันนี้ครับ/ค่ะ"
+        },
+        {
+          "role": "content",
+          "japanese": "ふくろ",
+          "thai": "ถุง"
+        },
+        {
+          "role": "content",
+          "japanese": "かーど",
+          "thai": "บัตรเครดิต"
+        },
+        {
+          "role": "content",
+          "japanese": "げんきん",
+          "thai": "เงินสด"
+        },
+        {
+          "role": "content",
+          "japanese": "れしーと",
+          "thai": "ใบเสร็จ"
+        },
+        {
+          "role": "content",
+          "japanese": "わりびき",
+          "thai": "ส่วนลด"
+        },
+        {
+          "role": "content",
+          "japanese": "ぜいこみ",
+          "thai": "รวมภาษี"
+        },
+        {
+          "role": "content",
+          "japanese": "おつり",
+          "thai": "เงินทอน"
+        },
+        {
+          "role": "content",
+          "japanese": "たかい",
+          "thai": "แพง"
+        },
+        {
+          "role": "content",
+          "japanese": "やすい",
+          "thai": "ถูก"
+        },
+        {
+          "role": "content",
+          "japanese": "みせてください",
+          "thai": "ขอดูหน่อยครับ/ค่ะ"
         }
       ]
     }
