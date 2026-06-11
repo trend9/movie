@@ -185,7 +185,139 @@ def ensure_fonts():
         try:
             download_file(url_th, FONT_TH_PATH)
         except Exception as e:
-            print(f"Error downloading Thai font: {e}")
+            pass
+
+def is_duplicate_content(data, history):
+    if not isinstance(data, list) or len(data) != 12:
+        return True
+    
+    title = data[0].get("japanese", "").strip()
+    if not title:
+        return True
+        
+    # Check title duplicate
+    if title in history.get("used_titles", []):
+        print(f"Validation failed: Title '{title}' is already used.")
+        return True
+        
+    # Check words duplicate (if 3 or more words are already used, flag as duplicate)
+    duplicate_words_count = 0
+    used_words_set = set(history.get("used_words", []))
+    for item in data[1:]:
+        word = item.get("japanese", "").strip()
+        if word in used_words_set:
+            duplicate_words_count += 1
+            
+    if duplicate_words_count >= 3:
+        print(f"Validation failed: Too many duplicate words ({duplicate_words_count} words matched history).")
+        return True
+        
+    return False
+
+def generate_text_content(history):
+    """Generates 12 pages of Japanese + Thai translation content, avoiding duplicate topics/phrases."""
+    print("Generating 12 pages of content...")
+    
+    # Extract history to avoid duplicates
+    avoid_titles = ", ".join(history["used_titles"][-25:])
+    avoid_words = ", ".join(history["used_words"][-100:])
+    
+    system_prompt = (
+        "You are an assistant that outputs ONLY raw JSON. Do not write markdown, code blocks, or preamble. "
+        "The output must be a JSON array containing exactly 12 items. "
+        "Each item in the array must be an object with keys: 'japanese' and 'thai'. "
+        "CRITICAL: All Japanese output (including the title and all words) MUST be strictly written in Hiragana only. Do NOT use Kanji, Katakana, Romaji, or any other script. For example, use 'きいろ' instead of '黄色' or 'キイロ'."
+        "The first item is the title of the video. The title MUST be a natural, common category of basic Japanese vocabulary or conversation suitable for beginners, 10 characters or less (e.g. 'にちじょうのあいさつ', 'くだもののなまえ', 'いろのひょうげん', 'べんりなことば', 'じこしょうかい'). "
+        "Items 2 to 12 must be standard, common, and 100% correct Japanese words or expressions that belong strictly to that title's category, written in Hiragana. "
+        "CRITICAL: Do NOT invent nonsense compound words or weird phrases (e.g. if the category is Colors, do NOT write 'あかちゃん の いろ' or 'しゅみ の いろ' or 'たべもの の いろ' - only use standard colors like 'あか', 'あお', 'きいろ', 'みどり', 'しろ', 'くろ', 'ちゃいろ', 'ぴんく', 'むらさき', 'おれんじ', 'はいいろ'). All Japanese words must be real and widely used in Japan daily. "
+        "This is for Thai people learning basic/daily Japanese, so the content must be highly practical and natural. "
+        "IMPORTANT: Do NOT include any phonetic romanizations or readings in brackets in the Thai translations (e.g. do NOT write 'สวัสดี (Sawatdee)' or 'ขอบคุณ (Khob khun)'). The Thai text must contain ONLY native Thai script."
+    )
+    
+    user_prompt = (
+        "Generate 12 items matching the system prompt instructions.\n"
+        f"IMPORTANT: You MUST NOT repeat or use any of these previously generated titles: [{avoid_titles}].\n"
+        f"You MUST NOT repeat or use any of these previously generated Japanese phrases/words: [{avoid_words}].\n"
+        "Please choose a completely new category and new vocabulary words. Generate entirely new and fresh content in Hiragana only."
+    )
+    
+    local_api_url = os.environ.get("LOCAL_API_URL") or "http://127.0.0.1:8000"
+    
+    # Try up to 5 times to generate unique content
+    for attempt in range(5):
+        print(f"Generation attempt {attempt + 1}/5...")
+        
+        # 1. Try local Ollama/API server if configured
+        print(f"Trying LLM generation via local server: {local_api_url} ...")
+        try:
+            payload = {
+                "system_prompt": system_prompt,
+                "user_prompt": user_prompt
+            }
+            res = requests.post(f"{local_api_url}/generate/text", json=payload, timeout=90)
+            if res.status_code == 200:
+                text = res.json().get("result", "").strip()
+                text = re.sub(r"^```json\s*", "", text, flags=re.IGNORECASE)
+                text = re.sub(r"\s*```$", "", text, flags=re.IGNORECASE)
+                data = json.loads(text)
+                if isinstance(data, list) and len(data) == 12:
+                    if len(data[0]["japanese"]) > 10:
+                        data[0]["japanese"] = data[0]["japanese"][:10]
+                    
+                    if not is_duplicate_content(data, history):
+                        print(f"Successfully generated unique 12 slides from local server.")
+                        return data
+        except Exception as e:
+            print(f"Local server LLM request failed on attempt {attempt + 1}: {e}")
+    
+        # 2. Try Pollinations text API fallback
+        print("Trying Pollinations Text API fallback...")
+        try:
+            payload = {
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt}
+                ],
+                "model": "openai"
+            }
+            response = requests.post("https://text.pollinations.ai", json=payload, timeout=45)
+            if response.status_code == 200:
+                text = response.text.strip()
+                text = re.sub(r"^```json\s*", "", text, flags=re.IGNORECASE)
+                text = re.sub(r"\s*```$", "", text, flags=re.IGNORECASE)
+                data = json.loads(text)
+                if isinstance(data, list) and len(data) == 12:
+                    if len(data[0]["japanese"]) > 10:
+                        data[0]["japanese"] = data[0]["japanese"][:10]
+                    
+                    if not is_duplicate_content(data, history):
+                        print(f"Successfully generated unique 12 slides from Pollinations.")
+                        return data
+        except Exception as e:
+            print(f"Pollinations Text API fallback failed on attempt {attempt + 1}: {e}")
+            
+    print("Could not generate unique content via LLM after 5 attempts. Using fallback datasets...")
+    # Filter datasets that have not been used yet
+    unused_datasets = [ds for ds in FALLBACK_DATASETS if ds[0]["japanese"] not in history.get("used_titles", [])]
+    if unused_datasets:
+        print(f"Selecting unused fallback dataset: {unused_datasets[0][0]['japanese']}")
+        return unused_datasets[0]
+        
+    # All fallback datasets have been used. Let's find the one that was used the furthest in the past.
+    print("All fallback datasets are used. Selecting the oldest used dataset...")
+    oldest_index = 999999
+    selected_dataset = FALLBACK_DATASETS[0]
+    for ds in FALLBACK_DATASETS:
+        title = ds[0]["japanese"]
+        try:
+            idx = history.get("used_titles", []).index(title)
+        except ValueError:
+            idx = -1
+        if idx != -1 and idx < oldest_index:
+            oldest_index = idx
+            selected_dataset = ds
+    print(f"Selected oldest fallback dataset: {selected_dataset[0]['japanese']}")
+    return selected_dataset
 
 def get_font(lang, size):
     """Returns the loaded font depending on the language."""
@@ -230,67 +362,6 @@ def get_font(lang, size):
                 
     return ImageFont.load_default()
 
-def generate_text_content(history):
-    """Generates 12 pages of Japanese + Thai translation content, avoiding duplicate topics/phrases."""
-    print("Generating 12 pages of content...")
-    
-    # Extract history to avoid duplicates
-    avoid_titles = ", ".join(history["used_titles"][-15:])
-    avoid_words = ", ".join(history["used_words"][-50:])
-    
-    themes = [
-        "Common daily Japanese greetings and polite expressions",
-        "Essential basic Japanese vocabulary and simple sentences",
-        "Shopping and dining out Japanese expressions for Thai learners",
-        "Simple Japanese phrases used in school or office settings",
-        "Japanese expression for colors, food, or hobbies",
-        "Expressing emotions and feelings in simple Japanese"
-    ]
-    selected_theme = themes[int(time.time()) % len(themes)]
-    
-    system_prompt = (
-        "You are an assistant that outputs ONLY raw JSON. Do not write markdown, code blocks, or preamble. "
-        "The output must be a JSON array containing exactly 12 items. "
-        "Each item in the array must be an object with keys: 'japanese' and 'thai'. "
-        "CRITICAL: All Japanese output (including the title and all words) MUST be strictly written in Hiragana only. Do NOT use Kanji, Katakana, Romaji, or any other script. For example, use 'きいろ' instead of '黄色' or 'キイロ'."
-        "The first item is the title of the video. The title MUST be a natural, common category of basic Japanese vocabulary or conversation suitable for beginners, 10 characters or less (e.g. 'にちじょうのあいさつ', 'くだもののなまえ', 'いろのひょうげん', 'べんりなことば', 'じこしょうかい'). "
-        "Items 2 to 12 must be standard, common, and 100% correct Japanese words or expressions that belong strictly to that title's category, written in Hiragana. "
-        "CRITICAL: Do NOT invent nonsense compound words or weird phrases (e.g. if the category is Colors, do NOT write 'あかちゃん の いろ' or 'しゅみ の いろ' or 'たべもの の いろ' - only use standard colors like 'あか', 'あお', 'きいろ', 'みどり', 'しろ', 'くろ', 'ちゃいろ', 'ぴんく', 'むらさき', 'おれんじ', 'はいいろ'). All Japanese words must be real and widely used in Japan daily. "
-        "This is for Thai people learning basic/daily Japanese, so the content must be highly practical and natural. "
-        "IMPORTANT: Do NOT include any phonetic romanizations or readings in brackets in the Thai translations (e.g. do NOT write 'สวัสดี (Sawatdee)' or 'ขอบคุณ (Khob khun)'). The Thai text must contain ONLY native Thai script."
-    )
-    
-    user_prompt = (
-        f"Theme: {selected_theme}. Generate 12 items matching the system prompt instructions.\n"
-        f"IMPORTANT: You MUST NOT repeat any of these previously generated titles: [{avoid_titles}].\n"
-        f"You MUST NOT repeat any of these previously generated Japanese phrases: [{avoid_words}].\n"
-        "Generate entirely new and fresh content."
-    )
-    
-    # 1. Try local Ollama/API server if configured
-    local_api_url = os.environ.get("LOCAL_API_URL") or "http://127.0.0.1:8000"
-    print(f"Trying LLM generation via local server: {local_api_url} ...")
-    try:
-        payload = {
-            "system_prompt": system_prompt,
-            "user_prompt": user_prompt
-        }
-        res = requests.post(f"{local_api_url}/generate/text", json=payload, timeout=90)
-        if res.status_code == 200:
-            text = res.json().get("result", "").strip()
-            text = re.sub(r"^```json\s*", "", text, flags=re.IGNORECASE)
-            text = re.sub(r"\s*```$", "", text, flags=re.IGNORECASE)
-            data = json.loads(text)
-            if isinstance(data, list) and len(data) == 12:
-                # Force double check title length
-                if len(data[0]["japanese"]) > 10:
-                    data[0]["japanese"] = data[0]["japanese"][:10]
-                print(f"Successfully generated 12 slides from local server.")
-                return data
-    except Exception as e:
-        print(f"Local server LLM request failed: {e}")
-
-    # 2. Try Pollinations text API fallback
     print("Trying Pollinations Text API fallback...")
     try:
         payload = {
