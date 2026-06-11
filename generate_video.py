@@ -54,56 +54,83 @@ VOICEVOX_SPEAKERS = [
     0   # 四国めたん (Sweet)
 ]
 
-# Default Fallback Dataset in case API generation fails (tailored for Thai learners of Japanese)
-FALLBACK_DATA = [
-    {
-        "japanese": "日常の日本語",
-        "thai": "ภาษาญี่ปุ่นที่ใช้ในชีวิตประจำวัน"
-    },
-    {
-        "japanese": "こんにちは",
-        "thai": "สวัสดี"
-    },
-    {
-        "japanese": "ありがとう",
-        "thai": "ขอบคุณ"
-    },
-    {
-        "japanese": "すみません",
-        "thai": "ขอโทษ"
-    },
-    {
-        "japanese": "はい",
-        "thai": "ใช่ / ครับ / ค่ะ"
-    },
-    {
-        "japanese": "いいえ",
-        "thai": "ไม่ / ไม่ใช่"
-    },
-    {
-        "japanese": "おいしい",
-        "thai": "อร่อย"
-    },
-    {
-        "japanese": "いくらですか",
-        "thai": "ราคาเท่าไหร่"
-    },
-    {
-        "japanese": "だいじょうぶ",
-        "thai": "ไม่เป็นไร"
-    },
-    {
-        "japanese": "さようなら",
-        "thai": "ลาก่อน"
-    },
-    {
-        "japanese": "はじめまして",
-        "thai": "ยินดีที่ได้รู้จัก"
-    },
-    {
-        "japanese": "またね",
-        "thai": "แล้วเจอกัน"
-    }
+# Collection of Fallback Datasets to ensure different topics are used when LLM is offline
+FALLBACK_DATASETS = [
+    # Topic 1: Greetings (挨拶の表現)
+    [
+        {"japanese": "日常の挨拶", "thai": "คำทักทายในชีวิตประจำวัน"},
+        {"japanese": "こんにちは", "thai": "สวัสดี"},
+        {"japanese": "ありがとう", "thai": "ขอบคุณ"},
+        {"japanese": "すみません", "thai": "ขอโทษ"},
+        {"japanese": "おはよう", "thai": "อรุณสวัสดิ์"},
+        {"japanese": "こんばんは", "thai": "สวัสดีตอนเย็น"},
+        {"japanese": "おやすみ", "thai": "ราตรีสวัสดิ์"},
+        {"japanese": "またね", "thai": "แล้วเจอกัน"},
+        {"japanese": "お元気ですか", "thai": "สบายดีไหม"},
+        {"japanese": "はじめまして", "thai": "ยินดีที่ได้รู้จัก"},
+        {"japanese": "さようなら", "thai": "ลาก่อน"},
+        {"japanese": "お祝い", "thai": "ยินดีด้วย"}
+    ],
+    # Topic 2: Colors (色彩の単語)
+    [
+        {"japanese": "色の表現", "thai": "คำศัพท์เกี่ยวกับสี"},
+        {"japanese": "赤", "thai": "แดง"},
+        {"japanese": "青", "thai": "น้ำเงิน"},
+        {"japanese": "黄色", "thai": "เหลือง"},
+        {"japanese": "緑", "thai": "เขียว"},
+        {"japanese": "白", "thai": "ขาว"},
+        {"japanese": "黒", "thai": "ดำ"},
+        {"japanese": "茶色", "thai": "น้ำตาล"},
+        {"japanese": "ピンク", "thai": "ชมพู"},
+        {"japanese": "紫", "thai": "ม่วง"},
+        {"japanese": "オレンジ", "thai": "ส้ม"},
+        {"japanese": "灰色", "thai": "เทา"}
+    ],
+    # Topic 3: Fruits (果物の名前)
+    [
+        {"japanese": "果物の名前", "thai": "ชื่อผลไม้"},
+        {"japanese": "りんご", "thai": "แอปเปิ้ล"},
+        {"japanese": "みかん", "thai": "ส้ม"},
+        {"japanese": "いちご", "thai": "สตรอเบอร์รี่"},
+        {"japanese": "バナナ", "thai": "กล้วย"},
+        {"japanese": "ぶどう", "thai": "องุ่น"},
+        {"japanese": "すいか", "thai": "แตงโม"},
+        {"japanese": "もも", "thai": "ลูกท้อ"},
+        {"japanese": "メロン", "thai": "เมลอน"},
+        {"japanese": "パイナップル", "thai": "สับปะรด"},
+        {"japanese": "マンゴー", "thai": "มะม่วง"},
+        {"japanese": "ココナッツ", "thai": "มะพร้าว"}
+    ],
+    # Topic 4: Numbers (数の数え方)
+    [
+        {"japanese": "数字の表現", "thai": "ตัวเลขและการนับ"},
+        {"japanese": "いち", "thai": "หนึ่ง"},
+        {"japanese": "に", "thai": "สอง"},
+        {"japanese": "さん", "thai": "สาม"},
+        {"japanese": "よん", "thai": "สี่"},
+        {"japanese": "ご", "thai": "ห้า"},
+        {"japanese": "ろく", "thai": "หก"},
+        {"japanese": "なな", "thai": "เจ็ด"},
+        {"japanese": "はち", "thai": "แปด"},
+        {"japanese": "きゅう", "thai": "เก้า"},
+        {"japanese": "じゅう", "thai": "สิบ"},
+        {"japanese": "ひゃく", "thai": "ร้อย"}
+    ],
+    # Topic 5: Useful Daily Phrases (便利な日常会話)
+    [
+        {"japanese": "便利な言葉", "thai": "คำศัพท์ภาษาญี่ปุ่นที่มีประโยชน์"},
+        {"japanese": "はい", "thai": "ใช่ / ครับ / ค่ะ"},
+        {"japanese": "いいえ", "thai": "ไม่ / ไม่ใช่"},
+        {"japanese": "おいしい", "thai": "อร่อย"},
+        {"japanese": "いくらですか", "thai": "ราคาเท่าไหร่"},
+        {"japanese": "だいじょうぶ", "thai": "ไม่เป็นไร"},
+        {"japanese": "わかりました", "thai": "เข้าใจแล้ว"},
+        {"japanese": "わかりません", "thai": "ไม่เข้าใจ"},
+        {"japanese": "もう一度", "thai": "อีกครั้งหนึ่ง"},
+        {"japanese": "手伝って", "thai": "ช่วยหน่อย"},
+        {"japanese": "大好きです", "thai": "ชอบมาก"},
+        {"japanese": "頑張って", "thai": "สู้ๆ นะ"}
+    ]
 ]
 
 def load_history():
@@ -279,7 +306,15 @@ def generate_text_content(history):
     except Exception as e:
         print(f"Pollinations Text API fallback failed: {e}")
         
-    return FALLBACK_DATA
+    # Filter datasets that have not been used yet
+    unused_datasets = [ds for ds in FALLBACK_DATASETS if ds[0]["japanese"] not in history["used_titles"]]
+    if not unused_datasets:
+        selected_dataset = FALLBACK_DATASETS[int(time.time()) % len(FALLBACK_DATASETS)]
+        print(f"All fallback datasets used. Selecting: {selected_dataset[0]['japanese']}")
+    else:
+        selected_dataset = unused_datasets[0]
+        print(f"Selecting unused fallback dataset: {selected_dataset[0]['japanese']}")
+    return selected_dataset
 
 def translate_title_to_image_prompt(title_japanese):
     """Translates the Japanese title to a highly relevant English description for the image generation prompt."""
@@ -616,7 +651,9 @@ def main():
     print("\nConcatenating clips and compiling final video...")
     final_video = concatenate_videoclips(clips, method="compose")
     
-    output_video_path = os.path.join(OUTPUT_DIR, "generated_video.mp4")
+    timestamp_str = time.strftime("%Y%m%d_%H%M%S")
+    clean_title = re.sub(r'[\\/*?:"<>|]', "", slides[0]["japanese"]).strip().replace(" ", "_")
+    output_video_path = os.path.join(OUTPUT_DIR, f"video_{timestamp_str}_{clean_title}.mp4")
     
     final_video.write_videofile(
         output_video_path,
