@@ -28,7 +28,8 @@
     "てんきのことば",
     "のりもののなまえ",
     "どうぶつのなまえ",
-    "かぞくのよびかた"
+    "かぞくのよびかた",
+    "からだのなまえ"
   ],
   "used_words": [
     "こんにちは",
@@ -349,7 +350,18 @@
     "おじいちゃん",
     "おばあちゃん",
     "ともだち",
-    "あかちゃん"
+    "あかちゃん",
+    "あたま",
+    "め",
+    "みみ",
+    "はな",
+    "くち",
+    "て",
+    "あし",
+    "おなか",
+    "かお",
+    "のど",
+    "かみ"
   ],
   "videos": [
     {
@@ -1287,6 +1299,73 @@
           "role": "content",
           "japanese": "あかちゃん",
           "thai": "เด็กทารก"
+        }
+      ]
+    },
+    {
+      "title": "からだのなまえ",
+      "timestamp": "20260611_101301",
+      "video_filename": "video_20260611_101301_からだのなまえ.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "からだのなまえ",
+          "thai": "ส่วนต่างๆ ของร่างกาย"
+        },
+        {
+          "role": "content",
+          "japanese": "あたま",
+          "thai": "หัว / ศีรษะ"
+        },
+        {
+          "role": "content",
+          "japanese": "め",
+          "thai": "ตา"
+        },
+        {
+          "role": "content",
+          "japanese": "みみ",
+          "thai": "หู"
+        },
+        {
+          "role": "content",
+          "japanese": "はな",
+          "thai": "จมูก"
+        },
+        {
+          "role": "content",
+          "japanese": "くち",
+          "thai": "ปาก"
+        },
+        {
+          "role": "content",
+          "japanese": "て",
+          "thai": "มือ"
+        },
+        {
+          "role": "content",
+          "japanese": "あし",
+          "thai": "ขา / เท้า"
+        },
+        {
+          "role": "content",
+          "japanese": "おなか",
+          "thai": "ท้อง"
+        },
+        {
+          "role": "content",
+          "japanese": "かお",
+          "thai": "ใบหน้า"
+        },
+        {
+          "role": "content",
+          "japanese": "のど",
+          "thai": "คอหอย / ลำคอ"
+        },
+        {
+          "role": "content",
+          "japanese": "かみ",
+          "thai": "ผม"
         }
       ]
     }
