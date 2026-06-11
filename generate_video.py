@@ -137,10 +137,17 @@ def load_history():
     if os.path.exists(HISTORY_FILE):
         try:
             with open(HISTORY_FILE, 'r', encoding='utf-8') as f:
-                return json.load(f)
+                data = json.load(f)
+                if "used_titles" not in data:
+                    data["used_titles"] = []
+                if "used_words" not in data:
+                    data["used_words"] = []
+                if "videos" not in data:
+                    data["videos"] = []
+                return data
         except Exception:
             pass
-    return {"used_titles": [], "used_words": []}
+    return {"used_titles": [], "used_words": [], "videos": []}
 
 def save_history(history):
     try:
@@ -671,9 +678,26 @@ def main():
     final_video.close()
     
     # 6. Save history to avoid duplicate titles/phrases next run
-    history["used_titles"].append(slides[0]["japanese"])
+    title_ja = slides[0]["japanese"]
+    history["used_titles"].append(title_ja)
     for slide in slides[1:]:
         history["used_words"].append(slide["japanese"])
+        
+    # Append detailed video record for descriptions
+    video_record = {
+        "title": title_ja,
+        "timestamp": timestamp_str,
+        "video_filename": os.path.basename(output_video_path),
+        "slides": []
+    }
+    for idx, slide in enumerate(slides):
+        role = "title" if idx == 0 else "content"
+        video_record["slides"].append({
+            "role": role,
+            "japanese": slide["japanese"],
+            "thai": slide["thai"]
+        })
+    history["videos"].append(video_record)
     save_history(history)
     
     # 7. Cleanup temp media
