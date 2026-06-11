@@ -187,32 +187,61 @@ def ensure_fonts():
         except Exception as e:
             pass
 
-def is_duplicate_content(data, history):
+def is_pure_hiragana(text):
+    # Matches only Hiragana (ぁ-ん), long vowel sign (ー), and spaces
+    return bool(re.match(r"^[\u3040-\u309F\u30FC\s]+$", text))
+
+def is_valid_content(data, history):
     if not isinstance(data, list) or len(data) != 12:
-        return True
+        print("Validation failed: Content is not a list of 12 items.")
+        return False
     
     title = data[0].get("japanese", "").strip()
     if not title:
-        return True
+        print("Validation failed: Title is empty.")
+        return False
+        
+    # Check title format (Hiragana only)
+    if not is_pure_hiragana(title):
+        print(f"Validation failed: Title '{title}' contains non-hiragana characters.")
+        return False
         
     # Check title duplicate
     if title in history.get("used_titles", []):
         print(f"Validation failed: Title '{title}' is already used.")
-        return True
+        return False
         
-    # Check words duplicate (if 3 or more words are already used, flag as duplicate)
-    duplicate_words_count = 0
+    # Check all slide items
     used_words_set = set(history.get("used_words", []))
-    for item in data[1:]:
+    duplicate_words_count = 0
+    
+    for idx, item in enumerate(data[1:]):
         word = item.get("japanese", "").strip()
+        thai = item.get("thai", "").strip()
+        
+        if not word or not thai:
+            print(f"Validation failed: Slide {idx+2} has empty japanese or thai text.")
+            return False
+            
+        # Check Hiragana only
+        if not is_pure_hiragana(word):
+            print(f"Validation failed: Slide {idx+2} word '{word}' contains non-hiragana characters.")
+            return False
+            
+        # Check word length (must be at least 2 characters to avoid single character junk/fragments)
+        if len(word) < 2:
+            print(f"Validation failed: Slide {idx+2} word '{word}' is too short.")
+            return False
+            
+        # Check duplicate
         if word in used_words_set:
             duplicate_words_count += 1
             
     if duplicate_words_count >= 3:
         print(f"Validation failed: Too many duplicate words ({duplicate_words_count} words matched history).")
-        return True
+        return False
         
-    return False
+    return True
 
 def generate_text_content(history):
     """Generates 12 pages of Japanese + Thai translation content, avoiding duplicate topics/phrases."""
@@ -264,7 +293,7 @@ def generate_text_content(history):
                     if len(data[0]["japanese"]) > 10:
                         data[0]["japanese"] = data[0]["japanese"][:10]
                     
-                    if not is_duplicate_content(data, history):
+                    if is_valid_content(data, history):
                         print(f"Successfully generated unique 12 slides from local server.")
                         return data
         except Exception as e:
@@ -290,7 +319,7 @@ def generate_text_content(history):
                     if len(data[0]["japanese"]) > 10:
                         data[0]["japanese"] = data[0]["japanese"][:10]
                     
-                    if not is_duplicate_content(data, history):
+                    if is_valid_content(data, history):
                         print(f"Successfully generated unique 12 slides from Pollinations.")
                         return data
         except Exception as e:
