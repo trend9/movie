@@ -30,7 +30,8 @@
     "どうぶつのなまえ",
     "かぞくのよびかた",
     "からだのなまえ",
-    "うちのなかのもの"
+    "うちのなかのもの",
+    "どうさのことば"
   ],
   "used_words": [
     "こんにちは",
@@ -373,7 +374,18 @@
     "どあ",
     "そうじき",
     "せんたくき",
-    "とけい"
+    "とけい",
+    "いく",
+    "くる",
+    "たべる",
+    "のむ",
+    "みる",
+    "きく",
+    "はなす",
+    "かく",
+    "よむ",
+    "かう",
+    "する"
   ],
   "videos": [
     {
@@ -1445,6 +1457,73 @@
           "role": "content",
           "japanese": "とけい",
           "thai": "นาฬิกา"
+        }
+      ]
+    },
+    {
+      "title": "どうさのことば",
+      "timestamp": "20260611_181307",
+      "video_filename": "video_20260611_181307_どうさのことば.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "どうさのことば",
+          "thai": "คำกริยาแสดงท่าทาง"
+        },
+        {
+          "role": "content",
+          "japanese": "いく",
+          "thai": "ไป"
+        },
+        {
+          "role": "content",
+          "japanese": "くる",
+          "thai": "มา"
+        },
+        {
+          "role": "content",
+          "japanese": "たべる",
+          "thai": "กิน"
+        },
+        {
+          "role": "content",
+          "japanese": "のむ",
+          "thai": "ดื่ม"
+        },
+        {
+          "role": "content",
+          "japanese": "みる",
+          "thai": "ดู / มอง"
+        },
+        {
+          "role": "content",
+          "japanese": "きく",
+          "thai": "ฟัง / ถาม"
+        },
+        {
+          "role": "content",
+          "japanese": "はなす",
+          "thai": "พูดคุย"
+        },
+        {
+          "role": "content",
+          "japanese": "かく",
+          "thai": "เขียน"
+        },
+        {
+          "role": "content",
+          "japanese": "よむ",
+          "thai": "อ่าน"
+        },
+        {
+          "role": "content",
+          "japanese": "かう",
+          "thai": "ซื้อ"
+        },
+        {
+          "role": "content",
+          "japanese": "する",
+          "thai": "ทำ"
         }
       ]
     }
