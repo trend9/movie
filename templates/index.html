@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>縦型ショート動画一括生成システム</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;800&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS (Aesthetic Utility Layout) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0b0f19;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(31, 41, 234, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(147, 51, 234, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(236, 72, 153, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+        .glass {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-button {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .glow-button::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            filter: blur(8px);
+        }
+        .glow-button:hover::after {
+            opacity: 0.75;
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen flex flex-col font-sans">
+    <header class="py-6 px-8 border-b border-gray-800 glass flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/20">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                </svg>
+            </div>
+            <h1 class="text-xl font-display font-bold tracking-tight bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 bg-clip-text text-transparent">
+                Short Video Generator
+            </h1>
+        </div>
+        <span class="text-xs px-3 py-1 bg-gray-800/60 rounded-full border border-gray-700/50 text-gray-400 font-mono">v1.0.0</span>
+    </header>
+
+    <main class="flex-grow max-w-5xl w-full mx-auto p-6 lg:p-8 grid grid-cols-1 md:grid-cols-12 gap-8">
+        <!-- Settings Column -->
+        <section class="md:col-span-7 flex flex-col space-y-6">
+            <div class="glass p-6 rounded-2xl shadow-xl flex flex-col space-y-5">
+                <h2 class="text-lg font-semibold border-b border-gray-800 pb-3 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-indigo-500"></span>システム設定
+                </h2>
+                
+                <div class="flex flex-col space-y-2">
+                    <label for="apiKey" class="text-sm font-semibold text-gray-300 flex items-center justify-between">
+                        <span>Gemini API キー <span class="text-xs text-purple-400 font-normal">(Google AI Studio)</span></span>
+                        <a href="https://aistudio.google.com/" target="_blank" class="text-xs text-indigo-400 hover:underline">キーを取得する &rarr;</a>
+                    </label>
+                    <input type="password" id="apiKey" placeholder="AIzaSy..." class="w-full bg-gray-950/80 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors">
+                </div>
+
+                <div class="flex flex-col space-y-2">
+                    <label for="sheetUrl" class="text-sm font-semibold text-gray-300">Googleスプレッドシート URL</label>
+                    <input type="text" id="sheetUrl" value="https://docs.google.com/spreadsheets/d/1SlOl7PsxUmtsDzn-oz9H0nCMeInzpivVbbJT210NCII/edit?usp=sharing" placeholder="https://docs.google.com/spreadsheets/d/..." class="w-full bg-gray-950/80 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors">
+                    <p class="text-xs text-gray-500">※ スプレッドシートが「リンクを知っている全員が閲覧可能」に共有されている必要があります。</p>
+                </div>
+
+                <div class="flex flex-col space-y-2 border-t border-gray-800/80 pt-4">
+                    <label for="csvFile" class="text-sm font-semibold text-gray-300">または ローカルのCSVファイルをアップロード</label>
+                    <input type="file" id="csvFile" accept=".csv" class="w-full text-sm text-gray-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-gray-800 file:text-gray-300 hover:file:bg-gray-700 cursor-pointer">
+                    <p class="text-xs text-gray-500">※ スプレッドシートが非公開で401エラーになる場合は、スプレッドシート画面の「ファイル」＞「ダウンロード」＞「カンマ区切り値 (.csv)」からダウンロードしたファイルを選択してください。</p>
+                </div>
+
+                <button id="generateBtn" class="glow-button w-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white font-bold py-4 rounded-xl shadow-lg transition duration-300 transform hover:-translate-y-0.5 active:translate-y-0">
+                    動画生成開始 (12スライド連結・無料枠)
+                </button>
+            </div>
+
+            <!-- Console Log Panel -->
+            <div class="glass p-6 rounded-2xl shadow-xl flex-grow flex flex-col min-h-[300px]">
+                <h2 class="text-lg font-semibold border-b border-gray-800 pb-3 flex items-center justify-between">
+                    <span class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>処理ログ・進捗
+                    </span>
+                    <span id="progressPercent" class="text-sm text-purple-400 font-mono">0%</span>
+                </h2>
+                
+                <!-- Progress Bar -->
+                <div class="w-full bg-gray-900 rounded-full h-1.5 mt-4 overflow-hidden">
+                    <div id="progressBar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-1.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+
+                <div id="logConsole" class="mt-4 flex-grow bg-black/60 rounded-xl p-4 font-mono text-xs text-green-400 overflow-y-auto max-h-[280px] border border-gray-800/80 flex flex-col space-y-1.5">
+                    <div class="text-gray-500">&gt; システムの実行準備が完了しました。</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preview Column -->
+        <section class="md:col-span-5 flex flex-col space-y-6">
+            <div class="glass p-6 rounded-2xl shadow-xl flex flex-col items-center justify-center min-h-[500px] text-center relative overflow-hidden">
+                <div id="previewPlaceholder" class="flex flex-col items-center justify-center space-y-4">
+                    <div class="w-16 h-16 rounded-full bg-gray-900 flex items-center justify-center text-gray-500 border border-gray-800">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-300">生成された動画</h3>
+                        <p class="text-xs text-gray-500 mt-1 max-w-[200px]">生成が完了すると、ここに9:16のプレビューが表示されます。</p>
+                    </div>
+                </div>
+
+                <div id="videoContainer" class="hidden w-full flex flex-col items-center space-y-4">
+                    <!-- 9:16 aspect ratio box -->
+                    <div class="relative w-[240px] aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-800">
+                        <video id="videoPreview" controls class="w-full h-full object-contain">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <a id="downloadLink" href="#" download="generated_short_video.mp4" class="w-full text-center bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-xl border border-gray-700 transition duration-200">
+                        動画を保存する (.mp4)
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-6 text-center text-xs text-gray-600 border-t border-gray-900 mt-auto">
+        &copy; 2026 Short Video Generator. Powered by Google AI Studio (Imagen 3) & MoviePy.
+    </footer>
+
+    <script>
+        // Load stored API Key if exists
+        const apiKeyInput = document.getElementById('apiKey');
+        const storedKey = localStorage.getItem('gemini_api_key');
+        if (storedKey) {
+            apiKeyInput.value = storedKey;
+        }
+
+        const generateBtn = document.getElementById('generateBtn');
+        const sheetUrlInput = document.getElementById('sheetUrl');
+        const csvFileInput = document.getElementById('csvFile');
+        const logConsole = document.getElementById('logConsole');
+        const progressBar = document.getElementById('progressBar');
+        const progressPercent = document.getElementById('progressPercent');
+        const previewPlaceholder = document.getElementById('previewPlaceholder');
+        const videoContainer = document.getElementById('videoContainer');
+        const videoPreview = document.getElementById('videoPreview');
+        const downloadLink = document.getElementById('downloadLink');
+
+        let loadedCsvData = null;
+
+        csvFileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    loadedCsvData = evt.target.result;
+                    addLog(`ローカルCSVファイル "${file.name}" を読み込みました。`, 'success');
+                };
+                reader.readAsText(file, 'UTF-8');
+            } else {
+                loadedCsvData = null;
+            }
+        });
+
+        function addLog(message, type = 'info') {
+            const div = document.createElement('div');
+            const now = new Date().toLocaleTimeString();
+            let colorClass = 'text-gray-400';
+            if (type === 'success') colorClass = 'text-emerald-400';
+            if (type === 'error') colorClass = 'text-rose-400 font-bold';
+            if (type === 'warn') colorClass = 'text-amber-400';
+
+            // Split line breaks
+            const formattedMsg = message.replace(/\n/g, '<br>');
+
+            div.innerHTML = `<span class="text-gray-600">[${now}]</span> <span class="${colorClass}">${formattedMsg}</span>`;
+            logConsole.appendChild(div);
+            logConsole.scrollTop = logConsole.scrollHeight;
+        }
+
+        generateBtn.addEventListener('click', async () => {
+            const apiKey = apiKeyInput.value.trim();
+            const sheetUrl = sheetUrlInput.value.trim();
+
+            if (!apiKey) {
+                alert('Gemini API キーを入力してください。');
+                return;
+            }
+            if (!sheetUrl && !loadedCsvData) {
+                alert('GoogleスプレッドシートのURLを入力するか、ローカルのCSVファイルを選択してください。');
+                return;
+            }
+
+            // Save key
+            localStorage.setItem('gemini_api_key', apiKey);
+
+            // UI Reset
+            generateBtn.disabled = true;
+            generateBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            previewPlaceholder.classList.remove('hidden');
+            videoContainer.classList.add('hidden');
+            videoPreview.src = '';
+            
+            logConsole.innerHTML = '';
+            addLog('動画生成リクエストを送信しています...', 'info');
+            progressBar.style.width = '0%';
+            progressPercent.innerText = '0%';
+
+            try {
+                // We use Server-Sent Events or polling to get status. Let's start the job via API POST
+                const response = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        api_key: apiKey,
+                        sheet_url: loadedCsvData ? null : sheetUrl,
+                        csv_data: loadedCsvData
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'サーバーエラーが発生しました。');
+                }
+
+                // Poll status
+                pollStatus();
+
+            } catch (err) {
+                addLog(`エラー: ${err.message}`, 'error');
+                generateBtn.disabled = false;
+                generateBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        });
+
+        async function pollStatus() {
+            const interval = setInterval(async () => {
+                try {
+                    const response = await fetch('/api/status');
+                    if (!response.ok) throw new Error('ステータス取得失敗');
+                    
+                    const data = await response.json();
+                    
+                    // Display new logs
+                    if (data.logs && data.logs.length > 0) {
+                        logConsole.innerHTML = '';
+                        data.logs.forEach(log => {
+                            addLog(log.message, log.type);
+                        });
+                    }
+
+                    // Update Progress
+                    progressBar.style.width = `${data.progress}%`;
+                    progressPercent.innerText = `${data.progress}%`;
+
+                    if (data.status === 'completed') {
+                        clearInterval(interval);
+                        addLog('すべての動画処理と1本への統合が完了しました！', 'success');
+                        
+                        // Show Preview and enable Download
+                        previewPlaceholder.classList.add('hidden');
+                        videoContainer.classList.remove('hidden');
+                        
+                        // We fetch the latest output file
+                        const videoUrl = `/api/output?t=${Date.now()}`;
+                        videoPreview.src = videoUrl;
+                        downloadLink.href = videoUrl;
+
+                        generateBtn.disabled = false;
+                        generateBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    } else if (data.status === 'failed') {
+                        clearInterval(interval);
+                        addLog(`処理が失敗しました。詳細をご確認ください。`, 'error');
+                        generateBtn.disabled = false;
+                        generateBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

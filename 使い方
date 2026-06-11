@@ -1,0 +1,40 @@
+# 導入・動作確認手順
+
+オンデマンド縦型ショート動画一括生成システムの構築が完了しました。
+
+## 作成したファイル
+1. [requirements.txt](file:///c:/Users/matta/OneDrive/デスクトップ/movie/requirements.txt): 必要なPythonライブラリ定義。
+2. [video_mass_production.py](file:///c:/Users/matta/OneDrive/デスクトップ/movie/video_mass_production.py): Flask Web GUIサーバー 兼 動画生成メイン処理コード。
+3. [templates/index.html](file:///c:/Users/matta/OneDrive/デスクトップ/movie/templates/index.html): ダークモードを基調とした美しい操作画面。
+
+---
+
+## 実行・確認手順
+
+### 1. 依存ライブラリのインストール
+ターミナル（PowerShell等）を開き、以下のコマンドを実行して必要なライブラリをインストールします。
+```powershell
+pip install -r requirements.txt
+```
+
+### 2. ローカルサーバーの起動
+以下のコマンドでローカルWebサーバーを起動します。
+```powershell
+python video_mass_production.py
+```
+
+### 3. ブラウザでアクセス
+起動後、ブラウザで以下のURLを開きます。
+- [http://127.0.0.1:5000](http://127.0.0.1:5000)
+
+### 4. 実行手順
+1. 画面上に **Gemini API キー** を入力します（一度入力するとブラウザに保存されます）。
+2. 対象の **GoogleスプレッドシートのURL** を指定します（デフォルトでご提示のURLがセットされています）。
+3. **「動画生成開始」** ボタンをクリックします。
+4. 処理のログが進捗バーと共にリアルタイムで表示されます。
+5. 生成完了後、右側のプレビューエリアに 9:16 の完成動画が表示され、**「動画を保存する (.mp4)」** から保存できます。
+
+> [!TIP]
+> - スプレッドシートは「リンクを知っている全員が閲覧可能」に設定しておくだけで、APIキーなどの認証不要かつ完全無料でCSVデータとして取得できます。
+> - 1ページ目は4.0秒、それ以降のスライドはすべて3.5秒で動作し、1本に統合された動画が生成されます。
+> - Pillowによる描画を行っているため、ImageMagickは不要で、日本語テロップも文字化けせずに高画質で合成されます。
