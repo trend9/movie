@@ -54,11 +54,11 @@ VOICEVOX_SPEAKERS = [
     0   # 四国めたん (Sweet)
 ]
 
-# Collection of Fallback Datasets to ensure different topics are used when LLM is offline
+# Collection of Fallback Datasets to ensure different topics are used when LLM is offline (Strictly Hiragana)
 FALLBACK_DATASETS = [
-    # Topic 1: Greetings (挨拶の表現)
+    # Topic 1: Greetings (にちじょうのあいさつ)
     [
-        {"japanese": "日常の挨拶", "thai": "คำทักทายในชีวิตประจำวัน"},
+        {"japanese": "にちじょうのあいさつ", "thai": "คำทักทายในชีวิตประจำวัน"},
         {"japanese": "こんにちは", "thai": "สวัสดี"},
         {"japanese": "ありがとう", "thai": "ขอบคุณ"},
         {"japanese": "すみません", "thai": "ขอโทษ"},
@@ -66,44 +66,44 @@ FALLBACK_DATASETS = [
         {"japanese": "こんばんは", "thai": "สวัสดีตอนเย็น"},
         {"japanese": "おやすみ", "thai": "ราตรีสวัสดิ์"},
         {"japanese": "またね", "thai": "แล้วเจอกัน"},
-        {"japanese": "お元気ですか", "thai": "สบายดีไหม"},
+        {"japanese": "おげんきですか", "thai": "สบายดีไหม"},
         {"japanese": "はじめまして", "thai": "ยินดีที่ได้รู้จัก"},
         {"japanese": "さようなら", "thai": "ลาก่อน"},
-        {"japanese": "お祝い", "thai": "ยินดีด้วย"}
+        {"japanese": "おめでとう", "thai": "ยินดีด้วย"}
     ],
-    # Topic 2: Colors (色彩の単語)
+    # Topic 2: Colors (いろのひょうげん)
     [
-        {"japanese": "色の表現", "thai": "คำศัพท์เกี่ยวกับสี"},
-        {"japanese": "赤", "thai": "แดง"},
-        {"japanese": "青", "thai": "น้ำเงิน"},
-        {"japanese": "黄色", "thai": "เหลือง"},
-        {"japanese": "緑", "thai": "เขียว"},
-        {"japanese": "白", "thai": "ขาว"},
-        {"japanese": "黒", "thai": "ดำ"},
-        {"japanese": "茶色", "thai": "น้ำตาล"},
-        {"japanese": "ピンク", "thai": "ชมพู"},
-        {"japanese": "紫", "thai": "ม่วง"},
-        {"japanese": "オレンジ", "thai": "ส้ม"},
-        {"japanese": "灰色", "thai": "เทา"}
+        {"japanese": "いろのひょうげん", "thai": "คำศัพท์เกี่ยวกับสี"},
+        {"japanese": "あか", "thai": "แดง"},
+        {"japanese": "あお", "thai": "น้ำเงิน"},
+        {"japanese": "きいろ", "thai": "เหลือง"},
+        {"japanese": "みどり", "thai": "เขียว"},
+        {"japanese": "しろ", "thai": "ขาว"},
+        {"japanese": "くろ", "thai": "ดำ"},
+        {"japanese": "ちゃいろ", "thai": "น้ำตาล"},
+        {"japanese": "ぴんく", "thai": "ชมพู"},
+        {"japanese": "むらさき", "thai": "ม่วง"},
+        {"japanese": "おれんじ", "thai": "ส้ม"},
+        {"japanese": "はいいろ", "thai": "เทา"}
     ],
-    # Topic 3: Fruits (果物の名前)
+    # Topic 3: Fruits (くだもののなまえ)
     [
-        {"japanese": "果物の名前", "thai": "ชื่อผลไม้"},
+        {"japanese": "くだもののなまえ", "thai": "ชื่อผลไม้"},
         {"japanese": "りんご", "thai": "แอปเปิ้ล"},
         {"japanese": "みかん", "thai": "ส้ม"},
         {"japanese": "いちご", "thai": "สตรอเบอร์รี่"},
-        {"japanese": "バナナ", "thai": "กล้วย"},
+        {"japanese": "ばなな", "thai": "กล้วย"},
         {"japanese": "ぶどう", "thai": "องุ่น"},
         {"japanese": "すいか", "thai": "แตงโม"},
         {"japanese": "もも", "thai": "ลูกท้อ"},
-        {"japanese": "メロン", "thai": "เมลอน"},
-        {"japanese": "パイナップル", "thai": "สับปะรด"},
-        {"japanese": "マンゴー", "thai": "มะม่วง"},
-        {"japanese": "ココナッツ", "thai": "มะพร้าว"}
+        {"japanese": "めろん", "thai": "เมลอน"},
+        {"japanese": "ぱいなっぷる", "thai": "สับปะรด"},
+        {"japanese": "まんごー", "thai": "มะม่วง"},
+        {"japanese": "ここなっつ", "thai": "มะพร้าว"}
     ],
-    # Topic 4: Numbers (数の数え方)
+    # Topic 4: Numbers (すうじのひょうげん)
     [
-        {"japanese": "数字の表現", "thai": "ตัวเลขและการนับ"},
+        {"japanese": "すうじのひょうげん", "thai": "ตัวเลขและการนับ"},
         {"japanese": "いち", "thai": "หนึ่ง"},
         {"japanese": "に", "thai": "สอง"},
         {"japanese": "さん", "thai": "สาม"},
@@ -116,9 +116,9 @@ FALLBACK_DATASETS = [
         {"japanese": "じゅう", "thai": "สิบ"},
         {"japanese": "ひゃく", "thai": "ร้อย"}
     ],
-    # Topic 5: Useful Daily Phrases (便利な日常会話)
+    # Topic 5: Useful Daily Phrases (べんりなことば)
     [
-        {"japanese": "便利な言葉", "thai": "คำศัพท์ภาษาญี่ปุ่นที่มีประโยชน์"},
+        {"japanese": "べんりなことば", "thai": "คำศัพท์ภาษาญี่ปุ่นที่มีประโยชน์"},
         {"japanese": "はい", "thai": "ใช่ / ครับ / ค่ะ"},
         {"japanese": "いいえ", "thai": "ไม่ / ไม่ใช่"},
         {"japanese": "おいしい", "thai": "อร่อย"},
@@ -126,10 +126,10 @@ FALLBACK_DATASETS = [
         {"japanese": "だいじょうぶ", "thai": "ไม่เป็นไร"},
         {"japanese": "わかりました", "thai": "เข้าใจแล้ว"},
         {"japanese": "わかりません", "thai": "ไม่เข้าใจ"},
-        {"japanese": "もう一度", "thai": "อีกครั้งหนึ่ง"},
-        {"japanese": "手伝って", "thai": "ช่วยหน่อย"},
-        {"japanese": "大好きです", "thai": "ชอบมาก"},
-        {"japanese": "頑張って", "thai": "สู้ๆ นะ"}
+        {"japanese": "もういちど", "thai": "อีกครั้งหนึ่ง"},
+        {"japanese": "てつだって", "thai": "ช่วยหน่อย"},
+        {"japanese": "だいすきです", "thai": "ชอบมาก"},
+        {"japanese": "がんばって", "thai": "สู้ๆ นะ"}
     ]
 ]
 
@@ -245,9 +245,10 @@ def generate_text_content(history):
         "You are an assistant that outputs ONLY raw JSON. Do not write markdown, code blocks, or preamble. "
         "The output must be a JSON array containing exactly 12 items. "
         "Each item in the array must be an object with keys: 'japanese' and 'thai'. "
-        "The first item is the title of the video. The title MUST be a natural, common category of basic Japanese vocabulary or conversation suitable for beginners, 10 characters or less (e.g. '日常の挨拶', '果物の名前', '色の表現', '便利な単語', '自己紹介'). "
-        "Items 2 to 12 must be standard, common, and 100% correct Japanese words or expressions that belong strictly to that title's category. "
-        "CRITICAL: Do NOT invent nonsense compound words or weird phrases (e.g. if the category is Colors, do NOT write '赤ちゃんの色' or '趣味の色' or '食べ物の色' - only use standard colors like '赤', '青', '黄色', '緑', '白', '黒', '茶色', 'ピンク', '紫', 'オレンジ', '灰色'). All Japanese words must be real and widely used in Japan daily. "
+        "CRITICAL: All Japanese output (including the title and all words) MUST be strictly written in Hiragana only. Do NOT use Kanji, Katakana, Romaji, or any other script. For example, use 'きいろ' instead of '黄色' or 'キイロ'."
+        "The first item is the title of the video. The title MUST be a natural, common category of basic Japanese vocabulary or conversation suitable for beginners, 10 characters or less (e.g. 'にちじょうのあいさつ', 'くだもののなまえ', 'いろのひょうげん', 'べんりなことば', 'じこしょうかい'). "
+        "Items 2 to 12 must be standard, common, and 100% correct Japanese words or expressions that belong strictly to that title's category, written in Hiragana. "
+        "CRITICAL: Do NOT invent nonsense compound words or weird phrases (e.g. if the category is Colors, do NOT write 'あかちゃん の いろ' or 'しゅみ の いろ' or 'たべもの の いろ' - only use standard colors like 'あか', 'あお', 'きいろ', 'みどり', 'しろ', 'くろ', 'ちゃいろ', 'ぴんく', 'むらさき', 'おれんじ', 'はいいろ'). All Japanese words must be real and widely used in Japan daily. "
         "This is for Thai people learning basic/daily Japanese, so the content must be highly practical and natural. "
         "IMPORTANT: Do NOT include any phonetic romanizations or readings in brackets in the Thai translations (e.g. do NOT write 'สวัสดี (Sawatdee)' or 'ขอบคุณ (Khob khun)'). The Thai text must contain ONLY native Thai script."
     )
