@@ -20,7 +20,8 @@
     "いろのひょうげん",
     "うすい",
     "きゅうり",
-    "なまえ"
+    "なまえ",
+    "とげ"
   ],
   "used_words": [
     "こんにちは",
@@ -253,7 +254,18 @@
     "あな",
     "すず",
     "わくわく",
-    "つむき"
+    "つむき",
+    "こげ",
+    "おこげ",
+    "ひげ",
+    "ていね",
+    "ちゅうけ",
+    "くうき",
+    "みずめ",
+    "おしげ",
+    "ていね",
+    "おしげ",
+    "おめめ"
   ],
   "videos": [
     {
@@ -655,6 +667,73 @@
           "role": "content",
           "japanese": "つむき",
           "thai": "จิตใจ"
+        }
+      ]
+    },
+    {
+      "title": "とげ",
+      "timestamp": "20260611_065209",
+      "video_filename": "video_20260611_065209_とげ.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "とげ",
+          "thai": "ถาก"
+        },
+        {
+          "role": "content",
+          "japanese": "こげ",
+          "thai": "กาว"
+        },
+        {
+          "role": "content",
+          "japanese": "おこげ",
+          "thai": "อาย"
+        },
+        {
+          "role": "content",
+          "japanese": "ひげ",
+          "thai": "เหย"
+        },
+        {
+          "role": "content",
+          "japanese": "ていね",
+          "thai": "กะเงา"
+        },
+        {
+          "role": "content",
+          "japanese": "ちゅうけ",
+          "thai": "ซุ้ม"
+        },
+        {
+          "role": "content",
+          "japanese": "くうき",
+          "thai": "โคล่"
+        },
+        {
+          "role": "content",
+          "japanese": "みずめ",
+          "thai": "น้ำใจ"
+        },
+        {
+          "role": "content",
+          "japanese": "おしげ",
+          "thai": "อาน"
+        },
+        {
+          "role": "content",
+          "japanese": "ていね",
+          "thai": "กฎหมาย"
+        },
+        {
+          "role": "content",
+          "japanese": "おしげ",
+          "thai": "เหย"
+        },
+        {
+          "role": "content",
+          "japanese": "おめめ",
+          "thai": "ลีลา"
         }
       ]
     }
