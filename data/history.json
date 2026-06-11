@@ -26,7 +26,8 @@
     "れすとらんのことば",
     "りょこうのことば",
     "てんきのことば",
-    "のりもののなまえ"
+    "のりもののなまえ",
+    "どうぶつのなまえ"
   ],
   "used_words": [
     "こんにちは",
@@ -325,7 +326,18 @@
     "ばいく",
     "ちかてつ",
     "しんかんせん",
-    "へりこぷたー"
+    "へりこぷたー",
+    "いぬ",
+    "ねこ",
+    "うさぎ",
+    "とり",
+    "さかな",
+    "さる",
+    "くま",
+    "ぱんだ",
+    "らいおん",
+    "ぞう",
+    "うま"
   ],
   "videos": [
     {
@@ -1129,6 +1141,73 @@
           "role": "content",
           "japanese": "へりこぷたー",
           "thai": "เฮลิคอปเตอร์"
+        }
+      ]
+    },
+    {
+      "title": "どうぶつのなまえ",
+      "timestamp": "20260611_083603",
+      "video_filename": "video_20260611_083603_どうぶつのなまえ.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "どうぶつのなまえ",
+          "thai": "ชื่อสัตว์ต่างๆ"
+        },
+        {
+          "role": "content",
+          "japanese": "いぬ",
+          "thai": "สุนัข"
+        },
+        {
+          "role": "content",
+          "japanese": "ねこ",
+          "thai": "แมว"
+        },
+        {
+          "role": "content",
+          "japanese": "うさぎ",
+          "thai": "กระต่าย"
+        },
+        {
+          "role": "content",
+          "japanese": "とり",
+          "thai": "นก"
+        },
+        {
+          "role": "content",
+          "japanese": "さかな",
+          "thai": "ปลา"
+        },
+        {
+          "role": "content",
+          "japanese": "さる",
+          "thai": "ลิง"
+        },
+        {
+          "role": "content",
+          "japanese": "くま",
+          "thai": "หมี"
+        },
+        {
+          "role": "content",
+          "japanese": "ぱんだ",
+          "thai": "แพนด้า"
+        },
+        {
+          "role": "content",
+          "japanese": "らいおん",
+          "thai": "สิงโต"
+        },
+        {
+          "role": "content",
+          "japanese": "ぞう",
+          "thai": "ช้าง"
+        },
+        {
+          "role": "content",
+          "japanese": "うま",
+          "thai": "ม้า"
         }
       ]
     }
