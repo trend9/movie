@@ -218,10 +218,10 @@ def generate_text_content(history):
         "You are an assistant that outputs ONLY raw JSON. Do not write markdown, code blocks, or preamble. "
         "The output must be a JSON array containing exactly 12 items. "
         "Each item in the array must be an object with keys: 'japanese' and 'thai'. "
-        "The first item should be a title/topic page introducing the theme. "
-        "The Japanese title on the first page MUST be 10 characters or less (e.g. '日常の日本語', '学校の日本語', '便利な日本語'). "
-        "Items 2 to 12 should be useful Japanese expressions with their natural Thai translations. "
-        "This is for Thai people learning Japanese, so do NOT use themes about Japanese traveling in Thailand. "
+        "The first item is the title of the video. The title MUST be a natural, common category of basic Japanese vocabulary or conversation suitable for beginners, 10 characters or less (e.g. '日常の挨拶', '果物の名前', '色の表現', '便利な単語', '自己紹介'). "
+        "Items 2 to 12 must be standard, common, and 100% correct Japanese words or expressions that belong strictly to that title's category. "
+        "CRITICAL: Do NOT invent nonsense compound words or weird phrases (e.g. if the category is Colors, do NOT write '赤ちゃんの色' or '趣味の色' or '食べ物の色' - only use standard colors like '赤', '青', '黄色', '緑', '白', '黒', '茶色', 'ピンク', '紫', 'オレンジ', '灰色'). All Japanese words must be real and widely used in Japan daily. "
+        "This is for Thai people learning basic/daily Japanese, so the content must be highly practical and natural. "
         "IMPORTANT: Do NOT include any phonetic romanizations or readings in brackets in the Thai translations (e.g. do NOT write 'สวัสดี (Sawatdee)' or 'ขอบคุณ (Khob khun)'). The Thai text must contain ONLY native Thai script."
     )
     
