@@ -24,7 +24,8 @@
     "とげ",
     "かいもののことば",
     "れすとらんのことば",
-    "りょこうのことば"
+    "りょこうのことば",
+    "てんきのことば"
   ],
   "used_words": [
     "こんにちは",
@@ -301,7 +302,18 @@
     "にもつ",
     "おみやげ",
     "どこですか",
-    "かんこう"
+    "かんこう",
+    "はれ",
+    "あめ",
+    "くもり",
+    "ゆき",
+    "かぜ",
+    "あつい",
+    "さむい",
+    "すずしい",
+    "あたたかい",
+    "たいふう",
+    "かみなり"
   ],
   "videos": [
     {
@@ -971,6 +983,73 @@
           "role": "content",
           "japanese": "かんこう",
           "thai": "การท่องเที่ยว"
+        }
+      ]
+    },
+    {
+      "title": "てんきのことば",
+      "timestamp": "20260611_080534",
+      "video_filename": "video_20260611_080534_てんきのことば.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "てんきのことば",
+          "thai": "คำศัพท์เกี่ยวกับสภาพอากาศ"
+        },
+        {
+          "role": "content",
+          "japanese": "はれ",
+          "thai": "แดดออก / แจ่มใส"
+        },
+        {
+          "role": "content",
+          "japanese": "あめ",
+          "thai": "ฝนตก"
+        },
+        {
+          "role": "content",
+          "japanese": "くもり",
+          "thai": "ครึ้มฟ้าครึ้มฝน"
+        },
+        {
+          "role": "content",
+          "japanese": "ゆき",
+          "thai": "หิมะตก"
+        },
+        {
+          "role": "content",
+          "japanese": "かぜ",
+          "thai": "ลม"
+        },
+        {
+          "role": "content",
+          "japanese": "あつい",
+          "thai": "ร้อน"
+        },
+        {
+          "role": "content",
+          "japanese": "さむい",
+          "thai": "หนาว"
+        },
+        {
+          "role": "content",
+          "japanese": "すずしい",
+          "thai": "เย็นสบาย"
+        },
+        {
+          "role": "content",
+          "japanese": "あたたかい",
+          "thai": "อบอุ่น"
+        },
+        {
+          "role": "content",
+          "japanese": "たいふう",
+          "thai": "พายุไต้ฝุ่น"
+        },
+        {
+          "role": "content",
+          "japanese": "かみなり",
+          "thai": "ฟ้าผ่า / ฟ้าร้อง"
         }
       ]
     }
