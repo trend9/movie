@@ -19,7 +19,8 @@
     "べんりなことば",
     "いろのひょうげん",
     "うすい",
-    "きゅうり"
+    "きゅうり",
+    "なまえ"
   ],
   "used_words": [
     "こんにちは",
@@ -241,7 +242,18 @@
     "ごはん",
     "おやつ",
     "カフェ",
-    "図書館"
+    "図書館",
+    "あめ",
+    "とびう",
+    "おうち",
+    "まお",
+    "こお",
+    "みお",
+    "おんせん",
+    "あな",
+    "すず",
+    "わくわく",
+    "つむき"
   ],
   "videos": [
     {
@@ -576,6 +588,73 @@
           "role": "content",
           "japanese": "図書館",
           "thai": "หนังสือ"
+        }
+      ]
+    },
+    {
+      "title": "なまえ",
+      "timestamp": "20260611_064527",
+      "video_filename": "video_20260611_064527_なまえ.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "なまえ",
+          "thai": "ชื่อ"
+        },
+        {
+          "role": "content",
+          "japanese": "あめ",
+          "thai": "ฝน"
+        },
+        {
+          "role": "content",
+          "japanese": "とびう",
+          "thai": "ต้นไม้"
+        },
+        {
+          "role": "content",
+          "japanese": "おうち",
+          "thai": "บ้าน"
+        },
+        {
+          "role": "content",
+          "japanese": "まお",
+          "thai": "แม่"
+        },
+        {
+          "role": "content",
+          "japanese": "こお",
+          "thai": "เด็ก"
+        },
+        {
+          "role": "content",
+          "japanese": "みお",
+          "thai": "พ่อ"
+        },
+        {
+          "role": "content",
+          "japanese": "おんせん",
+          "thai": "เครื่อง"
+        },
+        {
+          "role": "content",
+          "japanese": "あな",
+          "thai": "คน"
+        },
+        {
+          "role": "content",
+          "japanese": "すず",
+          "thai": "ทอง"
+        },
+        {
+          "role": "content",
+          "japanese": "わくわく",
+          "thai": "กือเลิศ"
+        },
+        {
+          "role": "content",
+          "japanese": "つむき",
+          "thai": "จิตใจ"
         }
       ]
     }
