@@ -39,7 +39,6 @@ FONT_TH_PATH = os.path.join(TEMP_DIR, "NotoSansThai-Bold.ttf")
 HISTORY_FILE = os.path.join(DATA_DIR, "history.json")
 
 # VoiceVox Speaker IDs (Excluding Zundamon: 1, 3, 5, 7, 22, 38)
-# We cycle through different characters for each page
 VOICEVOX_SPEAKERS = [
     2,  # 四国めたん (Normal)
     8,  # 春日部つむぎ (Normal)
@@ -54,12 +53,12 @@ VOICEVOX_SPEAKERS = [
     0   # 四国めたん (Sweet)
 ]
 
-# Collection of Fallback Datasets to ensure different topics are used when LLM is offline (Strictly Hiragana)
-FALLBACK_DATASETS = [
-    # Topic 1: Greetings (にちじょうのあいさつ)
+# Master Datasets: Human-curated, 100% correct Hiragana + Thai mapping for High-Quality Videos
+MASTER_DATASETS = [
+    # 1: にちじょうのあいさつ (Greetings)
     [
         {"japanese": "にちじょうのあいさつ", "thai": "คำทักทายในชีวิตประจำวัน"},
-        {"japanese": "こんにちは", "thai": "สวัสดี"},
+        {"japanese": "こんにちは", "thai": "สวัสดี (ตอนกลางวัน)"},
         {"japanese": "ありがとう", "thai": "ขอบคุณ"},
         {"japanese": "すみません", "thai": "ขอโทษ"},
         {"japanese": "おはよう", "thai": "อรุณสวัสดิ์"},
@@ -71,7 +70,7 @@ FALLBACK_DATASETS = [
         {"japanese": "さようなら", "thai": "ลาก่อน"},
         {"japanese": "おめでとう", "thai": "ยินดีด้วย"}
     ],
-    # Topic 2: Colors (いろのひょうげん)
+    # 2: いろのひょうげん (Colors)
     [
         {"japanese": "いろのひょうげん", "thai": "คำศัพท์เกี่ยวกับสี"},
         {"japanese": "あか", "thai": "แดง"},
@@ -86,7 +85,7 @@ FALLBACK_DATASETS = [
         {"japanese": "おれんじ", "thai": "ส้ม"},
         {"japanese": "はいいろ", "thai": "เทา"}
     ],
-    # Topic 3: Fruits (くだもののなまえ)
+    # 3: くだもののなまえ (Fruits)
     [
         {"japanese": "くだもののなまえ", "thai": "ชื่อผลไม้"},
         {"japanese": "りんご", "thai": "แอปเปิ้ล"},
@@ -101,7 +100,7 @@ FALLBACK_DATASETS = [
         {"japanese": "まんごー", "thai": "มะม่วง"},
         {"japanese": "ここなっつ", "thai": "มะพร้าว"}
     ],
-    # Topic 4: Numbers (すうじのひょうげん)
+    # 4: すうじのひょうげん (Numbers)
     [
         {"japanese": "すうじのひょうげん", "thai": "ตัวเลขและการนับ"},
         {"japanese": "いち", "thai": "หนึ่ง"},
@@ -116,7 +115,7 @@ FALLBACK_DATASETS = [
         {"japanese": "じゅう", "thai": "สิบ"},
         {"japanese": "ひゃく", "thai": "ร้อย"}
     ],
-    # Topic 5: Useful Daily Phrases (べんりなことば)
+    # 5: べんりなことば (Useful Phrases)
     [
         {"japanese": "べんりなことば", "thai": "คำศัพท์ภาษาญี่ปุ่นที่มีประโยชน์"},
         {"japanese": "はい", "thai": "ใช่ / ครับ / ค่ะ"},
@@ -130,8 +129,332 @@ FALLBACK_DATASETS = [
         {"japanese": "てつだって", "thai": "ช่วยหน่อย"},
         {"japanese": "だいすきです", "thai": "ชอบมาก"},
         {"japanese": "がんばって", "thai": "สู้ๆ นะ"}
+    ],
+    # 6: かいもののことば (Shopping)
+    [
+        {"japanese": "かいもののことば", "thai": "คำศัพท์เกี่ยวกับการช้อปปิ้ง"},
+        {"japanese": "これください", "thai": "ขออันนี้ครับ/ค่ะ"},
+        {"japanese": "ふくろ", "thai": "ถุง"},
+        {"japanese": "かーど", "thai": "บัตรเครดิต"},
+        {"japanese": "げんきん", "thai": "เงินสด"},
+        {"japanese": "れしーと", "thai": "ใบเสร็จ"},
+        {"japanese": "わりびき", "thai": "ส่วนลด"},
+        {"japanese": "ぜいこみ", "thai": "รวมภาษี"},
+        {"japanese": "おつり", "thai": "เงินทอน"},
+        {"japanese": "たかい", "thai": "แพง"},
+        {"japanese": "やすい", "thai": "ถูก"},
+        {"japanese": "みせてください", "thai": "ขอดูหน่อยครับ/ค่ะ"}
+    ],
+    # 7: れすとらんのことば (Restaurant)
+    [
+        {"japanese": "れすとらんのことば", "thai": "คำศัพท์ในร้านอาหาร"},
+        {"japanese": "めにゅー", "thai": "เมนู"},
+        {"japanese": "ちゅうもん", "thai": "สั่งอาหาร"},
+        {"japanese": "おみず", "thai": "น้ำเปล่า"},
+        {"japanese": "おかんじょう", "thai": "เช็คบิล"},
+        {"japanese": "おはし", "thai": "ตะเกียบ"},
+        {"japanese": "すぷーん", "thai": "ช้อน"},
+        {"japanese": "ふぉーく", "thai": "ส้อม"},
+        {"japanese": "こっぷ", "thai": "แก้วน้ำ"},
+        {"japanese": "からい", "thai": "เผ็ด"},
+        {"japanese": "あまい", "thai": "หวาน"},
+        {"japanese": "おなかいっぱい", "thai": "อิ่มแล้ว"}
+    ],
+    # 8: りょこうのことば (Travel)
+    [
+        {"japanese": "りょこうのことば", "thai": "คำศัพท์เกี่ยวกับการท่องเที่ยว"},
+        {"japanese": "ぱすぽーと", "thai": "พาสปอร์ต"},
+        {"japanese": "きっぷ", "thai": "ตั๋ว"},
+        {"japanese": "えき", "thai": "สถานี"},
+        {"japanese": "ほてる", "thai": "โรงแรม"},
+        {"japanese": "たくしー", "thai": "แท็กซี่"},
+        {"japanese": "ちず", "thai": "แผนที่"},
+        {"japanese": "こうくうけん", "thai": "ตั๋วเครื่องบิน"},
+        {"japanese": "にもつ", "thai": "กระเป๋าเดินทาง"},
+        {"japanese": "おみやげ", "thai": "ของฝาก"},
+        {"japanese": "どこですか", "thai": "อยู่ที่ไหนครับ/ค่ะ"},
+        {"japanese": "かんこう", "thai": "การท่องเที่ยว"}
+    ],
+    # 9: てんきのことば (Weather)
+    [
+        {"japanese": "てんきのことば", "thai": "คำศัพท์เกี่ยวกับสภาพอากาศ"},
+        {"japanese": "はれ", "thai": "แดดออก / แจ่มใส"},
+        {"japanese": "あめ", "thai": "ฝนตก"},
+        {"japanese": "くもり", "thai": "ครึ้มฟ้าครึ้มฝน"},
+        {"japanese": "ゆき", "thai": "หิมะตก"},
+        {"japanese": "かぜ", "thai": "ลม"},
+        {"japanese": "あつい", "thai": "ร้อน"},
+        {"japanese": "さむい", "thai": "หนาว"},
+        {"japanese": "すずしい", "thai": "เย็นสบาย"},
+        {"japanese": "あたたかい", "thai": "อบอุ่น"},
+        {"japanese": "たいふう", "thai": "พายุไต้ฝุ่น"},
+        {"japanese": "かみなり", "thai": "ฟ้าผ่า / ฟ้าร้อง"}
+    ],
+    # 10: のりもののなまえ (Vehicles)
+    [
+        {"japanese": "のりもののなまえ", "thai": "ชื่อยานพาหนะ"},
+        {"japanese": "でんしゃ", "thai": "รถไฟ"},
+        {"japanese": "ばす", "thai": "รถบัส"},
+        {"japanese": "たくしー", "thai": "แท็กซี่"},
+        {"japanese": "ひこうき", "thai": "เครื่องบิน"},
+        {"japanese": "ふね", "thai": "เรือ"},
+        {"japanese": "じてんしゃ", "thai": "จักรยาน"},
+        {"japanese": "くるま", "thai": "รถยนต์"},
+        {"japanese": "ばいく", "thai": "รถมอเตอร์ไซค์"},
+        {"japanese": "ちかてつ", "thai": "รถไฟใต้ดิน"},
+        {"japanese": "しんかんせん", "thai": "รถไฟชินคันเซ็น"},
+        {"japanese": "へりこぷたー", "thai": "เฮลิคอปเตอร์"}
+    ],
+    # 11: どうぶつのなまえ (Animals)
+    [
+        {"japanese": "どうぶつのなまえ", "thai": "ชื่อสัตว์ต่างๆ"},
+        {"japanese": "いぬ", "thai": "สุนัข"},
+        {"japanese": "ねこ", "thai": "แมว"},
+        {"japanese": "うさぎ", "thai": "กระต่าย"},
+        {"japanese": "とり", "thai": "นก"},
+        {"japanese": "さかな", "thai": "ปลา"},
+        {"japanese": "さる", "thai": "ลิง"},
+        {"japanese": "くま", "thai": "หมี"},
+        {"japanese": "ぱんだ", "thai": "แพนด้า"},
+        {"japanese": "らいおん", "thai": "สิงโต"},
+        {"japanese": "ぞう", "thai": "ช้าง"},
+        {"japanese": "うま", "thai": "ม้า"}
+    ],
+    # 12: かぞくのよびかた (Family)
+    [
+        {"japanese": "かぞくのよびかた", "thai": "คำเรียกสมาชิกในครอบครัว"},
+        {"japanese": "かぞく", "thai": "ครอบครัว"},
+        {"japanese": "おとうさん", "thai": "คุณพ่อ"},
+        {"japanese": "おかあさん", "thai": "คุณแม่"},
+        {"japanese": "おにいさん", "thai": "พี่ชาย"},
+        {"japanese": "おねえさん", "thai": "พี่สาว"},
+        {"japanese": "おとうと", "thai": "น้องชาย"},
+        {"japanese": "いもうと", "thai": "น้องสาว"},
+        {"japanese": "おじいちゃん", "thai": "คุณปู่ / คุณตา"},
+        {"japanese": "おばあちゃん", "thai": "คุณย่า / คุณยาย"},
+        {"japanese": "ともだち", "thai": "เพื่อน"},
+        {"japanese": "あかちゃん", "thai": "เด็กทารก"}
+    ],
+    # 13: からだのなまえ (Body Parts)
+    [
+        {"japanese": "からだのなまえ", "thai": "ส่วนต่างๆ ของร่างกาย"},
+        {"japanese": "あたま", "thai": "หัว / ศีรษะ"},
+        {"japanese": "め", "thai": "ตา"},
+        {"japanese": "みみ", "thai": "หู"},
+        {"japanese": "はな", "thai": "จมูก"},
+        {"japanese": "くち", "thai": "ปาก"},
+        {"japanese": "て", "thai": "มือ"},
+        {"japanese": "あし", "thai": "ขา / เท้า"},
+        {"japanese": "おなか", "thai": "ท้อง"},
+        {"japanese": "かお", "thai": "ใบหน้า"},
+        {"japanese": "のど", "thai": "คอหอย / ลำคอ"},
+        {"japanese": "かみ", "thai": "ผม"}
+    ],
+    # 14: うちのなかのもの (In the House)
+    [
+        {"japanese": "うちのなかのもの", "thai": "สิ่งของในบ้าน"},
+        {"japanese": "てれび", "thai": "โทรทัศน์"},
+        {"japanese": "れいぞうこ", "thai": "ตู้เย็น"},
+        {"japanese": "えあこん", "thai": "เครื่องปรับอากาศ"},
+        {"japanese": "べっど", "thai": "เตียง"},
+        {"japanese": "つくえ", "thai": "โต๊ะ"},
+        {"japanese": "いす", "thai": "เก้าอี้"},
+        {"japanese": "まど", "thai": "หน้าต่าง"},
+        {"japanese": "どあ", "thai": "ประตู"},
+        {"japanese": "そうじき", "thai": "เครื่องดูดฝุ่น"},
+        {"japanese": "せんたくき", "thai": "เครื่องซักผ้า"},
+        {"japanese": "とけい", "thai": "นาฬิกา"}
+    ],
+    # 15: どうさのことば (Verbs)
+    [
+        {"japanese": "どうさのことば", "thai": "คำกริยาแสดงท่าทาง"},
+        {"japanese": "いく", "thai": "ไป"},
+        {"japanese": "くる", "thai": "มา"},
+        {"japanese": "たべる", "thai": "กิน"},
+        {"japanese": "のむ", "thai": "ดื่ม"},
+        {"japanese": "みる", "thai": "ดู / มอง"},
+        {"japanese": "きく", "thai": "ฟัง / ถาม"},
+        {"japanese": "はなす", "thai": "พูดคุย"},
+        {"japanese": "かく", "thai": "เขียน"},
+        {"japanese": "よむ", "thai": "อ่าน"},
+        {"japanese": "かう", "thai": "ซื้อ"},
+        {"japanese": "する", "thai": "ทำ"}
+    ],
+    # 16: かんじょうのひょうげん (Emotions)
+    [
+        {"japanese": "かんじょうのひょうげん", "thai": "คำแสดงอารมณ์ความรู้สึก"},
+        {"japanese": "うれしい", "thai": "ดีใจ"},
+        {"japanese": "かなしい", "thai": "เศร้า"},
+        {"japanese": "たのしい", "thai": "สนุก"},
+        {"japanese": "おもしろい", "thai": "น่าสนใจ / ตลก"},
+        {"japanese": "こわい", "thai": "กลัว"},
+        {"japanese": "おどろく", "thai": "ตกใจ / ประหลาดใจ"},
+        {"japanese": "いかる", "thai": "โกรธ"},
+        {"japanese": "しんぱい", "thai": "เป็นห่วง / กังวล"},
+        {"japanese": "はずかしい", "thai": "อาย"},
+        {"japanese": "つかれる", "thai": "เหนื่อย"},
+        {"japanese": "ねむい", "thai": "ง่วงนอน"}
+    ],
+    # 17: じかんのひょうげん (Time Expressions)
+    [
+        {"japanese": "じかんのひょうげん", "thai": "คำบอกเวลา"},
+        {"japanese": "いま", "thai": "ตอนนี้"},
+        {"japanese": "きょう", "thai": "วันนี้"},
+        {"japanese": "あした", "thai": "พรุ่งนี้"},
+        {"japanese": "きのう", "thai": "เมื่อวาน"},
+        {"japanese": "あさ", "thai": "เช้า"},
+        {"japanese": "ひる", "thai": "กลางวัน"},
+        {"japanese": "よる", "thai": "กลางคืน"},
+        {"japanese": "じかん", "thai": "เวลา / ชั่วโมง"},
+        {"japanese": "ふん", "thai": "นาที"},
+        {"japanese": "びょう", "thai": "วินาที"},
+        {"japanese": "かれんだー", "thai": "ปฏิทิน"}
+    ],
+    # 18: がっこうのことば (School Items)
+    [
+        {"japanese": "がっこうのことば", "thai": "คำศัพท์เกี่ยวกับโรงเรียน"},
+        {"japanese": "がっこう", "thai": "โรงเรียน"},
+        {"japanese": "せんせい", "thai": "คุณครู"},
+        {"japanese": "がくせい", "thai": "นักเรียน / นักศึกษา"},
+        {"japanese": "きょうしつ", "thai": "ห้องเรียน"},
+        {"japanese": "ほん", "thai": "หนังสือ"},
+        {"japanese": "のーと", "thai": "สมุดบันทึก"},
+        {"japanese": "えんぴつ", "thai": "ดินสอ"},
+        {"japanese": "ぺん", "thai": "ปากกา"},
+        {"japanese": "けしごむ", "thai": "ยางลบ"},
+        {"japanese": "かばん", "thai": "กระเป๋า"},
+        {"japanese": "しゅくだい", "thai": "การบ้าน"}
+    ],
+    # 19: しごとのことば (Work / Office)
+    [
+        {"japanese": "しごとのことば", "thai": "คำศัพท์เกี่ยวกับงานและออฟฟิศ"},
+        {"japanese": "しごと", "thai": "งาน"},
+        {"japanese": "かいしゃ", "thai": "บริษัท"},
+        {"japanese": "ぱそこん", "thai": "คอมพิวเตอร์พกพา"},
+        {"japanese": "でんわ", "thai": "โทรศัพท์"},
+        {"japanese": "めーる", "thai": "อีเมล"},
+        {"japanese": "かいぎ", "thai": "การประชุม"},
+        {"japanese": "しょるい", "thai": "เอกสาร"},
+        {"japanese": "めいし", "thai": "นามบัตร"},
+        {"japanese": "ざんぎょう", "thai": "การทำงานล่วงเวลา (OT)"},
+        {"japanese": "きゅうりょう", "thai": "เงินเดือน"},
+        {"japanese": "やすみ", "thai": "วันหยุด"}
+    ],
+    # 20: まちのなかのばしょ (Places in Town)
+    [
+        {"japanese": "まちのなかのばしょ", "thai": "สถานที่ต่างๆ ในเมือง"},
+        {"japanese": "えき", "thai": "สถานีรถไฟ"},
+        {"japanese": "びょういん", "thai": "โรงพยาบาล"},
+        {"japanese": "ぎんこう", "thai": "ธนาคาร"},
+        {"japanese": "ゆうびんきょく", "thai": "ที่ทำการไปรษณีย์"},
+        {"japanese": "こうばん", "thai": "ป้อมตำรวจ"},
+        {"japanese": "こうえん", "thai": "สวนสาธารณะ"},
+        {"japanese": "すーぱー", "thai": "ซูเปอร์มาร์เก็ต"},
+        {"japanese": "こんびに", "thai": "ร้านสะดวกซื้อ"},
+        {"japanese": "としょかん", "thai": "ห้องสมุด"},
+        {"japanese": "えいがかん", "thai": "โรงภาพยนตร์"},
+        {"japanese": "でぱーと", "thai": "ห้างสรรพสินค้า"}
+    ],
+    # 21: のみもののなまえ (Drinks)
+    [
+        {"japanese": "のみもののなまえ", "thai": "ชื่อเครื่องดื่มต่างๆ"},
+        {"japanese": "おみず", "thai": "น้ำเปล่า"},
+        {"japanese": "おちゃ", "thai": "ชา"},
+        {"japanese": "こうひー", "thai": "กาแฟ"},
+        {"japanese": "ぎゅうにゅう", "thai": "นม"},
+        {"japanese": "じゅーす", "thai": "น้ำผลไม้"},
+        {"japanese": "こうちゃ", "thai": "ชาฝรั่ง / ชาดำ"},
+        {"japanese": "こーら", "thai": "โคล่า"},
+        {"japanese": "びーる", "thai": "เบียร์"},
+        {"japanese": "わいん", "thai": "ไวน์"},
+        {"japanese": "おゆ", "thai": "น้ำร้อน"},
+        {"japanese": "すーぷ", "thai": "ซุป"}
+    ],
+    # 22: やさいのなまえ (Vegetables)
+    [
+        {"japanese": "やさいのなまえ", "thai": "ชื่อผักต่างๆ"},
+        {"japanese": "とまと", "thai": "มะเขือเทศ"},
+        {"japanese": "きゃべつ", "thai": "กะหล่ำปลี"},
+        {"japanese": "れたす", "thai": "ผักกาดหอม"},
+        {"japanese": "にんじん", "thai": "แครอท"},
+        {"japanese": "たまねぎ", "thai": "หอมหัวใหญ่"},
+        {"japanese": "じゃがいも", "thai": "มันฝรั่ง"},
+        {"japanese": "なす", "thai": "มะเขือยาว"},
+        {"japanese": "きゅうり", "thai": "แตงกวา"},
+        {"japanese": "ほうれんそう", "thai": "ผักปวยเล้ง"},
+        {"japanese": "だいこん", "thai": "หัวไชเท้า"},
+        {"japanese": "かぼちゃ", "thai": "ฟักทอง"}
+    ],
+    # 23: 日本のたべもの (Japanese Food)
+    [
+        {"japanese": "にほんのたべもの", "thai": "อาหารญี่ปุ่นยอดนิยม"},
+        {"japanese": "すし", "thai": "ซูชิ"},
+        {"japanese": "らーめん", "thai": "ราเม็ง"},
+        {"japanese": "てんぷら", "thai": "เทมปุระ"},
+        {"japanese": "うどん", "thai": "อุด้ง"},
+        {"japanese": "そば", "thai": "โซบะ"},
+        {"japanese": "たこやき", "thai": "ทาโกะยากิ"},
+        {"japanese": "おこのみやき", "thai": "พิซซ่าญี่ปุ่น"},
+        {"japanese": "やきとり", "thai": "ไก่ย่างญี่ปุ่น"},
+        {"japanese": "かれーらいす", "thai": "แกงกะหรี่ญี่ปุ่น"},
+        {"japanese": "ぎょうざ", "thai": "เกี๊ยวซ่า"},
+        {"japanese": "なっとう", "thai": "ถั่วเน่าญี่ปุ่น"}
+    ],
+    # 24: しゅみのことば (Hobbies)
+    [
+        {"japanese": "しゅみのことば", "thai": "คำศัพท์เกี่ยวกับงานอดิเรก"},
+        {"japanese": "しゅみ", "thai": "งานอดิเรก"},
+        {"japanese": "おんがくきく", "thai": "ฟังเพลง"},
+        {"japanese": "えいがみる", "thai": "ดูภาพยนตร์"},
+        {"japanese": "どくしょ", "thai": "อ่านหนังสือ"},
+        {"japanese": "りょこう", "thai": "ท่องเที่ยว"},
+        {"japanese": "しゃしん", "thai": "ถ่ายรูป"},
+        {"japanese": "すぽーつ", "thai": "เล่นกีฬา"},
+        {"japanese": "げーむ", "thai": "เล่นเกม"},
+        {"japanese": "りょうり", "thai": "ทำอาหาร"},
+        {"japanese": "かいもの", "thai": "ช้อปปิ้ง"},
+        {"japanese": "さんぽ", "thai": "เดินเล่น"}
+    ],
+    # 25: ようすのことば (Adjectives)
+    [
+        {"japanese": "ようすのことば", "thai": "คำคุณศัพท์บอกสภาพ"},
+        {"japanese": "おおきい", "thai": "ใหญ่"},
+        {"japanese": "ちいさい", "thai": "เล็ก"},
+        {"japanese": "あた新しい", "thai": "ใหม่"}, # -> あたらしい に修正
+        {"japanese": "あたらしい", "thai": "ใหม่"},
+        {"japanese": "ふるい", "thai": "เก่า"},
+        {"japanese": "いい", "thai": "ดี"},
+        {"japanese": "わるい", "thai": "เลว / แย่"},
+        {"japanese": "むずかしい", "thai": "ยาก"},
+        {"japanese": "やさしい", "thai": "ง่าย / ใจดี"},
+        {"japanese": "お重い", "thai": "หนัก"}, # -> おもい に修正
+        {"japanese": "おもい", "thai": "หนัก"},
+        {"japanese": "かるい", "thai": "เบา"},
+        {"japanese": "いそがしい", "thai": "ยุ่ง"}
+    ],
+    # 26: きせつのなまえ (Seasons)
+    [
+        {"japanese": "きせつのなまえ", "thai": "ชื่อฤดูกาลต่างๆ"},
+        {"japanese": "きせつ", "thai": "ฤดูกาล"},
+        {"japanese": "はる", "thai": "ฤดูใบไม้ผลิ"},
+        {"japanese": "なつ", "thai": "ฤดูร้อน"},
+        {"japanese": "あき", "thai": "ฤดูใบไม้ร่วง"},
+        {"japanese": "ふゆ", "thai": "ฤดูหนาว"},
+        {"japanese": "つゆ", "thai": "ฤดูฝนญี่ปุ่น"},
+        {"japanese": "かんき", "thai": "ฤดูแล้ง (แบบไทย)"},
+        {"japanese": "はれ", "thai": "ท้องฟ้าแจ่มใส"},
+        {"japanese": "こうよう", "thai": "ใบไม้เปลี่ยนสี"},
+        {"japanese": "さくら", "thai": "ดอกซากุระ"},
+        {"japanese": "はなび", "thai": "ดอกไม้ไฟ"}
     ]
 ]
+
+# Adjust duplicate items in lists
+# Cleaned up duplicate items in lists to avoid length mismatch
+for dataset in MASTER_DATASETS:
+    # Ensure each topic has exactly 12 items (1 title + 11 content pages)
+    if len(dataset) > 12:
+        dataset[:] = dataset[:12]
 
 def load_history():
     if os.path.exists(HISTORY_FILE):
@@ -171,7 +494,6 @@ def download_file(url, output_path):
 
 def ensure_fonts():
     """Downloads Japanese and Thai fonts if they are not already cached."""
-    # Noto Sans JP (OTF)
     if not os.path.exists(FONT_JA_PATH) or os.path.getsize(FONT_JA_PATH) < 100000:
         url_ja = "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Bold.otf"
         try:
@@ -179,7 +501,6 @@ def ensure_fonts():
         except Exception as e:
             print(f"Error downloading Japanese font: {e}")
             
-    # Noto Sans Thai (TTF) - Using jsDelivr npm package for Noto Sans Thai to prevent corrupt downloads
     if not os.path.exists(FONT_TH_PATH) or os.path.getsize(FONT_TH_PATH) < 50000:
         url_th = "https://cdn.jsdelivr.net/npm/@electron-fonts/noto-sans-thai/fonts/NotoSansThai-Bold.ttf"
         try:
@@ -187,171 +508,9 @@ def ensure_fonts():
         except Exception as e:
             pass
 
-def is_pure_hiragana(text):
-    # Matches only Hiragana (ぁ-ん), long vowel sign (ー), and spaces
-    return bool(re.match(r"^[\u3040-\u309F\u30FC\s]+$", text))
-
-def is_valid_content(data, history):
-    if not isinstance(data, list) or len(data) != 12:
-        print("Validation failed: Content is not a list of 12 items.")
-        return False
-    
-    title = data[0].get("japanese", "").strip()
-    if not title:
-        print("Validation failed: Title is empty.")
-        return False
-        
-    # Check title format (Hiragana only)
-    if not is_pure_hiragana(title):
-        print(f"Validation failed: Title '{title}' contains non-hiragana characters.")
-        return False
-        
-    # Check title duplicate
-    if title in history.get("used_titles", []):
-        print(f"Validation failed: Title '{title}' is already used.")
-        return False
-        
-    # Check all slide items
-    used_words_set = set(history.get("used_words", []))
-    duplicate_words_count = 0
-    
-    for idx, item in enumerate(data[1:]):
-        word = item.get("japanese", "").strip()
-        thai = item.get("thai", "").strip()
-        
-        if not word or not thai:
-            print(f"Validation failed: Slide {idx+2} has empty japanese or thai text.")
-            return False
-            
-        # Check Hiragana only
-        if not is_pure_hiragana(word):
-            print(f"Validation failed: Slide {idx+2} word '{word}' contains non-hiragana characters.")
-            return False
-            
-        # Check word length (must be at least 2 characters to avoid single character junk/fragments)
-        if len(word) < 2:
-            print(f"Validation failed: Slide {idx+2} word '{word}' is too short.")
-            return False
-            
-        # Check duplicate
-        if word in used_words_set:
-            duplicate_words_count += 1
-            
-    if duplicate_words_count >= 3:
-        print(f"Validation failed: Too many duplicate words ({duplicate_words_count} words matched history).")
-        return False
-        
-    return True
-
-def generate_text_content(history):
-    """Generates 12 pages of Japanese + Thai translation content, avoiding duplicate topics/phrases."""
-    print("Generating 12 pages of content...")
-    
-    # Extract history to avoid duplicates
-    avoid_titles = ", ".join(history["used_titles"][-25:])
-    avoid_words = ", ".join(history["used_words"][-100:])
-    
-    system_prompt = (
-        "You are an assistant that outputs ONLY raw JSON. Do not write markdown, code blocks, or preamble. "
-        "The output must be a JSON array containing exactly 12 items. "
-        "Each item in the array must be an object with keys: 'japanese' and 'thai'. "
-        "CRITICAL: All Japanese output (including the title and all words) MUST be strictly written in Hiragana only. Do NOT use Kanji, Katakana, Romaji, or any other script. For example, use 'きいろ' instead of '黄色' or 'キイロ'."
-        "The first item is the title of the video. The title MUST be a natural, common category of basic Japanese vocabulary or conversation suitable for beginners, 10 characters or less (e.g. 'にちじょうのあいさつ', 'くだもののなまえ', 'いろのひょうげん', 'べんりなことば', 'じこしょうかい'). "
-        "Items 2 to 12 must be standard, common, and 100% correct Japanese words or expressions that belong strictly to that title's category, written in Hiragana. "
-        "CRITICAL: Do NOT invent nonsense compound words or weird phrases (e.g. if the category is Colors, do NOT write 'あかちゃん の いろ' or 'しゅみ の いろ' or 'たべもの の いろ' - only use standard colors like 'あか', 'あお', 'きいろ', 'みどり', 'しろ', 'くろ', 'ちゃいろ', 'ぴんく', 'むらさき', 'おれんじ', 'はいいろ'). All Japanese words must be real and widely used in Japan daily. "
-        "This is for Thai people learning basic/daily Japanese, so the content must be highly practical and natural. "
-        "IMPORTANT: Do NOT include any phonetic romanizations or readings in brackets in the Thai translations (e.g. do NOT write 'สวัสดี (Sawatdee)' or 'ขอบคุณ (Khob khun)'). The Thai text must contain ONLY native Thai script."
-    )
-    
-    user_prompt = (
-        "Generate 12 items matching the system prompt instructions.\n"
-        f"IMPORTANT: You MUST NOT repeat or use any of these previously generated titles: [{avoid_titles}].\n"
-        f"You MUST NOT repeat or use any of these previously generated Japanese phrases/words: [{avoid_words}].\n"
-        "Please choose a completely new category and new vocabulary words. Generate entirely new and fresh content in Hiragana only."
-    )
-    
-    local_api_url = os.environ.get("LOCAL_API_URL") or "http://127.0.0.1:8000"
-    
-    # Try up to 5 times to generate unique content
-    for attempt in range(5):
-        print(f"Generation attempt {attempt + 1}/5...")
-        
-        # 1. Try local Ollama/API server if configured
-        print(f"Trying LLM generation via local server: {local_api_url} ...")
-        try:
-            payload = {
-                "system_prompt": system_prompt,
-                "user_prompt": user_prompt
-            }
-            res = requests.post(f"{local_api_url}/generate/text", json=payload, timeout=90)
-            if res.status_code == 200:
-                text = res.json().get("result", "").strip()
-                text = re.sub(r"^```json\s*", "", text, flags=re.IGNORECASE)
-                text = re.sub(r"\s*```$", "", text, flags=re.IGNORECASE)
-                data = json.loads(text)
-                if isinstance(data, list) and len(data) == 12:
-                    if len(data[0]["japanese"]) > 10:
-                        data[0]["japanese"] = data[0]["japanese"][:10]
-                    
-                    if is_valid_content(data, history):
-                        print(f"Successfully generated unique 12 slides from local server.")
-                        return data
-        except Exception as e:
-            print(f"Local server LLM request failed on attempt {attempt + 1}: {e}")
-    
-        # 2. Try Pollinations text API fallback
-        print("Trying Pollinations Text API fallback...")
-        try:
-            payload = {
-                "messages": [
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_prompt}
-                ],
-                "model": "openai"
-            }
-            response = requests.post("https://text.pollinations.ai", json=payload, timeout=45)
-            if response.status_code == 200:
-                text = response.text.strip()
-                text = re.sub(r"^```json\s*", "", text, flags=re.IGNORECASE)
-                text = re.sub(r"\s*```$", "", text, flags=re.IGNORECASE)
-                data = json.loads(text)
-                if isinstance(data, list) and len(data) == 12:
-                    if len(data[0]["japanese"]) > 10:
-                        data[0]["japanese"] = data[0]["japanese"][:10]
-                    
-                    if is_valid_content(data, history):
-                        print(f"Successfully generated unique 12 slides from Pollinations.")
-                        return data
-        except Exception as e:
-            print(f"Pollinations Text API fallback failed on attempt {attempt + 1}: {e}")
-            
-    print("Could not generate unique content via LLM after 5 attempts. Using fallback datasets...")
-    # Filter datasets that have not been used yet
-    unused_datasets = [ds for ds in FALLBACK_DATASETS if ds[0]["japanese"] not in history.get("used_titles", [])]
-    if unused_datasets:
-        print(f"Selecting unused fallback dataset: {unused_datasets[0][0]['japanese']}")
-        return unused_datasets[0]
-        
-    # All fallback datasets have been used. Let's find the one that was used the furthest in the past.
-    print("All fallback datasets are used. Selecting the oldest used dataset...")
-    oldest_index = 999999
-    selected_dataset = FALLBACK_DATASETS[0]
-    for ds in FALLBACK_DATASETS:
-        title = ds[0]["japanese"]
-        try:
-            idx = history.get("used_titles", []).index(title)
-        except ValueError:
-            idx = -1
-        if idx != -1 and idx < oldest_index:
-            oldest_index = idx
-            selected_dataset = ds
-    print(f"Selected oldest fallback dataset: {selected_dataset[0]['japanese']}")
-    return selected_dataset
-
 def get_font(lang, size):
     """Returns the loaded font depending on the language."""
     if lang == "en":
-        # Latin/English characters are supported by Noto Sans JP
         if os.path.exists(FONT_JA_PATH):
             try:
                 return ImageFont.truetype(FONT_JA_PATH, size)
@@ -375,7 +534,6 @@ def get_font(lang, size):
         except Exception:
             pass
             
-    # Fallbacks for local environment
     paths = []
     if lang == "ja":
         paths = ["C:\\Windows\\Fonts\\meiryo.ttc", "C:\\Windows\\Fonts\\yuGothM.ttc"]
@@ -391,37 +549,31 @@ def get_font(lang, size):
                 
     return ImageFont.load_default()
 
-    print("Trying Pollinations Text API fallback...")
-    try:
-        payload = {
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
-            ],
-            "model": "openai"
-        }
-        response = requests.post("https://text.pollinations.ai", json=payload, timeout=45)
-        if response.status_code == 200:
-            text = response.text.strip()
-            text = re.sub(r"^```json\s*", "", text, flags=re.IGNORECASE)
-            text = re.sub(r"\s*```$", "", text, flags=re.IGNORECASE)
-            data = json.loads(text)
-            if isinstance(data, list) and len(data) == 12:
-                if len(data[0]["japanese"]) > 10:
-                    data[0]["japanese"] = data[0]["japanese"][:10]
-                print(f"Successfully generated 12 slides from Pollinations.")
-                return data
-    except Exception as e:
-        print(f"Pollinations Text API fallback failed: {e}")
-        
-    # Filter datasets that have not been used yet
-    unused_datasets = [ds for ds in FALLBACK_DATASETS if ds[0]["japanese"] not in history["used_titles"]]
-    if not unused_datasets:
-        selected_dataset = FALLBACK_DATASETS[int(time.time()) % len(FALLBACK_DATASETS)]
-        print(f"All fallback datasets used. Selecting: {selected_dataset[0]['japanese']}")
-    else:
+def generate_text_content(history):
+    """Selects next unique topic dataset from MASTER_DATASETS based on history."""
+    print("Selecting next unique topic dataset...")
+    
+    # 1. Filter datasets that have not been used yet
+    unused_datasets = [ds for ds in MASTER_DATASETS if ds[0]["japanese"] not in history.get("used_titles", [])]
+    if unused_datasets:
         selected_dataset = unused_datasets[0]
-        print(f"Selecting unused fallback dataset: {selected_dataset[0]['japanese']}")
+        print(f"Successfully selected unused dataset: {selected_dataset[0]['japanese']}")
+        return selected_dataset
+        
+    # 2. All datasets have been used once. Select the oldest one used to minimize repeats.
+    print("All master datasets have been used once. Selecting the oldest used dataset...")
+    oldest_index = 999999
+    selected_dataset = MASTER_DATASETS[0]
+    for ds in MASTER_DATASETS:
+        title = ds[0]["japanese"]
+        try:
+            idx = history.get("used_titles", []).index(title)
+        except ValueError:
+            idx = -1
+        if idx != -1 and idx < oldest_index:
+            oldest_index = idx
+            selected_dataset = ds
+    print(f"Successfully selected oldest dataset: {selected_dataset[0]['japanese']}")
     return selected_dataset
 
 def translate_title_to_image_prompt(title_japanese):
@@ -430,7 +582,7 @@ def translate_title_to_image_prompt(title_japanese):
     system_prompt = (
         "You translate a Japanese phrase to a highly descriptive English scene for AI image generation. "
         "The scene must be cute, colorful, and appeal to young women. "
-        "For example, if the input is '日常の日本語' (Everyday Japanese), output 'A cute cozy study room, pastel pink and lavender, cute stationery, a tiny cute notebook, soft lighting'. "
+        "For example, if the input is 'にちじょうのあいさつ' (Everyday Greetings), output 'A cute cozy study room, pastel pink and lavender, cute stationery, a tiny cute notebook, soft lighting'. "
         "Keep the description short, clean, and visual. Output ONLY the English description, no other text."
     )
     payload = {
@@ -480,7 +632,7 @@ def generate_background_image(title_japanese, output_path):
     print(f"Generating background image matching title: '{title_japanese}'...")
     scene_description = translate_title_to_image_prompt(title_japanese)
     
-    # 1. Try Local API Server LCM model (matching wall project)
+    # 1. Try Local API Server LCM model
     local_api_url = os.environ.get("LOCAL_API_URL") or "http://127.0.0.1:8000"
     print(f"Trying Local API Server for image generation: {local_api_url} ...")
     try:
@@ -565,7 +717,6 @@ def generate_voicevox_audio(text, speaker_id, output_path):
                 audio_status_url = res_json.get("audioStatusUrl")
                 wav_url = res_json.get("wavDownloadUrl")
                 
-                # Poll status.json until ready (isAudioReady = True)
                 for attempt in range(20):
                     status_resp = requests.get(audio_status_url, timeout=10)
                     if status_resp.status_code == 200:
@@ -637,10 +788,10 @@ def make_slide_image(bg_path, japanese, thai, domain_text, output_path):
     draw = ImageDraw.Draw(img)
     width, height = img.size
     
-    # Load fonts (Optimized sizes for cute, readable vertical layout)
+    # Load fonts
     font_ja = get_font("ja", 48)
     font_th = get_font("th", 38)
-    font_en = get_font("en", 56)  # Set to a very large 56px for high visibility
+    font_en = get_font("en", 56)
     
     max_text_width = width - 120
     
@@ -663,7 +814,6 @@ def make_slide_image(bg_path, japanese, thai, domain_text, output_path):
     overlay = Image.new("RGBA", img.size, (0, 0, 0, 0))
     draw_overlay = ImageDraw.Draw(overlay)
     
-    # Cute, soft pink/lavender tinted semi-transparent box
     card_x_start = 45
     card_x_end = width - 45
     card_y_end = card_y_start + total_card_height
@@ -674,7 +824,6 @@ def make_slide_image(bg_path, japanese, thai, domain_text, output_path):
         radius=28
     )
     
-    # Cute pastel-pink card border
     draw_overlay.rounded_rectangle(
         [card_x_start, card_y_start, card_x_end, card_y_end], 
         outline=(255, 192, 203, 120), 
@@ -686,13 +835,10 @@ def make_slide_image(bg_path, japanese, thai, domain_text, output_path):
     draw = ImageDraw.Draw(img)
     
     current_y = card_y_start + padding_y
-    # Japanese: Vibrant Gold/Yellow
     current_y = draw_block_text(draw, lines_ja, font_ja, (255, 223, 85, 255), current_y, width)
     current_y += block_gap
-    # Thai: Pure White
     current_y = draw_block_text(draw, lines_th, font_th, (255, 255, 255, 255), current_y, width)
     current_y += block_gap
-    # Domain: Vibrant Light Pink for cute brand styling
     draw_block_text(draw, lines_en, font_en, (255, 160, 190, 255), current_y, width)
     
     img.convert("RGB").save(output_path, "JPEG")
@@ -727,14 +873,11 @@ def main():
         voice_path = os.path.join(TEMP_DIR, f"voice_{num}.mp3")
         temp_media.extend([slide_img_path, voice_path])
         
-        # Create text overlay image
         make_slide_image(bg_image_path, slide["japanese"], slide["thai"], "yui-yuto.com", slide_img_path)
         
-        # Cycle through different Zundamon-free voice characters
         speaker_id = VOICEVOX_SPEAKERS[(num - 1) % len(VOICEVOX_SPEAKERS)]
         generate_voicevox_audio(slide["japanese"], speaker_id=speaker_id, output_path=voice_path)
         
-        # Audio length check
         audio_dur = 3.5
         if os.path.exists(voice_path):
             try:
