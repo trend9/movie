@@ -40,7 +40,8 @@
     "のみもののなまえ",
     "やさいのなまえ",
     "にほんのたべもの",
-    "しゅみのことば"
+    "しゅみのことば",
+    "ようすのことば"
   ],
   "used_words": [
     "こんにちは",
@@ -493,7 +494,18 @@
     "げーむ",
     "りょうり",
     "かいもの",
-    "さんぽ"
+    "さんぽ",
+    "おおきい",
+    "ちいさい",
+    "あた新しい",
+    "あたらしい",
+    "ふるい",
+    "いい",
+    "わるい",
+    "むずかしい",
+    "やさしい",
+    "お重い",
+    "おもい"
   ],
   "videos": [
     {
@@ -2235,6 +2247,73 @@
           "role": "content",
           "japanese": "さんぽ",
           "thai": "เดินเล่น"
+        }
+      ]
+    },
+    {
+      "title": "ようすのことば",
+      "timestamp": "20260612_231248",
+      "video_filename": "video_20260612_231248_ようすのことば.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "ようすのことば",
+          "thai": "คำคุณศัพท์บอกสภาพ"
+        },
+        {
+          "role": "content",
+          "japanese": "おおきい",
+          "thai": "ใหญ่"
+        },
+        {
+          "role": "content",
+          "japanese": "ちいさい",
+          "thai": "เล็ก"
+        },
+        {
+          "role": "content",
+          "japanese": "あた新しい",
+          "thai": "ใหม่"
+        },
+        {
+          "role": "content",
+          "japanese": "あたらしい",
+          "thai": "ใหม่"
+        },
+        {
+          "role": "content",
+          "japanese": "ふるい",
+          "thai": "เก่า"
+        },
+        {
+          "role": "content",
+          "japanese": "いい",
+          "thai": "ดี"
+        },
+        {
+          "role": "content",
+          "japanese": "わるい",
+          "thai": "เลว / แย่"
+        },
+        {
+          "role": "content",
+          "japanese": "むずかしい",
+          "thai": "ยาก"
+        },
+        {
+          "role": "content",
+          "japanese": "やさしい",
+          "thai": "ง่าย / ใจดี"
+        },
+        {
+          "role": "content",
+          "japanese": "お重い",
+          "thai": "หนัก"
+        },
+        {
+          "role": "content",
+          "japanese": "おもい",
+          "thai": "หนัก"
         }
       ]
     }
