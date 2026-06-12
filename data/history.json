@@ -36,7 +36,8 @@
     "じかんのひょうげん",
     "がっこうのことば",
     "しごとのことば",
-    "まちのなかのばしょ"
+    "まちのなかのばしょ",
+    "のみもののなまえ"
   ],
   "used_words": [
     "こんにちは",
@@ -445,7 +446,18 @@
     "こんびに",
     "としょかん",
     "えいがかん",
-    "でぱーと"
+    "でぱーと",
+    "おみず",
+    "おちゃ",
+    "こうひー",
+    "ぎゅうにゅう",
+    "じゅーす",
+    "こうちゃ",
+    "こーら",
+    "びーる",
+    "わいん",
+    "おゆ",
+    "すーぷ"
   ],
   "videos": [
     {
@@ -1919,6 +1931,73 @@
           "role": "content",
           "japanese": "でぱーと",
           "thai": "ห้างสรรพสินค้า"
+        }
+      ]
+    },
+    {
+      "title": "のみもののなまえ",
+      "timestamp": "20260612_144226",
+      "video_filename": "video_20260612_144226_のみもののなまえ.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "のみもののなまえ",
+          "thai": "ชื่อเครื่องดื่มต่างๆ"
+        },
+        {
+          "role": "content",
+          "japanese": "おみず",
+          "thai": "น้ำเปล่า"
+        },
+        {
+          "role": "content",
+          "japanese": "おちゃ",
+          "thai": "ชา"
+        },
+        {
+          "role": "content",
+          "japanese": "こうひー",
+          "thai": "กาแฟ"
+        },
+        {
+          "role": "content",
+          "japanese": "ぎゅうにゅう",
+          "thai": "นม"
+        },
+        {
+          "role": "content",
+          "japanese": "じゅーす",
+          "thai": "น้ำผลไม้"
+        },
+        {
+          "role": "content",
+          "japanese": "こうちゃ",
+          "thai": "ชาฝรั่ง / ชาดำ"
+        },
+        {
+          "role": "content",
+          "japanese": "こーら",
+          "thai": "โคล่า"
+        },
+        {
+          "role": "content",
+          "japanese": "びーる",
+          "thai": "เบียร์"
+        },
+        {
+          "role": "content",
+          "japanese": "わいん",
+          "thai": "ไวน์"
+        },
+        {
+          "role": "content",
+          "japanese": "おゆ",
+          "thai": "น้ำร้อน"
+        },
+        {
+          "role": "content",
+          "japanese": "すーぷ",
+          "thai": "ซุป"
         }
       ]
     }
