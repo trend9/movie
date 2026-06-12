@@ -37,7 +37,8 @@
     "がっこうのことば",
     "しごとのことば",
     "まちのなかのばしょ",
-    "のみもののなまえ"
+    "のみもののなまえ",
+    "やさいのなまえ"
   ],
   "used_words": [
     "こんにちは",
@@ -457,7 +458,18 @@
     "びーる",
     "わいん",
     "おゆ",
-    "すーぷ"
+    "すーぷ",
+    "とまと",
+    "きゃべつ",
+    "れたす",
+    "にんじん",
+    "たまねぎ",
+    "じゃがいも",
+    "なす",
+    "きゅうり",
+    "ほうれんそう",
+    "だいこん",
+    "かぼちゃ"
   ],
   "videos": [
     {
@@ -1998,6 +2010,73 @@
           "role": "content",
           "japanese": "すーぷ",
           "thai": "ซุป"
+        }
+      ]
+    },
+    {
+      "title": "やさいのなまえ",
+      "timestamp": "20260612_173639",
+      "video_filename": "video_20260612_173639_やさいのなまえ.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "やさいのなまえ",
+          "thai": "ชื่อผักต่างๆ"
+        },
+        {
+          "role": "content",
+          "japanese": "とまと",
+          "thai": "มะเขือเทศ"
+        },
+        {
+          "role": "content",
+          "japanese": "きゃべつ",
+          "thai": "กะหล่ำปลี"
+        },
+        {
+          "role": "content",
+          "japanese": "れたす",
+          "thai": "ผักกาดหอม"
+        },
+        {
+          "role": "content",
+          "japanese": "にんじん",
+          "thai": "แครอท"
+        },
+        {
+          "role": "content",
+          "japanese": "たまねぎ",
+          "thai": "หอมหัวใหญ่"
+        },
+        {
+          "role": "content",
+          "japanese": "じゃがいも",
+          "thai": "มันฝรั่ง"
+        },
+        {
+          "role": "content",
+          "japanese": "なす",
+          "thai": "มะเขือยาว"
+        },
+        {
+          "role": "content",
+          "japanese": "きゅうり",
+          "thai": "แตงกวา"
+        },
+        {
+          "role": "content",
+          "japanese": "ほうれんそう",
+          "thai": "ผักปวยเล้ง"
+        },
+        {
+          "role": "content",
+          "japanese": "だいこん",
+          "thai": "หัวไชเท้า"
+        },
+        {
+          "role": "content",
+          "japanese": "かぼちゃ",
+          "thai": "ฟักทอง"
         }
       ]
     }
