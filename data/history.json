@@ -41,7 +41,8 @@
     "やさいのなまえ",
     "にほんのたべもの",
     "しゅみのことば",
-    "ようすのことば"
+    "ようすのことば",
+    "きせつのなまえ"
   ],
   "used_words": [
     "こんにちは",
@@ -505,7 +506,18 @@
     "むずかしい",
     "やさしい",
     "お重い",
-    "おもい"
+    "おもい",
+    "きせつ",
+    "はる",
+    "なつ",
+    "あき",
+    "ふゆ",
+    "つゆ",
+    "かんき",
+    "はれ",
+    "こうよう",
+    "さくら",
+    "はなび"
   ],
   "videos": [
     {
@@ -2314,6 +2326,73 @@
           "role": "content",
           "japanese": "おもい",
           "thai": "หนัก"
+        }
+      ]
+    },
+    {
+      "title": "きせつのなまえ",
+      "timestamp": "20260613_023754",
+      "video_filename": "video_20260613_023754_きせつのなまえ.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "きせつのなまえ",
+          "thai": "ชื่อฤดูกาลต่างๆ"
+        },
+        {
+          "role": "content",
+          "japanese": "きせつ",
+          "thai": "ฤดูกาล"
+        },
+        {
+          "role": "content",
+          "japanese": "はる",
+          "thai": "ฤดูใบไม้ผลิ"
+        },
+        {
+          "role": "content",
+          "japanese": "なつ",
+          "thai": "ฤดูร้อน"
+        },
+        {
+          "role": "content",
+          "japanese": "あき",
+          "thai": "ฤดูใบไม้ร่วง"
+        },
+        {
+          "role": "content",
+          "japanese": "ふゆ",
+          "thai": "ฤดูหนาว"
+        },
+        {
+          "role": "content",
+          "japanese": "つゆ",
+          "thai": "ฤดูฝนญี่ปุ่น"
+        },
+        {
+          "role": "content",
+          "japanese": "かんき",
+          "thai": "ฤดูแล้ง (แบบไทย)"
+        },
+        {
+          "role": "content",
+          "japanese": "はれ",
+          "thai": "ท้องฟ้าแจ่มใส"
+        },
+        {
+          "role": "content",
+          "japanese": "こうよう",
+          "thai": "ใบไม้เปลี่ยนสี"
+        },
+        {
+          "role": "content",
+          "japanese": "さくら",
+          "thai": "ดอกซากุระ"
+        },
+        {
+          "role": "content",
+          "japanese": "はなび",
+          "thai": "ดอกไม้ไฟ"
         }
       ]
     }
