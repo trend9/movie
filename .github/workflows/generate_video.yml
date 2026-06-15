@@ -75,6 +75,7 @@ jobs:
       - name: Run video generation script
         env:
           LOCAL_API_URL: "http://127.0.0.1:8000"
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python generate_video.py
 
       - name: Commit and push generated video and history

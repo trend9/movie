@@ -560,8 +560,8 @@ def generate_dynamic_theme(history):
     for attempt in range(max_retries):
         print(f"Theme generation attempt {attempt + 1}/{max_retries}...")
         
-        # 1. Try Local Ollama (gemma4:e2b) since it's installed and free
-        print("Trying local Ollama (gemma4:e2b) for theme generation...")
+        # 1. Try Local Ollama (gemma2:2b) since it's installed and free
+        print("Trying local Ollama (gemma2:2b) for theme generation...")
         try:
             url = "http://localhost:11434/api/chat"
             system_prompt = (
@@ -579,7 +579,7 @@ def generate_dynamic_theme(history):
             ).format(used_titles=", ".join(used_titles[-30:]), used_words=", ".join(used_words[-50:]))
             
             payload = {
-                "model": "gemma4:e2b",
+                "model": "gemma2:2b",
                 "messages": [
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": "Generate a new unique Japanese-Thai vocabulary list."}
