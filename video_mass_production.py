@@ -487,6 +487,20 @@ def start_generation():
     if not sheet_url and not csv_data:
         return jsonify({"error": "スプレッドシートURLまたはCSVファイルの内容が必要です。"}), 400
         
+    # Save API key to config.json for the CLI script generate_video.py to use
+    try:
+        import json
+        config_path = "data/config.json"
+        config_data = {}
+        if os.path.exists(config_path):
+            with open(config_path, "r", encoding="utf-8") as f:
+                config_data = json.load(f)
+        config_data["gemini_api_key"] = api_key
+        with open(config_path, "w", encoding="utf-8") as f:
+            json.dump(config_data, f, indent=2, ensure_ascii=False)
+    except Exception as e:
+        print(f"Error saving api_key to config: {e}")
+        
     # Start thread
     thread = threading.Thread(target=run_batch_generation, args=(api_key, sheet_url, csv_data))
     thread.daemon = True

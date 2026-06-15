@@ -550,85 +550,49 @@ def get_font(lang, size):
     return ImageFont.load_default()
 
 def generate_dynamic_theme(history):
-    """Generates a completely new topic dataset using Local Ollama, Gemini, or Pollinations AI."""
+    """Generates a completely new topic dataset using Local Ollama, Gemini, or Pollinations AI.
+    If all models fail, it retries. If it still fails, it raises an error to prevent generating bad/corrupt videos.
+    """
     used_titles = history.get("used_titles", [])
     used_words = history.get("used_words", [])
     
-    # 1. Try Local Ollama (gemma4:e2b) since it's installed and free
-    print("Trying local Ollama (gemma4:e2b) for theme generation...")
-    try:
-        url = "http://localhost:11434/api/chat"
-        system_prompt = (
-            "You are an expert Japanese language teacher. "
-            "Generate a brand new Japanese vocabulary theme/topic and 11 related words with their Thai translations. "
-            "The first object in the JSON list must be the theme/topic itself. "
-            "The remaining 11 objects must be vocabulary words belonging to that theme. "
-            "Rules:\n"
-            "1. Write the 'japanese' field ONLY in Hiragana or Katakana (no Kanji!).\n"
-            "2. The Thai translation must be accurate.\n"
-            "3. Do NOT use any of these already used themes: {used_titles}.\n"
-            "4. Do NOT use any of these already used words: {used_words}.\n"
-            "Output MUST be a valid JSON array of exactly 12 objects. Each object must have keys 'japanese' and 'thai'. "
-            "Do not include any markdown formatting like ```json or explanation, return ONLY the raw JSON string."
-        ).format(used_titles=", ".join(used_titles[-30:]), used_words=", ".join(used_words[-50:]))
+    max_retries = 3
+    for attempt in range(max_retries):
+        print(f"Theme generation attempt {attempt + 1}/{max_retries}...")
         
-        payload = {
-            "model": "gemma4:e2b",
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": "Generate a new unique Japanese-Thai vocabulary list."}
-            ],
-            "stream": False
-        }
-        res = requests.post(url, json=payload, timeout=45)
-        if res.status_code == 200:
-            content = res.json().get("message", {}).get("content", "").strip()
-            if content.startswith("```"):
-                content = re.sub(r"^```(?:json)?\n", "", content)
-                content = re.sub(r"\n```$", "", content)
-            dataset = json.loads(content.strip())
-            if isinstance(dataset, list) and len(dataset) >= 12:
-                cleaned_dataset = []
-                for item in dataset[:12]:
-                    cleaned_dataset.append({
-                        "japanese": str(item.get("japanese", "")).strip(),
-                        "thai": str(item.get("thai", "")).strip()
-                    })
-                new_title = cleaned_dataset[0]["japanese"]
-                if new_title not in used_titles:
-                    print(f"Successfully generated dynamic theme via local Ollama: {new_title}")
-                    return cleaned_dataset
-        else:
-            print(f"Ollama returned HTTP status {res.status_code}")
-    except Exception as e:
-        print(f"Local Ollama generation failed: {e}")
-
-    # 2. Try Gemini API if key is available in environment
-    gemini_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-    if gemini_key:
-        print("Trying Gemini API for theme generation...")
+        # 1. Try Local Ollama (gemma4:e2b) since it's installed and free
+        print("Trying local Ollama (gemma4:e2b) for theme generation...")
         try:
-            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={gemini_key}"
-            prompt_text = (
-                f"You are an expert Japanese language teacher. "
-                f"Generate a brand new Japanese vocabulary theme/topic and 11 related words with their Thai translations.\n"
-                f"Output MUST be a valid JSON array of exactly 12 objects, where the first object is the theme/topic, "
-                f"and the remaining 11 are vocabulary words belonging to that theme.\n"
-                f"Rules:\n"
-                f"1. Write the 'japanese' field ONLY in Hiragana or Katakana (no Kanji!).\n"
-                f"2. The Thai translation must be accurate.\n"
-                f"3. Do NOT use any of these already used themes: {', '.join(used_titles[-30:])}.\n"
-                f"4. Do NOT use any of these already used words: {', '.join(used_words[-50:])}.\n"
-                f"Return ONLY the raw JSON array, no other text."
-            )
+            url = "http://localhost:11434/api/chat"
+            system_prompt = (
+                "You are an expert Japanese language teacher. "
+                "Generate a brand new Japanese vocabulary theme/topic and 11 related words with their Thai translations. "
+                "The first object in the JSON list must be the theme/topic itself. "
+                "The remaining 11 objects must be vocabulary words belonging to that theme. "
+                "Rules:\n"
+                "1. Write the 'japanese' field ONLY in Hiragana or Katakana (no Kanji!).\n"
+                "2. The Thai translation must be accurate.\n"
+                "3. Do NOT use any of these already used themes: {used_titles}.\n"
+                "4. Do NOT use any of these already used words: {used_words}.\n"
+                "Output MUST be a valid JSON array of exactly 12 objects. Each object must have keys 'japanese' and 'thai'. "
+                "Do not include any markdown formatting like ```json or explanation, return ONLY the raw JSON string."
+            ).format(used_titles=", ".join(used_titles[-30:]), used_words=", ".join(used_words[-50:]))
+            
             payload = {
-                "contents": [{"parts": [{"text": prompt_text}]}],
-                "generationConfig": {"responseMimeType": "application/json"}
+                "model": "gemma4:e2b",
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": "Generate a new unique Japanese-Thai vocabulary list."}
+                ],
+                "stream": False
             }
-            res = requests.post(url, json=payload, timeout=20)
+            res = requests.post(url, json=payload, timeout=45)
             if res.status_code == 200:
-                text_out = res.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
-                dataset = json.loads(text_out)
+                content = res.json().get("message", {}).get("content", "").strip()
+                if content.startswith("```"):
+                    content = re.sub(r"^```(?:json)?\n", "", content)
+                    content = re.sub(r"\n```$", "", content)
+                dataset = json.loads(content.strip())
                 if isinstance(dataset, list) and len(dataset) >= 12:
                     cleaned_dataset = []
                     for item in dataset[:12]:
@@ -638,69 +602,119 @@ def generate_dynamic_theme(history):
                         })
                     new_title = cleaned_dataset[0]["japanese"]
                     if new_title not in used_titles:
-                        print(f"Successfully generated dynamic theme via Gemini API: {new_title}")
+                        print(f"Successfully generated dynamic theme via local Ollama: {new_title}")
+                        return cleaned_dataset
+            else:
+                print(f"Ollama returned HTTP status {res.status_code}")
+        except Exception as e:
+            print(f"Local Ollama generation failed: {e}")
+
+        # 2. Try Gemini API if key is available in environment or config.json
+        gemini_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+        if not gemini_key:
+            config_path = os.path.join(DATA_DIR, "config.json")
+            if os.path.exists(config_path):
+                try:
+                    with open(config_path, "r", encoding="utf-8") as f:
+                        config_data = json.load(f)
+                        gemini_key = config_data.get("gemini_api_key")
+                except Exception:
+                    pass
+
+        if gemini_key:
+            print("Trying Gemini API for theme generation...")
+            try:
+                url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={gemini_key}"
+                prompt_text = (
+                    f"You are an expert Japanese language teacher. "
+                    f"Generate a brand new Japanese vocabulary theme/topic and 11 related words with their Thai translations.\n"
+                    f"Output MUST be a valid JSON array of exactly 12 objects, where the first object is the theme/topic, "
+                    f"and the remaining 11 are vocabulary words belonging to that theme.\n"
+                    f"Rules:\n"
+                    f"1. Write the 'japanese' field ONLY in Hiragana or Katakana (no Kanji!).\n"
+                    f"2. The Thai translation must be accurate.\n"
+                    f"3. Do NOT use any of these already used themes: {', '.join(used_titles[-30:])}.\n"
+                    f"4. Do NOT use any of these already used words: {', '.join(used_words[-50:])}.\n"
+                    f"Return ONLY the raw JSON array, no other text."
+                )
+                payload = {
+                    "contents": [{"parts": [{"text": prompt_text}]}],
+                    "generationConfig": {"responseMimeType": "application/json"}
+                }
+                res = requests.post(url, json=payload, timeout=20)
+                if res.status_code == 200:
+                    text_out = res.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+                    dataset = json.loads(text_out)
+                    if isinstance(dataset, list) and len(dataset) >= 12:
+                        cleaned_dataset = []
+                        for item in dataset[:12]:
+                            cleaned_dataset.append({
+                                "japanese": str(item.get("japanese", "")).strip(),
+                                "thai": str(item.get("thai", "")).strip()
+                            })
+                        new_title = cleaned_dataset[0]["japanese"]
+                        if new_title not in used_titles:
+                            print(f"Successfully generated dynamic theme via Gemini API: {new_title}")
+                            return cleaned_dataset
+            except Exception as e:
+                print(f"Gemini API generation failed: {e}")
+
+        # 3. Try Pollinations AI as third fallback
+        print("Trying Pollinations AI for theme generation...")
+        try:
+            url = "https://text.pollinations.ai"
+            system_prompt = (
+                "You are an expert Japanese language teacher. "
+                "Generate a brand new Japanese vocabulary theme/topic and 11 related words with their Thai translations. "
+                "The first object in the JSON list must be the theme/topic itself. "
+                "The remaining 11 objects must be vocabulary words belonging to that theme. "
+                "Rules:\n"
+                "1. Write the 'japanese' field ONLY in Hiragana or Katakana (no Kanji!).\n"
+                "2. The Thai translation must be accurate.\n"
+                "3. Do NOT use any of these already used themes: {used_titles}.\n"
+                "4. Do NOT use any of these already used words: {used_words}.\n"
+                "Output MUST be a valid JSON array of exactly 12 objects. Each object must have keys 'japanese' and 'thai'. "
+                "Do not include any markdown formatting like ```json or explanation, return ONLY the raw JSON string."
+            ).format(used_titles=", ".join(used_titles[-30:]), used_words=", ".join(used_words[-50:]))
+            
+            payload = {
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": "Generate a new unique Japanese-Thai vocabulary list."}
+                ],
+                "model": "mistral"
+            }
+            res = requests.post(url, json=payload, timeout=20)
+            if res.status_code == 200:
+                content = res.text.strip()
+                if content.startswith("```"):
+                    content = re.sub(r"^```(?:json)?\n", "", content)
+                    content = re.sub(r"\n```$", "", content)
+                dataset = json.loads(content.strip())
+                if isinstance(dataset, list) and len(dataset) >= 12:
+                    cleaned_dataset = []
+                    for item in dataset[:12]:
+                        cleaned_dataset.append({
+                            "japanese": str(item.get("japanese", "")).strip(),
+                            "thai": str(item.get("thai", "")).strip()
+                        })
+                    new_title = cleaned_dataset[0]["japanese"]
+                    if new_title not in used_titles:
+                        print(f"Successfully generated dynamic theme via Pollinations AI: {new_title}")
                         return cleaned_dataset
         except Exception as e:
-            print(f"Gemini API generation failed: {e}")
+            print(f"Pollinations AI generation failed: {e}")
 
-    # 3. Try Pollinations AI as third fallback
-    print("Trying Pollinations AI for theme generation...")
-    try:
-        url = "https://text.pollinations.ai"
-        system_prompt = (
-            "You are an expert Japanese language teacher. "
-            "Generate a brand new Japanese vocabulary theme/topic and 11 related words with their Thai translations. "
-            "The first object in the JSON list must be the theme/topic itself. "
-            "The remaining 11 objects must be vocabulary words belonging to that theme. "
-            "Rules:\n"
-            "1. Write the 'japanese' field ONLY in Hiragana or Katakana (no Kanji!).\n"
-            "2. The Thai translation must be accurate.\n"
-            "3. Do NOT use any of these already used themes: {used_titles}.\n"
-            "4. Do NOT use any of these already used words: {used_words}.\n"
-            "Output MUST be a valid JSON array of exactly 12 objects. Each object must have keys 'japanese' and 'thai'. "
-            "Do not include any markdown formatting like ```json or explanation, return ONLY the raw JSON string."
-        ).format(used_titles=", ".join(used_titles[-30:]), used_words=", ".join(used_words[-50:]))
-        
-        payload = {
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": "Generate a new unique Japanese-Thai vocabulary list."}
-            ],
-            "model": "mistral"
-        }
-        res = requests.post(url, json=payload, timeout=20)
-        if res.status_code == 200:
-            content = res.text.strip()
-            if content.startswith("```"):
-                content = re.sub(r"^```(?:json)?\n", "", content)
-                content = re.sub(r"\n```$", "", content)
-            dataset = json.loads(content.strip())
-            if isinstance(dataset, list) and len(dataset) >= 12:
-                cleaned_dataset = []
-                for item in dataset[:12]:
-                    cleaned_dataset.append({
-                        "japanese": str(item.get("japanese", "")).strip(),
-                        "thai": str(item.get("thai", "")).strip()
-                    })
-                new_title = cleaned_dataset[0]["japanese"]
-                if new_title not in used_titles:
-                    print(f"Successfully generated dynamic theme via Pollinations AI: {new_title}")
-                    return cleaned_dataset
-    except Exception as e:
-        print(f"Pollinations AI generation failed: {e}")
-
-    # 4. Fallback: Select from a list of predefined backup datasets but make them unique
-    print("All AI models failed. Using uniquely modified backup master datasets...")
-    import random
-    suffix = str(random.randint(100, 999))
-    selected_ds = random.choice(MASTER_DATASETS)
-    fallback_ds = []
-    for idx, item in enumerate(selected_ds):
-        new_item = dict(item)
-        if idx == 0:
-            new_item["japanese"] = f"{item['japanese']}_{suffix}"
-        fallback_ds.append(new_item)
-    return fallback_ds
+        if attempt < max_retries - 1:
+            print("AI models failed or timed out. Waiting 5 seconds before retrying...")
+            time.sleep(5)
+            
+    # Raise error if everything failed
+    raise RuntimeError(
+        "Theme generation failed: All AI models (Ollama, Gemini, Pollinations) are currently unavailable or rate-limited. "
+        "To protect video quality and prevent duplicate/corrupt content, generation has been stopped. "
+        "Please check your internet connection, confirm that your Gemini API key is correct in the Web GUI, or check local Ollama status."
+    )
 
 def generate_text_content(history):
     """Selects next unique topic dataset from MASTER_DATASETS based on history, or generates a new one."""
