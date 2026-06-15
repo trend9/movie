@@ -65,7 +65,8 @@
     "にちじょうのあいさつ",
     "のみもののなまえ_371",
     "やさいのなまえ_159",
-    "うちのなか"
+    "うちのなか",
+    "いきもののなまえ"
   ],
   "used_words": [
     "こんにちは",
@@ -793,7 +794,18 @@
     "かいだん",
     "にわ",
     "まど",
-    "ドア"
+    "ドア",
+    "いぬ",
+    "ねこ",
+    "とり",
+    "さかな",
+    "むし",
+    "ぞう",
+    "きりん",
+    "しか",
+    "うま",
+    "うさぎ",
+    "へび"
   ],
   "videos": [
     {
@@ -4210,6 +4222,73 @@
           "role": "content",
           "japanese": "ドア",
           "thai": "ประตู"
+        }
+      ]
+    },
+    {
+      "title": "いきもののなまえ",
+      "timestamp": "20260616_004145",
+      "video_filename": "video_20260616_004145_いきもののなまえ.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "いきもののなまえ",
+          "thai": "ชื่อของสิ่งมีชีวิต"
+        },
+        {
+          "role": "content",
+          "japanese": "いぬ",
+          "thai": "สุนัข"
+        },
+        {
+          "role": "content",
+          "japanese": "ねこ",
+          "thai": "แมว"
+        },
+        {
+          "role": "content",
+          "japanese": "とり",
+          "thai": "นก"
+        },
+        {
+          "role": "content",
+          "japanese": "さかな",
+          "thai": "ปลา"
+        },
+        {
+          "role": "content",
+          "japanese": "むし",
+          "thai": "แมลง"
+        },
+        {
+          "role": "content",
+          "japanese": "ぞう",
+          "thai": "ช้าง"
+        },
+        {
+          "role": "content",
+          "japanese": "きりん",
+          "thai": "ยีราฟ"
+        },
+        {
+          "role": "content",
+          "japanese": "しか",
+          "thai": "กวาง"
+        },
+        {
+          "role": "content",
+          "japanese": "うま",
+          "thai": "ม้า"
+        },
+        {
+          "role": "content",
+          "japanese": "うさぎ",
+          "thai": "กระต่าย"
+        },
+        {
+          "role": "content",
+          "japanese": "へび",
+          "thai": "งู"
         }
       ]
     }
