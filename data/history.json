@@ -64,7 +64,8 @@
     "にちじょうのあいさつ",
     "にちじょうのあいさつ",
     "のみもののなまえ_371",
-    "やさいのなまえ_159"
+    "やさいのなまえ_159",
+    "うちのなか"
   ],
   "used_words": [
     "こんにちは",
@@ -781,7 +782,18 @@
     "きゅうり",
     "ほうれんそう",
     "だいこん",
-    "かぼちゃ"
+    "かぼちゃ",
+    "へや",
+    "だいどころ",
+    "おふろ",
+    "といれ",
+    "いま",
+    "しんしつ",
+    "げんかん",
+    "かいだん",
+    "にわ",
+    "まど",
+    "ドア"
   ],
   "videos": [
     {
@@ -4131,6 +4143,73 @@
           "role": "content",
           "japanese": "かぼちゃ",
           "thai": "ฟักทอง"
+        }
+      ]
+    },
+    {
+      "title": "うちのなか",
+      "timestamp": "20260615_185715",
+      "video_filename": "video_20260615_185715_うちのなか.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "うちのなか",
+          "thai": "ภายในบ้าน"
+        },
+        {
+          "role": "content",
+          "japanese": "へや",
+          "thai": "ห้อง"
+        },
+        {
+          "role": "content",
+          "japanese": "だいどころ",
+          "thai": "ห้องครัว"
+        },
+        {
+          "role": "content",
+          "japanese": "おふろ",
+          "thai": "ห้องน้ำ (สำหรับอาบน้ำ)"
+        },
+        {
+          "role": "content",
+          "japanese": "といれ",
+          "thai": "ห้องส้วม"
+        },
+        {
+          "role": "content",
+          "japanese": "いま",
+          "thai": "ห้องนั่งเล่น"
+        },
+        {
+          "role": "content",
+          "japanese": "しんしつ",
+          "thai": "ห้องนอน"
+        },
+        {
+          "role": "content",
+          "japanese": "げんかん",
+          "thai": "โถงทางเข้า"
+        },
+        {
+          "role": "content",
+          "japanese": "かいだん",
+          "thai": "บันได"
+        },
+        {
+          "role": "content",
+          "japanese": "にわ",
+          "thai": "สวน"
+        },
+        {
+          "role": "content",
+          "japanese": "まど",
+          "thai": "หน้าต่าง"
+        },
+        {
+          "role": "content",
+          "japanese": "ドア",
+          "thai": "ประตู"
         }
       ]
     }
