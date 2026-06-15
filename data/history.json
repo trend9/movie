@@ -66,7 +66,8 @@
     "のみもののなまえ_371",
     "やさいのなまえ_159",
     "うちのなか",
-    "いきもののなまえ"
+    "いきもののなまえ",
+    "お天気"
   ],
   "used_words": [
     "こんにちは",
@@ -805,7 +806,18 @@
     "しか",
     "うま",
     "うさぎ",
-    "へび"
+    "へび",
+    "電車",
+    "公園",
+    "カフェ",
+    "映画館",
+    "ショッピング",
+    "レストラン",
+    "旅行",
+    "ホテル",
+    "友達",
+    "家族",
+    "学校"
   ],
   "videos": [
     {
@@ -4289,6 +4301,73 @@
           "role": "content",
           "japanese": "へび",
           "thai": "งู"
+        }
+      ]
+    },
+    {
+      "title": "お天気",
+      "timestamp": "20260615_160200",
+      "video_filename": "video_20260615_160200_お天気.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "お天気",
+          "thai": "อากาศ"
+        },
+        {
+          "role": "content",
+          "japanese": "電車",
+          "thai": "รถไฟ"
+        },
+        {
+          "role": "content",
+          "japanese": "公園",
+          "thai": "สวน"
+        },
+        {
+          "role": "content",
+          "japanese": "カフェ",
+          "thai": "คาเฟ่"
+        },
+        {
+          "role": "content",
+          "japanese": "映画館",
+          "thai": "โรงภาพยนตร์"
+        },
+        {
+          "role": "content",
+          "japanese": "ショッピング",
+          "thai": "ช้อปปิ้ง"
+        },
+        {
+          "role": "content",
+          "japanese": "レストラン",
+          "thai": "ร้านอาหาร"
+        },
+        {
+          "role": "content",
+          "japanese": "旅行",
+          "thai": "ทริป"
+        },
+        {
+          "role": "content",
+          "japanese": "ホテル",
+          "thai": "โรงแรม"
+        },
+        {
+          "role": "content",
+          "japanese": "友達",
+          "thai": "เพื่อน"
+        },
+        {
+          "role": "content",
+          "japanese": "家族",
+          "thai": "ครอบครัว"
+        },
+        {
+          "role": "content",
+          "japanese": "学校",
+          "thai": "โรงเรียน"
         }
       ]
     }
