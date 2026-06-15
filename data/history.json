@@ -70,7 +70,8 @@
     "お天気",
     "りょこうのじゅんび",
     "おちゃかいのことば",
-    "場所"
+    "場所",
+    "あそびどうぐのなまえ"
   ],
   "used_words": [
     "こんにちは",
@@ -853,7 +854,18 @@
     "地図",
     "ルート",
     "経路",
-    "移動"
+    "移動",
+    "ボール",
+    "なわとび",
+    "こま",
+    "けんだま",
+    "おてだま",
+    "かるた",
+    "めんこ",
+    "たこ",
+    "しゃぼんだま",
+    "ぶらんこ",
+    "すべりだい"
   ],
   "videos": [
     {
@@ -4605,6 +4617,73 @@
           "role": "content",
           "japanese": "移動",
           "thai": "การเดินทาง"
+        }
+      ]
+    },
+    {
+      "title": "あそびどうぐのなまえ",
+      "timestamp": "20260615_180433",
+      "video_filename": "video_20260615_180433_あそびどうぐのなまえ.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "あそびどうぐのなまえ",
+          "thai": "ชื่อของเล่น"
+        },
+        {
+          "role": "content",
+          "japanese": "ボール",
+          "thai": "ลูกบอล"
+        },
+        {
+          "role": "content",
+          "japanese": "なわとび",
+          "thai": "เชือกกระโดด"
+        },
+        {
+          "role": "content",
+          "japanese": "こま",
+          "thai": "ลูกข่าง"
+        },
+        {
+          "role": "content",
+          "japanese": "けんだま",
+          "thai": "เคนดามะ"
+        },
+        {
+          "role": "content",
+          "japanese": "おてだま",
+          "thai": "ถุงถั่ว (สำหรับโยนเล่น)"
+        },
+        {
+          "role": "content",
+          "japanese": "かるた",
+          "thai": "ไพ่คารุตะ"
+        },
+        {
+          "role": "content",
+          "japanese": "めんこ",
+          "thai": "ไพ่เมงโกะ"
+        },
+        {
+          "role": "content",
+          "japanese": "たこ",
+          "thai": "ว่าว"
+        },
+        {
+          "role": "content",
+          "japanese": "しゃぼんだま",
+          "thai": "ฟองสบู่"
+        },
+        {
+          "role": "content",
+          "japanese": "ぶらんこ",
+          "thai": "ชิงช้า"
+        },
+        {
+          "role": "content",
+          "japanese": "すべりだい",
+          "thai": "กระดานลื่น"
         }
       ]
     }
