@@ -69,7 +69,8 @@
     "いきもののなまえ",
     "お天気",
     "りょこうのじゅんび",
-    "おちゃかいのことば"
+    "おちゃかいのことば",
+    "場所"
   ],
   "used_words": [
     "こんにちは",
@@ -841,7 +842,18 @@
     "いけばな",
     "おもてなし",
     "しずか",
-    "れいぎ"
+    "れいぎ",
+    "空間",
+    "地形",
+    "エリア",
+    "境界線",
+    "立地",
+    "位置",
+    "地形図",
+    "地図",
+    "ルート",
+    "経路",
+    "移動"
   ],
   "videos": [
     {
@@ -4526,6 +4538,73 @@
           "role": "content",
           "japanese": "れいぎ",
           "thai": "มารยาท"
+        }
+      ]
+    },
+    {
+      "title": "場所",
+      "timestamp": "20260615_164501",
+      "video_filename": "video_20260615_164501_場所.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "場所",
+          "thai": "ที่"
+        },
+        {
+          "role": "content",
+          "japanese": "空間",
+          "thai": "บริเวณ"
+        },
+        {
+          "role": "content",
+          "japanese": "地形",
+          "thai": "พื้นที่"
+        },
+        {
+          "role": "content",
+          "japanese": "エリア",
+          "thai": "เขต"
+        },
+        {
+          "role": "content",
+          "japanese": "境界線",
+          "thai": "แนว"
+        },
+        {
+          "role": "content",
+          "japanese": "立地",
+          "thai": "สถานที่"
+        },
+        {
+          "role": "content",
+          "japanese": "位置",
+          "thai": "ตำแหน่ง"
+        },
+        {
+          "role": "content",
+          "japanese": "地形図",
+          "thai": "แผนที่"
+        },
+        {
+          "role": "content",
+          "japanese": "地図",
+          "thai": "แผนที่"
+        },
+        {
+          "role": "content",
+          "japanese": "ルート",
+          "thai": "เส้นทาง"
+        },
+        {
+          "role": "content",
+          "japanese": "経路",
+          "thai": "เส้นทาง"
+        },
+        {
+          "role": "content",
+          "japanese": "移動",
+          "thai": "การเดินทาง"
         }
       ]
     }
