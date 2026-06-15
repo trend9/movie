@@ -612,6 +612,26 @@ def generate_dynamic_theme(history):
         # 2. Try Gemini API if key is available in environment or config.json
         gemini_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
         if not gemini_key:
+            # Try loading manually from .env files
+            for env_file in [".env", "../.env", "../../.env"]:
+                if os.path.exists(env_file):
+                    try:
+                        with open(env_file, "r", encoding="utf-8") as f:
+                            for line in f:
+                                line = line.strip()
+                                if line and not line.startswith("#") and "=" in line:
+                                    k, v = line.split("=", 1)
+                                    k = k.strip()
+                                    v = v.strip().strip('"').strip("'")
+                                    if k in ("GEMINI_API_KEY", "GOOGLE_API_KEY"):
+                                        gemini_key = v
+                                        break
+                    except Exception:
+                        pass
+                if gemini_key:
+                    break
+
+        if not gemini_key:
             config_path = os.path.join(DATA_DIR, "config.json")
             if os.path.exists(config_path):
                 try:
@@ -662,7 +682,7 @@ def generate_dynamic_theme(history):
         # 3. Try Pollinations AI as third fallback
         print("Trying Pollinations AI for theme generation...")
         try:
-            url = "https://text.pollinations.ai"
+            url = "https://text.pollinations.ai/openai"
             system_prompt = (
                 "You are an expert Japanese language teacher. "
                 "Generate a brand new Japanese vocabulary theme/topic and 11 related words with their Thai translations. "
@@ -686,7 +706,11 @@ def generate_dynamic_theme(history):
             }
             res = requests.post(url, json=payload, timeout=20)
             if res.status_code == 200:
-                content = res.text.strip()
+                try:
+                    res_data = res.json()
+                    content = res_data["choices"][0]["message"]["content"].strip()
+                except Exception:
+                    content = res.text.strip()
                 if content.startswith("```"):
                     content = re.sub(r"^```(?:json)?\n", "", content)
                     content = re.sub(r"\n```$", "", content)
@@ -733,7 +757,7 @@ def generate_text_content(history):
 
 def translate_title_to_image_prompt(title_japanese):
     """Translates the Japanese title to a highly relevant English description for the image generation prompt."""
-    url = "https://text.pollinations.ai"
+    url = "https://text.pollinations.ai/openai"
     system_prompt = (
         "You translate a Japanese phrase to a highly descriptive English scene for AI image generation. "
         "The scene must be cute, colorful, and appeal to young women. "
@@ -749,10 +773,15 @@ def translate_title_to_image_prompt(title_japanese):
     }
     try:
         response = requests.post(url, json=payload, timeout=20)
-        if response.status_code == 200 and response.text.strip():
-            desc = response.text.strip()
-            print(f"Translated title prompt description: {desc}")
-            return desc
+        if response.status_code == 200:
+            try:
+                res_data = response.json()
+                desc = res_data["choices"][0]["message"]["content"].strip()
+            except Exception:
+                desc = response.text.strip()
+            if desc:
+                print(f"Translated title prompt description: {desc}")
+                return desc
     except Exception as e:
         print(f"Error translating title for prompt: {e}")
     return "A cute cozy room with books and soft pastel pink lighting"
