@@ -456,6 +456,42 @@ for dataset in MASTER_DATASETS:
     if len(dataset) > 12:
         dataset[:] = dataset[:12]
 
+def parse_json_robust(text):
+    text = text.strip()
+    # Remove markdown code block backticks if present
+    if text.startswith("```"):
+        text = re.sub(r"^```(?:json)?\n", "", text)
+        text = re.sub(r"\n```$", "", text)
+    text = text.strip()
+    
+    # Try direct parse
+    try:
+        return json.loads(text)
+    except Exception:
+        pass
+        
+    # Search for anything that looks like a JSON array [...]
+    array_match = re.search(r'\[\s*\{.*\}\s*\]', text, re.DOTALL)
+    if array_match:
+        try:
+            return json.loads(array_match.group(0))
+        except Exception:
+            pass
+            
+    # Search for anything that looks like a JSON object {...}
+    object_match = re.search(r'\{\s*".*\}', text, re.DOTALL)
+    if object_match:
+        try:
+            obj = json.loads(object_match.group(0))
+            # If it's a wrapper object, find the list/array inside it
+            for val in obj.values():
+                if isinstance(val, list) and len(val) >= 12:
+                    return val
+        except Exception:
+            pass
+            
+    raise ValueError(f"Could not parse valid JSON array from text: {text[:200]}")
+
 def load_history():
     if os.path.exists(HISTORY_FILE):
         try:
@@ -549,6 +585,44 @@ def get_font(lang, size):
                 
     return ImageFont.load_default()
 
+def extract_and_parse_json(text):
+    """Robustly extracts a JSON array or object from text, even if wrapped in markdown or conversational filler."""
+    text = text.strip()
+    
+    # Try direct parse
+    try:
+        return json.loads(text)
+    except Exception:
+        pass
+        
+    # Try finding markdown code block
+    match = re.search(r"```(?:json)?\s*(.*?)\s*```", text, re.DOTALL)
+    if match:
+        try:
+            return json.loads(match.group(1).strip())
+        except Exception:
+            pass
+            
+    # Try finding the first '[' and last ']' for a JSON list
+    start_idx = text.find('[')
+    end_idx = text.rfind(']')
+    if start_idx != -1 and end_idx != -1 and end_idx > start_idx:
+        try:
+            return json.loads(text[start_idx:end_idx+1])
+        except Exception:
+            pass
+            
+    # Try finding the first '{' and last '}' for a JSON object
+    start_idx = text.find('{')
+    end_idx = text.rfind('}')
+    if start_idx != -1 and end_idx != -1 and end_idx > start_idx:
+        try:
+            return json.loads(text[start_idx:end_idx+1])
+        except Exception:
+            pass
+            
+    raise json.JSONDecodeError("Could not extract valid JSON from LLM response", text, 0)
+
 def generate_dynamic_theme(history):
     """Generates a completely new topic dataset using Local Ollama, Gemini, or Pollinations AI.
     If all models fail, it retries. If it still fails, it raises an error to prevent generating bad/corrupt videos.
@@ -589,10 +663,7 @@ def generate_dynamic_theme(history):
             res = requests.post(url, json=payload, timeout=45)
             if res.status_code == 200:
                 content = res.json().get("message", {}).get("content", "").strip()
-                if content.startswith("```"):
-                    content = re.sub(r"^```(?:json)?\n", "", content)
-                    content = re.sub(r"\n```$", "", content)
-                dataset = json.loads(content.strip())
+                dataset = extract_and_parse_json(content)
                 if isinstance(dataset, list) and len(dataset) >= 12:
                     cleaned_dataset = []
                     for item in dataset[:12]:
@@ -664,7 +735,7 @@ def generate_dynamic_theme(history):
                 res = requests.post(url, json=payload, timeout=20)
                 if res.status_code == 200:
                     text_out = res.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
-                    dataset = json.loads(text_out)
+                    dataset = extract_and_parse_json(text_out)
                     if isinstance(dataset, list) and len(dataset) >= 12:
                         cleaned_dataset = []
                         for item in dataset[:12]:
@@ -711,10 +782,7 @@ def generate_dynamic_theme(history):
                     content = res_data["choices"][0]["message"]["content"].strip()
                 except Exception:
                     content = res.text.strip()
-                if content.startswith("```"):
-                    content = re.sub(r"^```(?:json)?\n", "", content)
-                    content = re.sub(r"\n```$", "", content)
-                dataset = json.loads(content.strip())
+                dataset = extract_and_parse_json(content)
                 if isinstance(dataset, list) and len(dataset) >= 12:
                     cleaned_dataset = []
                     for item in dataset[:12]:
@@ -741,18 +809,8 @@ def generate_dynamic_theme(history):
     )
 
 def generate_text_content(history):
-    """Selects next unique topic dataset from MASTER_DATASETS based on history, or generates a new one."""
-    print("Selecting next unique topic dataset...")
-    
-    # 1. Filter datasets that have not been used yet
-    unused_datasets = [ds for ds in MASTER_DATASETS if ds[0]["japanese"] not in history.get("used_titles", [])]
-    if unused_datasets:
-        selected_dataset = unused_datasets[0]
-        print(f"Successfully selected unused dataset: {selected_dataset[0]['japanese']}")
-        return selected_dataset
-        
-    # 2. All static master datasets have been used once. Generate a brand new one dynamically to ensure 0 duplicates.
-    print("All master datasets have been used once. Generating a new unique dataset using LLM...")
+    """Always generates a brand new unique dataset using LLM to ensure 0 duplicates and custom topics."""
+    print("Always generating a new unique dataset using LLM...")
     return generate_dynamic_theme(history)
 
 def translate_title_to_image_prompt(title_japanese):
