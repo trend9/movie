@@ -639,18 +639,18 @@ def generate_dynamic_theme(history):
         try:
             url = "http://localhost:11434/api/chat"
             system_prompt = (
-                "You are an expert Japanese language teacher. "
-                "Generate a brand new Japanese vocabulary theme/topic and 11 related words with their Thai translations. "
-                "The first object in the JSON list must be the theme/topic itself. "
-                "The remaining 11 objects must be vocabulary words belonging to that theme. "
+                "You are an expert Japanese language teacher.\n"
+                "Generate a brand new, highly specific Japanese vocabulary theme/topic and 11 related words with their Thai translations.\n"
+                "The first object in the JSON list must represent the theme/topic itself.\n"
+                "The remaining 11 objects must be vocabulary words that are highly relevant and strictly belong to that theme.\n\n"
                 "Rules:\n"
-                "1. Write the 'japanese' field ONLY in Hiragana or Katakana (no Kanji!).\n"
+                "1. Write the 'japanese' field ONLY in Hiragana or Katakana (Do NOT use any Kanji!).\n"
                 "2. The Thai translation must be accurate.\n"
-                "3. Do NOT use any of these already used themes: {used_titles}.\n"
-                "4. Do NOT use any of these already used words: {used_words}.\n"
+                "3. The theme/topic must be completely different from these already used themes: {used_titles}.\n"
+                "4. All 11 vocabulary words must be closely related to the selected theme/topic.\n\n"
                 "Output MUST be a valid JSON array of exactly 12 objects. Each object must have keys 'japanese' and 'thai'. "
-                "Do not include any markdown formatting like ```json or explanation, return ONLY the raw JSON string."
-            ).format(used_titles=", ".join(used_titles[-30:]), used_words=", ".join(used_words[-50:]))
+                "Do not include any markdown formatting or explanation, return ONLY the raw JSON string."
+            ).format(used_titles=", ".join(used_titles[-40:]))
             
             payload = {
                 "model": "gemma2:2b",
@@ -717,15 +717,15 @@ def generate_dynamic_theme(history):
             try:
                 url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={gemini_key}"
                 prompt_text = (
-                    f"You are an expert Japanese language teacher. "
-                    f"Generate a brand new Japanese vocabulary theme/topic and 11 related words with their Thai translations.\n"
+                    f"You are an expert Japanese language teacher.\n"
+                    f"Generate a brand new, highly specific Japanese vocabulary theme/topic and 11 related words with their Thai translations.\n"
                     f"Output MUST be a valid JSON array of exactly 12 objects, where the first object is the theme/topic, "
-                    f"and the remaining 11 are vocabulary words belonging to that theme.\n"
+                    f"and the remaining 11 are vocabulary words that are highly relevant and strictly belong to that theme.\n\n"
                     f"Rules:\n"
-                    f"1. Write the 'japanese' field ONLY in Hiragana or Katakana (no Kanji!).\n"
+                    f"1. Write the 'japanese' field ONLY in Hiragana or Katakana (Do NOT use any Kanji!).\n"
                     f"2. The Thai translation must be accurate.\n"
-                    f"3. Do NOT use any of these already used themes: {', '.join(used_titles[-30:])}.\n"
-                    f"4. Do NOT use any of these already used words: {', '.join(used_words[-50:])}.\n"
+                    f"3. The theme/topic must be completely different from these already used themes: {', '.join(used_titles[-40:])}.\n"
+                    f"4. All 11 vocabulary words must be closely related to the selected theme/topic.\n\n"
                     f"Return ONLY the raw JSON array, no other text."
                 )
                 payload = {
@@ -755,18 +755,18 @@ def generate_dynamic_theme(history):
         try:
             url = "https://text.pollinations.ai/openai"
             system_prompt = (
-                "You are an expert Japanese language teacher. "
-                "Generate a brand new Japanese vocabulary theme/topic and 11 related words with their Thai translations. "
-                "The first object in the JSON list must be the theme/topic itself. "
-                "The remaining 11 objects must be vocabulary words belonging to that theme. "
+                "You are an expert Japanese language teacher.\n"
+                "Generate a brand new, highly specific Japanese vocabulary theme/topic and 11 related words with their Thai translations.\n"
+                "The first object in the JSON list must be the theme/topic itself.\n"
+                "The remaining 11 objects must be vocabulary words that are highly relevant and strictly belong to that theme.\n\n"
                 "Rules:\n"
-                "1. Write the 'japanese' field ONLY in Hiragana or Katakana (no Kanji!).\n"
+                "1. Write the 'japanese' field ONLY in Hiragana or Katakana (Do NOT use any Kanji!).\n"
                 "2. The Thai translation must be accurate.\n"
-                "3. Do NOT use any of these already used themes: {used_titles}.\n"
-                "4. Do NOT use any of these already used words: {used_words}.\n"
+                "3. The theme/topic must be completely different from these already used themes: {used_titles}.\n"
+                "4. All 11 vocabulary words must be closely related to the selected theme/topic.\n\n"
                 "Output MUST be a valid JSON array of exactly 12 objects. Each object must have keys 'japanese' and 'thai'. "
-                "Do not include any markdown formatting like ```json or explanation, return ONLY the raw JSON string."
-            ).format(used_titles=", ".join(used_titles[-30:]), used_words=", ".join(used_words[-50:]))
+                "Do not include any markdown formatting or explanation, return ONLY the raw JSON string."
+            ).format(used_titles=", ".join(used_titles[-40:]))
             
             payload = {
                 "messages": [
