@@ -73,7 +73,8 @@
     "場所",
     "あそびどうぐのなまえ",
     "しょどうようぐ",
-    "おんせん・せんとうのことば"
+    "おんせん・せんとうのことば",
+    "遊園地"
   ],
   "used_words": [
     "こんにちは",
@@ -889,7 +890,18 @@
     "せっけん",
     "シャワー",
     "だついや",
-    "ゆかた"
+    "ゆかた",
+    "乗り物",
+    "ショー",
+    "ゲーム",
+    "rides",
+    "レストラン",
+    "遊具",
+    "イベント",
+    "休憩",
+    "お土産",
+    "写真",
+    "思い出"
   ],
   "videos": [
     {
@@ -4842,6 +4854,73 @@
           "role": "content",
           "japanese": "ゆかた",
           "thai": "ชุดยูกาตะ (ชุดคลุมหลังอาบน้ำ)"
+        }
+      ]
+    },
+    {
+      "title": "遊園地",
+      "timestamp": "20260616_003314",
+      "video_filename": "video_20260616_003314_遊園地.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "遊園地",
+          "thai": "ยูซานเจ"
+        },
+        {
+          "role": "content",
+          "japanese": "乗り物",
+          "thai": "รถ"
+        },
+        {
+          "role": "content",
+          "japanese": "ショー",
+          "thai": "แสดง"
+        },
+        {
+          "role": "content",
+          "japanese": "ゲーム",
+          "thai": "เกม"
+        },
+        {
+          "role": "content",
+          "japanese": "rides",
+          "thai": "เครื่องเล่น"
+        },
+        {
+          "role": "content",
+          "japanese": "レストラン",
+          "thai": "ร้านอาหาร"
+        },
+        {
+          "role": "content",
+          "japanese": "遊具",
+          "thai": "อุปกรณ์"
+        },
+        {
+          "role": "content",
+          "japanese": "イベント",
+          "thai": "งาน"
+        },
+        {
+          "role": "content",
+          "japanese": "休憩",
+          "thai": "พัก"
+        },
+        {
+          "role": "content",
+          "japanese": "お土産",
+          "thai": "ของที่ระลึก"
+        },
+        {
+          "role": "content",
+          "japanese": "写真",
+          "thai": "รูปภาพ"
+        },
+        {
+          "role": "content",
+          "japanese": "思い出",
+          "thai": "ความทรงจำ"
         }
       ]
     }
