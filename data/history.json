@@ -80,7 +80,8 @@
     "きもののこもの",
     "にほんのコンビニエンスストア",
     "わがしのことば",
-    "おかしづくりのことば"
+    "おかしづくりのことば",
+    "花火大会"
   ],
   "used_words": [
     "こんにちは",
@@ -973,7 +974,18 @@
     "こねる",
     "ボウル",
     "オーブン",
-    "デコレーション"
+    "デコレーション",
+    "花火",
+    "会場",
+    "pyrotechnics",
+    "pyrotechnics",
+    "花火師",
+    "花火大会",
+    "音楽",
+    "食事",
+    "飲み物",
+    "イベント",
+    "花火"
   ],
   "videos": [
     {
@@ -5395,6 +5407,73 @@
           "role": "content",
           "japanese": "デコレーション",
           "thai": "การตกแต่ง"
+        }
+      ]
+    },
+    {
+      "title": "花火大会",
+      "timestamp": "20260617_060752",
+      "video_filename": "video_20260617_060752_花火大会.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "花火大会",
+          "thai": "มหกรรมไฟปืน"
+        },
+        {
+          "role": "content",
+          "japanese": "花火",
+          "thai": "ไฟปืน"
+        },
+        {
+          "role": "content",
+          "japanese": "会場",
+          "thai": "สถานที่"
+        },
+        {
+          "role": "content",
+          "japanese": "pyrotechnics",
+          "thai": "เครื่องมือแสงสว่าง (เครื่องมือแสง)"
+        },
+        {
+          "role": "content",
+          "japanese": "pyrotechnics",
+          "thai": "การแสดงไฟฟ้า"
+        },
+        {
+          "role": "content",
+          "japanese": "花火師",
+          "thai": "ผู้เชี่ยวชาญไฟปืน"
+        },
+        {
+          "role": "content",
+          "japanese": "花火大会",
+          "thai": "งานฉลอง"
+        },
+        {
+          "role": "content",
+          "japanese": "音楽",
+          "thai": "เพลง"
+        },
+        {
+          "role": "content",
+          "japanese": "食事",
+          "thai": "อาหาร"
+        },
+        {
+          "role": "content",
+          "japanese": "飲み物",
+          "thai": "เครื่องดื่ม"
+        },
+        {
+          "role": "content",
+          "japanese": "イベント",
+          "thai": "งานแสดง"
+        },
+        {
+          "role": "content",
+          "japanese": "花火",
+          "thai": "ลางาน"
         }
       ]
     }
