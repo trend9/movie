@@ -774,7 +774,7 @@ def verify_dataset_with_llm(dataset):
             dataset_str = json.dumps(dataset, ensure_ascii=False, indent=2)
             print("Fact check passed/corrected.")
         except Exception as e:
-            print(f"Fact check parse failed: {e}. Proceeding with current dataset.")
+            print(f"Fact check parse failed: {e}. Raw content: {fact_response[:400]}")
             
     # Stage 2: Typo/Spelling check
     print("[Verification] Stage 2: LLM Spelling & Typo Check...")
@@ -798,7 +798,7 @@ def verify_dataset_with_llm(dataset):
             dataset_str = json.dumps(dataset, ensure_ascii=False, indent=2)
             print("Spelling & typo check passed/corrected.")
         except Exception as e:
-            print(f"Spelling check parse failed: {e}. Proceeding with current dataset.")
+            print(f"Spelling check parse failed: {e}. Raw content: {typo_response[:400]}")
 
     # Stage 3: Final check twice
     for round_num in [1, 2]:
@@ -818,7 +818,7 @@ def verify_dataset_with_llm(dataset):
                 dataset_str = json.dumps(dataset, ensure_ascii=False, indent=2)
                 print(f"Final check round {round_num} passed/corrected.")
             except Exception as e:
-                print(f"Final check round {round_num} parse failed: {e}.")
+                print(f"Final check round {round_num} parse failed: {e}. Raw content: {final_response[:400]}")
                 
     return dataset
 
@@ -872,6 +872,7 @@ def generate_dynamic_theme(history):
                         return validated_dataset
             except Exception as e:
                 print(f"Error parsing/checking dataset: {e}")
+                print(f"Raw content returned by LLM was:\n--- START CONTENT ---\n{content}\n--- END CONTENT ---")
                 
         if attempt < max_retries - 1:
             print("Theme validation failed or model failed. Waiting 5 seconds before retrying...")
