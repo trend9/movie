@@ -1,0 +1,67 @@
+{
+  "title": "まちでのいどう",
+  "timestamp": "20260618_100209",
+  "video_filename": "video_20260618_100209_まちでのいどう.mp4",
+  "slides": [
+    {
+      "role": "title",
+      "japanese": "まちでのいどう",
+      "thai": "การเดินทางในเมือง"
+    },
+    {
+      "role": "content",
+      "japanese": "でんしゃ",
+      "thai": "รถไฟ"
+    },
+    {
+      "role": "content",
+      "japanese": "バス",
+      "thai": "รถบัส"
+    },
+    {
+      "role": "content",
+      "japanese": "えき",
+      "thai": "สถานี"
+    },
+    {
+      "role": "content",
+      "japanese": "じょうりかんえ",
+      "thai": "ต่อรถ"
+    },
+    {
+      "role": "content",
+      "japanese": "きっぷ",
+      "thai": "ตั๋ว"
+    },
+    {
+      "role": "content",
+      "japanese": "うんちん",
+      "thai": "ค่าโดยสาร"
+    },
+    {
+      "role": "content",
+      "japanese": "ちかてつ",
+      "thai": "รถไฟใต้ดิน"
+    },
+    {
+      "role": "content",
+      "japanese": "じょうりば",
+      "thai": "จุดขึ้นรถ"
+    },
+    {
+      "role": "content",
+      "japanese": "こうりる",
+      "thai": "ลง"
+    },
+    {
+      "role": "content",
+      "japanese": "じょうる",
+      "thai": "ขึ้น"
+    },
+    {
+      "role": "content",
+      "japanese": "みち",
+      "thai": "ถนน"
+    }
+  ]
+}
