@@ -652,6 +652,8 @@ def call_llm(system_prompt, user_prompt, response_mime_type=None):
             content = res.json().get("message", {}).get("content", "").strip()
             if content:
                 return content
+        else:
+            print(f"Ollama returned HTTP status {res.status_code}: {res.text[:200]}")
     except Exception as e:
         print(f"Local Ollama call failed: {e}")
 
@@ -700,6 +702,8 @@ def call_llm(system_prompt, user_prompt, response_mime_type=None):
                 text_out = res.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
                 if text_out:
                     return text_out
+            else:
+                print(f"Gemini API returned HTTP status {res.status_code}: {res.text[:200]}")
         except Exception as e:
             print(f"Gemini API call failed: {e}")
 
@@ -722,6 +726,8 @@ def call_llm(system_prompt, user_prompt, response_mime_type=None):
                 content = res.text.strip()
             if content:
                 return content
+        else:
+            print(f"Pollinations AI returned HTTP status {res.status_code}: {res.text[:200]}")
     except Exception as e:
         print(f"Pollinations AI call failed: {e}")
 
