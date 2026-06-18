@@ -786,7 +786,8 @@ def verify_dataset_with_llm(dataset):
         "- Unnatural phonetic spelling (e.g. 'こおひい' or 'かれえ' are wrong; they must be written as 'こうひい' or 'かれー' / 'かれーらいす').\n"
         "- Long vowel sound spelling mistakes.\n"
         "- Katakana elongations written incorrectly as Hiragana vowel extensions.\n"
-        "If you find spelling mistakes or typos, fix them. Keep all other contents and translations.\n"
+        "- Convert any Kanji characters present in the 'japanese' field to their correct Hiragana or Katakana reading (e.g., '祭り' to 'まつり'). Absolutely no Kanji characters are allowed in the output!\n"
+        "If you find spelling mistakes, typos, or Kanji characters, correct/convert them. Keep all other contents and translations.\n"
         "Output MUST be the corrected JSON array of 12 objects, with 'japanese' and 'thai' fields.\n"
         "Return ONLY the raw JSON array, no explanation."
     )
@@ -805,7 +806,7 @@ def verify_dataset_with_llm(dataset):
         final_system = (
             "You are a master Japanese teacher conducting the absolute final quality check.\n"
             "Review the list of 12 items. Ensure every word is extremely natural, has correct spelling, no typos, "
-            "no Kanji, no weird Katakana readings, and accurate Thai translation.\n"
+            "no Kanji (absolutely convert any remaining Kanji to Hiragana/Katakana), no weird Katakana readings, and accurate Thai translation.\n"
             "If any minor issue remains, correct it. Otherwise, output the verified list.\n"
             "Output MUST be the final JSON array of 12 objects, with 'japanese' and 'thai' fields.\n"
             "Return ONLY the raw JSON array, no explanation."
@@ -856,19 +857,13 @@ def generate_dynamic_theme(history):
                             "thai": str(item.get("thai", "")).strip()
                         })
                     
-                    # Programmatic check
-                    is_prog_valid, prog_err = check_dataset_programmatic(cleaned_dataset)
-                    if not is_prog_valid:
-                        print(f"Programmatic check failed: {prog_err}. Retrying theme generation...")
-                        continue
-                        
-                    # 3-Stage LLM check
+                    # 3-Stage LLM check (Fact check, spelling/typo/Kanji correction, and final checks)
                     validated_dataset = verify_dataset_with_llm(cleaned_dataset)
                     
-                    # Final check verification on the validated dataset
+                    # Programmatic check on the final proofread/validated dataset
                     is_prog_valid, prog_err = check_dataset_programmatic(validated_dataset)
                     if not is_prog_valid:
-                        print(f"Programmatic check failed after validation: {prog_err}. Retrying theme generation...")
+                        print(f"Programmatic check failed: {prog_err}. Retrying theme generation...")
                         continue
                         
                     new_title = validated_dataset[0]["japanese"]
