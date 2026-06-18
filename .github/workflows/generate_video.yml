@@ -67,7 +67,7 @@ jobs:
           ollama pull gemma2:2b
           
           # Start the local API server in the background
-          python local_api_server.py &
+          python -u local_api_server.py &
           echo "Waiting for local API server to start..."
           until curl -s http://127.0.0.1:8000 > /dev/null; do sleep 1; done
           echo "Local API server is ready!"
@@ -76,7 +76,7 @@ jobs:
         env:
           LOCAL_API_URL: "http://127.0.0.1:8000"
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python generate_video.py
+        run: python -u generate_video.py
 
       - name: Commit and push generated video and history
         run: |
