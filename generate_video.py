@@ -1293,6 +1293,16 @@ def main():
     history["videos"].append(video_record)
     save_history(history)
     
+    # Save separate JSON file for this video
+    video_json_filename = f"video_{timestamp_str}_{clean_title}.json"
+    video_json_path = os.path.join(DATA_DIR, video_json_filename)
+    try:
+        with open(video_json_path, 'w', encoding='utf-8') as f:
+            json.dump(video_record, f, indent=2, ensure_ascii=False)
+        print(f"Saved separate video detail JSON to: {video_json_path}")
+    except Exception as e:
+        print(f"Error saving separate video detail JSON: {e}")
+    
     # 7. Cleanup temp media
     print("Cleaning up temporary files...")
     for path in temp_media:
