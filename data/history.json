@@ -86,7 +86,8 @@
     "けんどうのことば",
     "にほんのわがっき",
     "にほんのだがしや",
-    "にほんのえきべん"
+    "にほんのえきべん",
+    "祭り"
   ],
   "used_words": [
     "こんにちは",
@@ -1045,7 +1046,18 @@
     "おみやげ",
     "こめ",
     "おかず",
-    "てんぷら"
+    "てんぷら",
+    "舞台",
+    "音楽",
+    "踊り",
+    "花火",
+    "祭り場",
+    "伝統",
+    "衣装",
+    "神輿",
+    "祭司",
+    "食べ物",
+    "飲み物"
   ],
   "videos": [
     {
@@ -5869,6 +5881,73 @@
           "role": "content",
           "japanese": "てんぷら",
           "thai": "เทมปุระ"
+        }
+      ]
+    },
+    {
+      "title": "祭り",
+      "timestamp": "20260618_001334",
+      "video_filename": "video_20260618_001334_祭り.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "祭り",
+          "thai": "งานเลี้ยง"
+        },
+        {
+          "role": "content",
+          "japanese": "舞台",
+          "thai": "บาน"
+        },
+        {
+          "role": "content",
+          "japanese": "音楽",
+          "thai": "เพลง"
+        },
+        {
+          "role": "content",
+          "japanese": "踊り",
+          "thai": "เต้น"
+        },
+        {
+          "role": "content",
+          "japanese": "花火",
+          "thai": "ดอกไม้ไฟ"
+        },
+        {
+          "role": "content",
+          "japanese": "祭り場",
+          "thai": "ที่จัดงานเลี้ยง"
+        },
+        {
+          "role": "content",
+          "japanese": "伝統",
+          "thai": "ประเพณี"
+        },
+        {
+          "role": "content",
+          "japanese": "衣装",
+          "thai": "ชุด"
+        },
+        {
+          "role": "content",
+          "japanese": "神輿",
+          "thai": "เรือ"
+        },
+        {
+          "role": "content",
+          "japanese": "祭司",
+          "thai": "ผู้พิทักษ์"
+        },
+        {
+          "role": "content",
+          "japanese": "食べ物",
+          "thai": "ขนม"
+        },
+        {
+          "role": "content",
+          "japanese": "飲み物",
+          "thai": "เครื่องดื่ม"
         }
       ]
     }
