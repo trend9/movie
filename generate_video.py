@@ -623,165 +623,230 @@ def extract_and_parse_json(text):
             
     raise json.JSONDecodeError("Could not extract valid JSON from LLM response", text, 0)
 
-def generate_dynamic_theme(history):
-    """Generates a completely new topic dataset using Local Ollama, Gemini, or Pollinations AI.
-    If all models fail, it retries. If it still fails, it raises an error to prevent generating bad/corrupt videos.
+def call_llm(system_prompt, user_prompt, response_mime_type=None):
+    """Unified helper to call local Ollama, Gemini API, or Pollinations AI with fallback."""
+    # 1. Try local Ollama (gemma2:2b) since it's installed and free
+    try:
+        url = "http://localhost:11434/api/chat"
+        payload = {
+            "model": "gemma2:2b",
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            "stream": False
+        }
+        res = requests.post(url, json=payload, timeout=45)
+        if res.status_code == 200:
+            content = res.json().get("message", {}).get("content", "").strip()
+            if content:
+                return content
+    except Exception as e:
+        print(f"Local Ollama call failed: {e}")
+
+    # 2. Try Gemini API if key is available in environment or config.json
+    gemini_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+    if not gemini_key:
+        for env_file in [".env", "../.env", "../../.env"]:
+            if os.path.exists(env_file):
+                try:
+                    with open(env_file, "r", encoding="utf-8") as f:
+                        for line in f:
+                            line = line.strip()
+                            if line and not line.startswith("#") and "=" in line:
+                                k, v = line.split("=", 1)
+                                k = k.strip()
+                                v = v.strip().strip('"').strip("'")
+                                if k in ("GEMINI_API_KEY", "GOOGLE_API_KEY"):
+                                    gemini_key = v
+                                    break
+                except Exception:
+                    pass
+            if gemini_key:
+                break
+
+    if not gemini_key:
+        config_path = os.path.join(DATA_DIR, "config.json")
+        if os.path.exists(config_path):
+            try:
+                with open(config_path, "r", encoding="utf-8") as f:
+                    config_data = json.load(f)
+                    gemini_key = config_data.get("gemini_api_key")
+            except Exception:
+                pass
+
+    if gemini_key:
+        try:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={gemini_key}"
+            combined_prompt = f"{system_prompt}\n\nUser request:\n{user_prompt}"
+            payload = {
+                "contents": [{"parts": [{"text": combined_prompt}]}]
+            }
+            if response_mime_type:
+                payload["generationConfig"] = {"responseMimeType": response_mime_type}
+            res = requests.post(url, json=payload, timeout=20)
+            if res.status_code == 200:
+                text_out = res.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+                if text_out:
+                    return text_out
+        except Exception as e:
+            print(f"Gemini API call failed: {e}")
+
+    # 3. Try Pollinations AI as third fallback
+    try:
+        url = "https://text.pollinations.ai/openai"
+        payload = {
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            "model": "mistral"
+        }
+        res = requests.post(url, json=payload, timeout=20)
+        if res.status_code == 200:
+            try:
+                res_data = res.json()
+                content = res_data["choices"][0]["message"]["content"].strip()
+            except Exception:
+                content = res.text.strip()
+            if content:
+                return content
+    except Exception as e:
+        print(f"Pollinations AI call failed: {e}")
+
+    return None
+
+def check_dataset_programmatic(dataset):
+    """Runs programmatic validations on the vocabulary list.
+    Returns (bool, str) representing (is_valid, error_message).
     """
+    if not isinstance(dataset, list):
+        return False, "Dataset is not a list"
+    if len(dataset) != 12:
+        return False, f"Dataset must contain exactly 12 items, but got {len(dataset)}"
+    
+    # Check Kanji presence (Kanji characters are forbidden in the Japanese field)
+    kanji_pattern = re.compile(r'[\u4e00-\u9faf\u3400-\u4dbf]')
+    
+    seen_japanese = set()
+    for idx, item in enumerate(dataset):
+        if not isinstance(item, dict):
+            return False, f"Item at index {idx} is not a dictionary"
+        
+        ja = str(item.get("japanese", "")).strip()
+        th = str(item.get("thai", "")).strip()
+        
+        if not ja:
+            return False, f"Item at index {idx} has an empty 'japanese' field"
+        if not th:
+            return False, f"Item at index {idx} has an empty 'thai' field"
+            
+        if kanji_pattern.search(ja):
+            return False, f"Item at index {idx} ('{ja}') contains Kanji characters, which is forbidden."
+            
+        # Check for duplicates
+        if ja in seen_japanese:
+            return False, f"Duplicate Japanese word found: '{ja}'"
+        seen_japanese.add(ja)
+        
+    return True, ""
+
+def verify_dataset_with_llm(dataset):
+    """Runs LLM-based Fact check, spelling check, and two final checks.
+    Returns (bool, list_of_modified_or_validated_dataset).
+    """
+    dataset_str = json.dumps(dataset, ensure_ascii=False, indent=2)
+    
+    # Stage 1: Fact check
+    print("[Verification] Stage 1: LLM Fact Check...")
+    fact_system = (
+        "You are an expert Japanese language teacher and fact checker.\n"
+        "Your task is to review a list of Japanese words and their Thai translations.\n"
+        "Verify if the translations are 100% accurate and make sense.\n"
+        "If there are wrong translations, correct them. Keep the format exactly the same.\n"
+        "Output MUST be the corrected or verified JSON array of 12 objects, with 'japanese' and 'thai' fields.\n"
+        "Return ONLY the raw JSON array, no explanation."
+    )
+    fact_response = call_llm(fact_system, dataset_str, response_mime_type="application/json")
+    if fact_response:
+        try:
+            dataset = extract_and_parse_json(fact_response)
+            dataset_str = json.dumps(dataset, ensure_ascii=False, indent=2)
+            print("Fact check passed/corrected.")
+        except Exception as e:
+            print(f"Fact check parse failed: {e}. Proceeding with current dataset.")
+            
+    # Stage 2: Typo/Spelling check
+    print("[Verification] Stage 2: LLM Spelling & Typo Check...")
+    typo_system = (
+        "You are an expert Japanese proofreader.\n"
+        "Review the Japanese vocabulary words (written in Hiragana/Katakana). "
+        "Strictly check for spelling mistakes, unnatural/weird readings, and incorrect phonetic spelling.\n"
+        "Pay special attention to:\n"
+        "- Unnatural phonetic spelling (e.g. 'こおひい' or 'かれえ' are wrong; they must be written as 'こうひい' or 'かれー' / 'かれーらいす').\n"
+        "- Long vowel sound spelling mistakes.\n"
+        "- Katakana elongations written incorrectly as Hiragana vowel extensions.\n"
+        "If you find spelling mistakes or typos, fix them. Keep all other contents and translations.\n"
+        "Output MUST be the corrected JSON array of 12 objects, with 'japanese' and 'thai' fields.\n"
+        "Return ONLY the raw JSON array, no explanation."
+    )
+    typo_response = call_llm(typo_system, dataset_str, response_mime_type="application/json")
+    if typo_response:
+        try:
+            dataset = extract_and_parse_json(typo_response)
+            dataset_str = json.dumps(dataset, ensure_ascii=False, indent=2)
+            print("Spelling & typo check passed/corrected.")
+        except Exception as e:
+            print(f"Spelling check parse failed: {e}. Proceeding with current dataset.")
+
+    # Stage 3: Final check twice
+    for round_num in [1, 2]:
+        print(f"[Verification] Stage 3: Final Check Round {round_num}/2...")
+        final_system = (
+            "You are a master Japanese teacher conducting the absolute final quality check.\n"
+            "Review the list of 12 items. Ensure every word is extremely natural, has correct spelling, no typos, "
+            "no Kanji, no weird Katakana readings, and accurate Thai translation.\n"
+            "If any minor issue remains, correct it. Otherwise, output the verified list.\n"
+            "Output MUST be the final JSON array of 12 objects, with 'japanese' and 'thai' fields.\n"
+            "Return ONLY the raw JSON array, no explanation."
+        )
+        final_response = call_llm(final_system, dataset_str, response_mime_type="application/json")
+        if final_response:
+            try:
+                dataset = extract_and_parse_json(final_response)
+                dataset_str = json.dumps(dataset, ensure_ascii=False, indent=2)
+                print(f"Final check round {round_num} passed/corrected.")
+            except Exception as e:
+                print(f"Final check round {round_num} parse failed: {e}.")
+                
+    return dataset
+
+def generate_dynamic_theme(history):
+    """Generates a completely new topic dataset using LLM with a 3-stage LLM check and a programmatic check."""
     used_titles = history.get("used_titles", [])
-    used_words = history.get("used_words", [])
     
     max_retries = 3
     for attempt in range(max_retries):
         print(f"Theme generation attempt {attempt + 1}/{max_retries}...")
         
-        # 1. Try Local Ollama (gemma2:2b) since it's installed and free
-        print("Trying local Ollama (gemma2:2b) for theme generation...")
-        try:
-            url = "http://localhost:11434/api/chat"
-            system_prompt = (
-                "You are an expert Japanese language teacher.\n"
-                "Generate a brand new, highly specific Japanese vocabulary theme/topic and 11 related words with their Thai translations.\n"
-                "The first object in the JSON list must represent the theme/topic itself.\n"
-                "The remaining 11 objects must be vocabulary words that are highly relevant and strictly belong to that theme.\n\n"
-                "Rules:\n"
-                "1. Write the 'japanese' field ONLY in Hiragana or Katakana (Do NOT use any Kanji!).\n"
-                "2. The Thai translation must be accurate.\n"
-                "3. The theme/topic must be completely different from these already used themes: {used_titles}.\n"
-                "4. All 11 vocabulary words must be closely related to the selected theme/topic.\n\n"
-                "Output MUST be a valid JSON array of exactly 12 objects. Each object must have keys 'japanese' and 'thai'. "
-                "Do not include any markdown formatting or explanation, return ONLY the raw JSON string."
-            ).format(used_titles=", ".join(used_titles[-40:]))
-            
-            payload = {
-                "model": "gemma2:2b",
-                "messages": [
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": "Generate a new unique Japanese-Thai vocabulary list."}
-                ],
-                "stream": False
-            }
-            res = requests.post(url, json=payload, timeout=45)
-            if res.status_code == 200:
-                content = res.json().get("message", {}).get("content", "").strip()
-                dataset = extract_and_parse_json(content)
-                if isinstance(dataset, list) and len(dataset) >= 12:
-                    cleaned_dataset = []
-                    for item in dataset[:12]:
-                        cleaned_dataset.append({
-                            "japanese": str(item.get("japanese", "")).strip(),
-                            "thai": str(item.get("thai", "")).strip()
-                        })
-                    new_title = cleaned_dataset[0]["japanese"]
-                    if new_title not in used_titles:
-                        print(f"Successfully generated dynamic theme via local Ollama: {new_title}")
-                        return cleaned_dataset
-            else:
-                print(f"Ollama returned HTTP status {res.status_code}")
-        except Exception as e:
-            print(f"Local Ollama generation failed: {e}")
-
-        # 2. Try Gemini API if key is available in environment or config.json
-        gemini_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-        if not gemini_key:
-            # Try loading manually from .env files
-            for env_file in [".env", "../.env", "../../.env"]:
-                if os.path.exists(env_file):
-                    try:
-                        with open(env_file, "r", encoding="utf-8") as f:
-                            for line in f:
-                                line = line.strip()
-                                if line and not line.startswith("#") and "=" in line:
-                                    k, v = line.split("=", 1)
-                                    k = k.strip()
-                                    v = v.strip().strip('"').strip("'")
-                                    if k in ("GEMINI_API_KEY", "GOOGLE_API_KEY"):
-                                        gemini_key = v
-                                        break
-                    except Exception:
-                        pass
-                if gemini_key:
-                    break
-
-        if not gemini_key:
-            config_path = os.path.join(DATA_DIR, "config.json")
-            if os.path.exists(config_path):
-                try:
-                    with open(config_path, "r", encoding="utf-8") as f:
-                        config_data = json.load(f)
-                        gemini_key = config_data.get("gemini_api_key")
-                except Exception:
-                    pass
-
-        if gemini_key:
-            print("Trying Gemini API for theme generation...")
+        system_prompt = (
+            "You are an expert Japanese language teacher.\n"
+            "Generate a brand new, highly specific Japanese vocabulary theme/topic and 11 related words with their Thai translations.\n"
+            "The first object in the JSON list must represent the theme/topic itself.\n"
+            "The remaining 11 objects must be vocabulary words that are highly relevant and strictly belong to that theme.\n\n"
+            "Rules:\n"
+            "1. Write the 'japanese' field ONLY in Hiragana or Katakana (Do NOT use any Kanji!).\n"
+            "2. The Thai translation must be accurate.\n"
+            "3. The theme/topic must be completely different from these already used themes: {used_titles}.\n"
+            "4. All 11 vocabulary words must be closely related to the selected theme/topic.\n"
+            "5. Use standard, correct Hiragana/Katakana spelling. (Do NOT write weird phonetic spellings like 'こおひい' or 'かれえ'. Write 'こうひい' or 'かれー' instead!).\n\n"
+            "Output MUST be a valid JSON array of exactly 12 objects. Each object must have keys 'japanese' and 'thai'. "
+            "Do not include any markdown formatting or explanation, return ONLY the raw JSON string."
+        ).format(used_titles=", ".join(used_titles[-40:]))
+        
+        content = call_llm(system_prompt, "Generate a new unique Japanese-Thai vocabulary list.", response_mime_type="application/json")
+        if content:
             try:
-                url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={gemini_key}"
-                prompt_text = (
-                    f"You are an expert Japanese language teacher.\n"
-                    f"Generate a brand new, highly specific Japanese vocabulary theme/topic and 11 related words with their Thai translations.\n"
-                    f"Output MUST be a valid JSON array of exactly 12 objects, where the first object is the theme/topic, "
-                    f"and the remaining 11 are vocabulary words that are highly relevant and strictly belong to that theme.\n\n"
-                    f"Rules:\n"
-                    f"1. Write the 'japanese' field ONLY in Hiragana or Katakana (Do NOT use any Kanji!).\n"
-                    f"2. The Thai translation must be accurate.\n"
-                    f"3. The theme/topic must be completely different from these already used themes: {', '.join(used_titles[-40:])}.\n"
-                    f"4. All 11 vocabulary words must be closely related to the selected theme/topic.\n\n"
-                    f"Return ONLY the raw JSON array, no other text."
-                )
-                payload = {
-                    "contents": [{"parts": [{"text": prompt_text}]}],
-                    "generationConfig": {"responseMimeType": "application/json"}
-                }
-                res = requests.post(url, json=payload, timeout=20)
-                if res.status_code == 200:
-                    text_out = res.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
-                    dataset = extract_and_parse_json(text_out)
-                    if isinstance(dataset, list) and len(dataset) >= 12:
-                        cleaned_dataset = []
-                        for item in dataset[:12]:
-                            cleaned_dataset.append({
-                                "japanese": str(item.get("japanese", "")).strip(),
-                                "thai": str(item.get("thai", "")).strip()
-                            })
-                        new_title = cleaned_dataset[0]["japanese"]
-                        if new_title not in used_titles:
-                            print(f"Successfully generated dynamic theme via Gemini API: {new_title}")
-                            return cleaned_dataset
-            except Exception as e:
-                print(f"Gemini API generation failed: {e}")
-
-        # 3. Try Pollinations AI as third fallback
-        print("Trying Pollinations AI for theme generation...")
-        try:
-            url = "https://text.pollinations.ai/openai"
-            system_prompt = (
-                "You are an expert Japanese language teacher.\n"
-                "Generate a brand new, highly specific Japanese vocabulary theme/topic and 11 related words with their Thai translations.\n"
-                "The first object in the JSON list must be the theme/topic itself.\n"
-                "The remaining 11 objects must be vocabulary words that are highly relevant and strictly belong to that theme.\n\n"
-                "Rules:\n"
-                "1. Write the 'japanese' field ONLY in Hiragana or Katakana (Do NOT use any Kanji!).\n"
-                "2. The Thai translation must be accurate.\n"
-                "3. The theme/topic must be completely different from these already used themes: {used_titles}.\n"
-                "4. All 11 vocabulary words must be closely related to the selected theme/topic.\n\n"
-                "Output MUST be a valid JSON array of exactly 12 objects. Each object must have keys 'japanese' and 'thai'. "
-                "Do not include any markdown formatting or explanation, return ONLY the raw JSON string."
-            ).format(used_titles=", ".join(used_titles[-40:]))
-            
-            payload = {
-                "messages": [
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": "Generate a new unique Japanese-Thai vocabulary list."}
-                ],
-                "model": "mistral"
-            }
-            res = requests.post(url, json=payload, timeout=20)
-            if res.status_code == 200:
-                try:
-                    res_data = res.json()
-                    content = res_data["choices"][0]["message"]["content"].strip()
-                except Exception:
-                    content = res.text.strip()
                 dataset = extract_and_parse_json(content)
                 if isinstance(dataset, list) and len(dataset) >= 12:
                     cleaned_dataset = []
@@ -790,22 +855,37 @@ def generate_dynamic_theme(history):
                             "japanese": str(item.get("japanese", "")).strip(),
                             "thai": str(item.get("thai", "")).strip()
                         })
-                    new_title = cleaned_dataset[0]["japanese"]
+                    
+                    # Programmatic check
+                    is_prog_valid, prog_err = check_dataset_programmatic(cleaned_dataset)
+                    if not is_prog_valid:
+                        print(f"Programmatic check failed: {prog_err}. Retrying theme generation...")
+                        continue
+                        
+                    # 3-Stage LLM check
+                    validated_dataset = verify_dataset_with_llm(cleaned_dataset)
+                    
+                    # Final check verification on the validated dataset
+                    is_prog_valid, prog_err = check_dataset_programmatic(validated_dataset)
+                    if not is_prog_valid:
+                        print(f"Programmatic check failed after validation: {prog_err}. Retrying theme generation...")
+                        continue
+                        
+                    new_title = validated_dataset[0]["japanese"]
                     if new_title not in used_titles:
-                        print(f"Successfully generated dynamic theme via Pollinations AI: {new_title}")
-                        return cleaned_dataset
-        except Exception as e:
-            print(f"Pollinations AI generation failed: {e}")
-
+                        print(f"Successfully generated dynamic theme: {new_title}")
+                        return validated_dataset
+            except Exception as e:
+                print(f"Error parsing/checking dataset: {e}")
+                
         if attempt < max_retries - 1:
-            print("AI models failed or timed out. Waiting 5 seconds before retrying...")
+            print("Theme validation failed or model failed. Waiting 5 seconds before retrying...")
             time.sleep(5)
             
     # Raise error if everything failed
     raise RuntimeError(
-        "Theme generation failed: All AI models (Ollama, Gemini, Pollinations) are currently unavailable or rate-limited. "
-        "To protect video quality and prevent duplicate/corrupt content, generation has been stopped. "
-        "Please check your internet connection, confirm that your Gemini API key is correct in the Web GUI, or check local Ollama status."
+        "Theme generation failed: All attempts failed validation checks or LLM models were rate-limited. "
+        "To protect video quality and prevent duplicate/corrupt content, generation has been stopped."
     )
 
 def generate_text_content(history):
@@ -815,33 +895,16 @@ def generate_text_content(history):
 
 def translate_title_to_image_prompt(title_japanese):
     """Translates the Japanese title to a highly relevant English description for the image generation prompt."""
-    url = "https://text.pollinations.ai/openai"
     system_prompt = (
         "You translate a Japanese phrase to a highly descriptive English scene for AI image generation. "
         "The scene must be cute, colorful, and appeal to young women. "
         "For example, if the input is 'にちじょうのあいさつ' (Everyday Greetings), output 'A cute cozy study room, pastel pink and lavender, cute stationery, a tiny cute notebook, soft lighting'. "
         "Keep the description short, clean, and visual. Output ONLY the English description, no other text."
     )
-    payload = {
-        "messages": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": title_japanese}
-        ],
-        "model": "openai"
-    }
-    try:
-        response = requests.post(url, json=payload, timeout=20)
-        if response.status_code == 200:
-            try:
-                res_data = response.json()
-                desc = res_data["choices"][0]["message"]["content"].strip()
-            except Exception:
-                desc = response.text.strip()
-            if desc:
-                print(f"Translated title prompt description: {desc}")
-                return desc
-    except Exception as e:
-        print(f"Error translating title for prompt: {e}")
+    desc = call_llm(system_prompt, title_japanese)
+    if desc:
+        print(f"Translated title prompt description: {desc}")
+        return desc
     return "A cute cozy room with books and soft pastel pink lighting"
 
 def crop_to_9_16(img_path):
