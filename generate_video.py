@@ -589,9 +589,20 @@ def extract_and_parse_json(text):
     """Robustly extracts a JSON array or object from text, even if wrapped in markdown or conversational filler."""
     text = text.strip()
     
+    def unwrap_list_string(obj):
+        # If the parsed object is a list containing a single string that looks like JSON, parse it
+        if isinstance(obj, list) and len(obj) == 1 and isinstance(obj[0], str):
+            val = obj[0].strip()
+            if (val.startswith('[') and val.endswith(']')) or (val.startswith('{') and val.endswith('}')):
+                try:
+                    return json.loads(val)
+                except Exception:
+                    pass
+        return obj
+
     # Try direct parse
     try:
-        return json.loads(text)
+        return unwrap_list_string(json.loads(text))
     except Exception:
         pass
         
@@ -599,7 +610,7 @@ def extract_and_parse_json(text):
     match = re.search(r"```(?:json)?\s*(.*?)\s*```", text, re.DOTALL)
     if match:
         try:
-            return json.loads(match.group(1).strip())
+            return unwrap_list_string(json.loads(match.group(1).strip()))
         except Exception:
             pass
             
@@ -608,7 +619,7 @@ def extract_and_parse_json(text):
     end_idx = text.rfind(']')
     if start_idx != -1 and end_idx != -1 and end_idx > start_idx:
         try:
-            return json.loads(text[start_idx:end_idx+1])
+            return unwrap_list_string(json.loads(text[start_idx:end_idx+1]))
         except Exception:
             pass
             
@@ -617,7 +628,7 @@ def extract_and_parse_json(text):
     end_idx = text.rfind('}')
     if start_idx != -1 and end_idx != -1 and end_idx > start_idx:
         try:
-            return json.loads(text[start_idx:end_idx+1])
+            return unwrap_list_string(json.loads(text[start_idx:end_idx+1]))
         except Exception:
             pass
             
@@ -820,7 +831,34 @@ def verify_dataset_with_llm(dataset):
             except Exception as e:
                 print(f"Final check round {round_num} parse failed: {e}. Raw content: {final_response[:400]}")
                 
+    # Programmatically convert any remaining Kanji to Hiragana to prevent validation failures
+    try:
+        for item in dataset:
+            ja = item.get("japanese", "")
+            if ja:
+                item["japanese"] = convert_kanji_to_hiragana(ja)
+    except Exception as e:
+        print(f"Error applying Kanji conversion to dataset: {e}")
+                
     return dataset
+
+def convert_kanji_to_hiragana(text):
+    """Automatically converts any Kanji characters in a string to Hiragana using pykakasi, preserving Katakana."""
+    try:
+        import pykakasi
+        k = pykakasi.kakasi()
+        # We only want to convert Kanji parts to Hiragana, leaving Hiragana and Katakana as they are.
+        kanji_pattern = re.compile(r'[\u4e00-\u9faf\u3400-\u4dbf]+')
+        
+        def replace_kanji(match):
+            kanji_str = match.group(0)
+            result = k.convert(kanji_str)
+            return "".join([item['hira'] for item in result])
+            
+        return kanji_pattern.sub(replace_kanji, text)
+    except Exception as e:
+        print(f"Error converting Kanji to Hiragana: {e}")
+        return text
 
 def generate_dynamic_theme(history):
     """Generates a completely new topic dataset using LLM with a 3-stage LLM check and a programmatic check."""
