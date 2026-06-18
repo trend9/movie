@@ -93,7 +93,8 @@
     "まちでのいどう",
     "びょういんでのしんさつ",
     "こうつうきかん",
-    "ようふくのかいもの"
+    "ようふくのかいもの",
+    "りょうり"
   ],
   "used_words": [
     "こんにちは",
@@ -1129,7 +1130,18 @@
     "いろ",
     "かう",
     "セール",
-    "ねだん"
+    "ねだん",
+    "つくる",
+    "きる",
+    "やく",
+    "にる",
+    "いためる",
+    "なべ",
+    "フライパン",
+    "ほうちょう",
+    "まないた",
+    "ざいりょう",
+    "あじ"
   ],
   "videos": [
     {
@@ -6422,6 +6434,73 @@
           "role": "content",
           "japanese": "ねだん",
           "thai": "ราคา"
+        }
+      ]
+    },
+    {
+      "title": "りょうり",
+      "timestamp": "20260618_192325",
+      "video_filename": "video_20260618_192325_りょうり.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "りょうり",
+          "thai": "การทำอาหาร"
+        },
+        {
+          "role": "content",
+          "japanese": "つくる",
+          "thai": "ทำ, ปรุง"
+        },
+        {
+          "role": "content",
+          "japanese": "きる",
+          "thai": "หั่น, ตัด"
+        },
+        {
+          "role": "content",
+          "japanese": "やく",
+          "thai": "ย่าง, ปิ้ง, ทอด, อบ"
+        },
+        {
+          "role": "content",
+          "japanese": "にる",
+          "thai": "ต้ม, เคี่ยว"
+        },
+        {
+          "role": "content",
+          "japanese": "いためる",
+          "thai": "ผัด"
+        },
+        {
+          "role": "content",
+          "japanese": "なべ",
+          "thai": "หม้อ"
+        },
+        {
+          "role": "content",
+          "japanese": "フライパン",
+          "thai": "กระทะทอด"
+        },
+        {
+          "role": "content",
+          "japanese": "ほうちょう",
+          "thai": "มีดทำครัว"
+        },
+        {
+          "role": "content",
+          "japanese": "まないた",
+          "thai": "เขียง"
+        },
+        {
+          "role": "content",
+          "japanese": "ざいりょう",
+          "thai": "วัตถุดิบ, ส่วนผสม"
+        },
+        {
+          "role": "content",
+          "japanese": "あじ",
+          "thai": "รสชาติ"
         }
       ]
     }
