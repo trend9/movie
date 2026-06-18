@@ -878,16 +878,18 @@ def generate_dynamic_theme(history):
         print(f"Theme generation attempt {attempt + 1}/{max_retries}...")
         
         system_prompt = (
-            "You are an expert Japanese language teacher.\n"
-            "Generate a brand new, highly specific Japanese vocabulary theme/topic and 11 related words with their Thai translations.\n"
+            "You are an expert Japanese language teacher targeting beginner to intermediate Thai learners (JLPT N5 to N3 level).\n"
+            "Generate a brand new, practical, everyday Japanese vocabulary theme/topic and 11 related words with their Thai translations.\n"
+            "The theme must be highly practical for daily life in Japan (e.g., shopping at convenience stores, ordering at a restaurant, basic travel/train, weather, parts of a house, body parts, common feelings, school/office, basic adjectives, basic verbs).\n"
+            "Do NOT choose obscure, difficult, traditional, or academic themes (DO NOT use topics like traditional theater, bunraku, kabuki, ancient history, advanced terminology, etc. that native Japanese speakers rarely use or intermediate learners don't need).\n\n"
             "The first object in the JSON list must represent the theme/topic itself.\n"
             "The remaining 11 objects must be vocabulary words that are highly relevant and strictly belong to that theme.\n\n"
             "Rules:\n"
-            "1. Write the 'japanese' field ONLY in Hiragana or Katakana (Do NOT use any Kanji!).\n"
+            "1. Write the 'japanese' field in standard Japanese Kanji/Kana representation (Do NOT worry about Kanji, it will be automatically converted to Hiragana later!).\n"
             "2. The Thai translation must be accurate.\n"
             "3. The theme/topic must be completely different from these already used themes: {used_titles}.\n"
             "4. All 11 vocabulary words must be closely related to the selected theme/topic.\n"
-            "5. Use standard, correct Hiragana/Katakana spelling. (Do NOT write weird phonetic spellings like 'こおひい' or 'かれえ'. Write 'こうひい' or 'かれー' instead!).\n\n"
+            "5. Use standard, correct Japanese spelling (e.g. write 'コーヒー' or 'カレー' instead of weird spellings).\n\n"
             "Output MUST be a valid JSON array of exactly 12 objects. Each object must have keys 'japanese' and 'thai'. "
             "Do not include any markdown formatting or explanation, return ONLY the raw JSON string."
         ).format(used_titles=", ".join(used_titles[-40:]))
