@@ -636,26 +636,27 @@ def extract_and_parse_json(text):
 
 def call_llm(system_prompt, user_prompt, response_mime_type=None):
     """Unified helper to call local Ollama, Gemini API, or Pollinations AI with fallback."""
-    # 1. Try local Ollama (gemma2:2b) since it's installed and free
-    try:
-        url = "http://localhost:11434/api/chat"
-        payload = {
-            "model": "gemma2:2b",
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
-            ],
-            "stream": False
-        }
-        res = requests.post(url, json=payload, timeout=45)
-        if res.status_code == 200:
-            content = res.json().get("message", {}).get("content", "").strip()
-            if content:
-                return content
-        else:
-            print(f"Ollama returned HTTP status {res.status_code}: {res.text[:200]}")
-    except Exception as e:
-        print(f"Local Ollama call failed: {e}")
+    # 1. Try local Ollama (gemma2:2b) since it's installed and free (skip in GitHub Actions runner to avoid core dump crashes)
+    if "GITHUB_ACTIONS" not in os.environ:
+        try:
+            url = "http://localhost:11434/api/chat"
+            payload = {
+                "model": "gemma2:2b",
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt}
+                ],
+                "stream": False
+            }
+            res = requests.post(url, json=payload, timeout=45)
+            if res.status_code == 200:
+                content = res.json().get("message", {}).get("content", "").strip()
+                if content:
+                    return content
+            else:
+                print(f"Ollama returned HTTP status {res.status_code}: {res.text[:200]}")
+        except Exception as e:
+            print(f"Local Ollama call failed: {e}")
 
     # 2. Try Gemini API if key is available in environment or config.json
     gemini_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
@@ -689,25 +690,27 @@ def call_llm(system_prompt, user_prompt, response_mime_type=None):
                 pass
 
     if gemini_key:
-        try:
-            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={gemini_key}"
-            combined_prompt = f"{system_prompt}\n\nUser request:\n{user_prompt}"
-            payload = {
-                "contents": [{"parts": [{"text": combined_prompt}]}]
-            }
-            if response_mime_type:
-                payload["generationConfig"] = {"responseMimeType": response_mime_type}
-            res = requests.post(url, json=payload, timeout=20)
-            if res.status_code == 200:
-                text_out = res.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
-                if text_out:
-                    return text_out
-            else:
-                print(f"Gemini API returned HTTP status {res.status_code}: {res.text[:200]}")
-        except Exception as e:
-            print(f"Gemini API call failed: {e}")
+        # Try gemini-1.5-flash first (most stable), then fallback to gemini-2.5-flash if needed
+        for model in ["gemini-1.5-flash", "gemini-2.5-flash"]:
+            try:
+                url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={gemini_key}"
+                combined_prompt = f"{system_prompt}\n\nUser request:\n{user_prompt}"
+                payload = {
+                    "contents": [{"parts": [{"text": combined_prompt}]}]
+                }
+                if response_mime_type:
+                    payload["generationConfig"] = {"responseMimeType": response_mime_type}
+                res = requests.post(url, json=payload, timeout=20)
+                if res.status_code == 200:
+                    text_out = res.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+                    if text_out:
+                        return text_out
+                else:
+                    print(f"Gemini API ({model}) returned HTTP status {res.status_code}: {res.text[:200]}")
+            except Exception as e:
+                print(f"Gemini API ({model}) call failed: {e}")
 
-    # 3. Try Pollinations AI as third fallback
+    # 3. Try Pollinations AI as third fallback (using supported 'openai' model instead of deprecated 'mistral')
     try:
         url = "https://text.pollinations.ai/openai"
         payload = {
@@ -715,7 +718,7 @@ def call_llm(system_prompt, user_prompt, response_mime_type=None):
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
             ],
-            "model": "mistral"
+            "model": "openai"
         }
         res = requests.post(url, json=payload, timeout=20)
         if res.status_code == 200:
