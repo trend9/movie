@@ -1293,15 +1293,21 @@ def main():
     history["videos"].append(video_record)
     save_history(history)
     
-    # Save separate JSON file for this video
-    video_json_filename = f"video_{timestamp_str}_{clean_title}.json"
-    video_json_path = os.path.join(DATA_DIR, video_json_filename)
+    # Save separate text file for this video (for descriptions)
+    video_txt_filename = f"video_{timestamp_str}_{clean_title}.txt"
+    video_txt_path = os.path.join(DATA_DIR, video_txt_filename)
     try:
-        with open(video_json_path, 'w', encoding='utf-8') as f:
-            json.dump(video_record, f, indent=2, ensure_ascii=False)
-        print(f"Saved separate video detail JSON to: {video_json_path}")
+        with open(video_txt_path, 'w', encoding='utf-8') as f:
+            f.write(f"■ タイトル: {title_ja}\n\n")
+            f.write("■ スライド内容:\n")
+            for idx, slide in enumerate(slides):
+                role = "【タイトル】" if idx == 0 else f"【スライド {idx}】"
+                f.write(f"{role}\n")
+                f.write(f"日本語: {slide['japanese']}\n")
+                f.write(f"タイ語: {slide['thai']}\n\n")
+        print(f"Saved separate video detail TXT to: {video_txt_path}")
     except Exception as e:
-        print(f"Error saving separate video detail JSON: {e}")
+        print(f"Error saving separate video detail TXT: {e}")
     
     # 7. Cleanup temp media
     print("Cleaning up temporary files...")
