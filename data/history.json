@@ -97,7 +97,8 @@
     "りょうり",
     "アルバイト",
     "アパートたんし",
-    "ぎんこう・ATM"
+    "ぎんこう・ATM",
+    "からだのぶぶん"
   ],
   "used_words": [
     "こんにちは",
@@ -1177,7 +1178,18 @@
     "キャッシュカード",
     "あんしょうばんごう",
     "りょうがえ",
-    "てすうりょう"
+    "てすうりょう",
+    "あたま",
+    "かお",
+    "め",
+    "はな",
+    "くち",
+    "て",
+    "あし",
+    "おなか",
+    "せなか",
+    "ゆび",
+    "みみ"
   ],
   "videos": [
     {
@@ -6738,6 +6750,73 @@
           "role": "content",
           "japanese": "てすうりょう",
           "thai": "ค่าธรรมเนียม"
+        }
+      ]
+    },
+    {
+      "title": "からだのぶぶん",
+      "timestamp": "20260619_090504",
+      "video_filename": "video_20260619_090504_からだのぶぶん.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "からだのぶぶん",
+          "thai": "ส่วนต่างๆ ของร่างกาย"
+        },
+        {
+          "role": "content",
+          "japanese": "あたま",
+          "thai": "ศีรษะ, หัว"
+        },
+        {
+          "role": "content",
+          "japanese": "かお",
+          "thai": "ใบหน้า"
+        },
+        {
+          "role": "content",
+          "japanese": "め",
+          "thai": "ตา"
+        },
+        {
+          "role": "content",
+          "japanese": "はな",
+          "thai": "จมูก"
+        },
+        {
+          "role": "content",
+          "japanese": "くち",
+          "thai": "ปาก"
+        },
+        {
+          "role": "content",
+          "japanese": "て",
+          "thai": "มือ"
+        },
+        {
+          "role": "content",
+          "japanese": "あし",
+          "thai": "ขา, เท้า"
+        },
+        {
+          "role": "content",
+          "japanese": "おなか",
+          "thai": "ท้อง"
+        },
+        {
+          "role": "content",
+          "japanese": "せなか",
+          "thai": "หลัง"
+        },
+        {
+          "role": "content",
+          "japanese": "ゆび",
+          "thai": "นิ้ว"
+        },
+        {
+          "role": "content",
+          "japanese": "みみ",
+          "thai": "หู"
         }
       ]
     }
