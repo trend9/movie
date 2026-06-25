@@ -149,7 +149,8 @@
     "えんげいとかんようしょくぶつ",
     "フィットネスセンターでのうんどう",
     "ゆうびんきょくでのりよう",
-    "カフェでのひととき"
+    "カフェでのひととき",
+    "てんきよほう"
   ],
   "used_words": [
     "こんにちは",
@@ -1801,7 +1802,18 @@
     "じちきり",
     "おかいけい",
     "せき",
-    "Wi-Fi"
+    "Wi-Fi",
+    "てんき",
+    "はれ",
+    "くもり",
+    "あめ",
+    "ゆき",
+    "きおん",
+    "さいこうきおん",
+    "さいていきおん",
+    "かさ",
+    "かぜ",
+    "しつど"
   ],
   "videos": [
     {
@@ -10846,6 +10858,73 @@
           "role": "content",
           "japanese": "Wi-Fi",
           "thai": "ไวไฟ"
+        }
+      ]
+    },
+    {
+      "title": "てんきよほう",
+      "timestamp": "20260625_162205",
+      "video_filename": "video_20260625_162205_てんきよほう.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "てんきよほう",
+          "thai": "พยากรณ์อากาศ"
+        },
+        {
+          "role": "content",
+          "japanese": "てんき",
+          "thai": "สภาพอากาศ"
+        },
+        {
+          "role": "content",
+          "japanese": "はれ",
+          "thai": "อากาศแจ่มใส"
+        },
+        {
+          "role": "content",
+          "japanese": "くもり",
+          "thai": "มีเมฆมาก"
+        },
+        {
+          "role": "content",
+          "japanese": "あめ",
+          "thai": "ฝน"
+        },
+        {
+          "role": "content",
+          "japanese": "ゆき",
+          "thai": "หิมะ"
+        },
+        {
+          "role": "content",
+          "japanese": "きおん",
+          "thai": "อุณหภูมิ"
+        },
+        {
+          "role": "content",
+          "japanese": "さいこうきおん",
+          "thai": "อุณหภูมิสูงสุด"
+        },
+        {
+          "role": "content",
+          "japanese": "さいていきおん",
+          "thai": "อุณหภูมิต่ำสุด"
+        },
+        {
+          "role": "content",
+          "japanese": "かさ",
+          "thai": "ร่ม"
+        },
+        {
+          "role": "content",
+          "japanese": "かぜ",
+          "thai": "ลม"
+        },
+        {
+          "role": "content",
+          "japanese": "しつど",
+          "thai": "ความชื้น"
         }
       ]
     }
