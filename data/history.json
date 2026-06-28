@@ -175,7 +175,8 @@
     "あさのじゅんび",
     "ともだちとよていをたてる",
     "つうきん",
-    "けんこうてきなせいかつ"
+    "けんこうてきなせいかつ",
+    "みちをたずねる"
   ],
   "used_words": [
     "こんにちは",
@@ -2113,7 +2114,18 @@
     "きゅうむ",
     "えいよう",
     "すいぶん",
-    "バランス"
+    "バランス",
+    "みち",
+    "どこ",
+    "まっすぐ",
+    "みぎ",
+    "ひだり",
+    "こうさてん",
+    "かど",
+    "まがる",
+    "あるいて",
+    "～まで",
+    "わかりません"
   ],
   "videos": [
     {
@@ -12900,6 +12912,73 @@
           "role": "content",
           "japanese": "バランス",
           "thai": "สมดุล"
+        }
+      ]
+    },
+    {
+      "title": "みちをたずねる",
+      "timestamp": "20260628_170516",
+      "video_filename": "video_20260628_170516_みちをたずねる.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "みちをたずねる",
+          "thai": "การถามทาง"
+        },
+        {
+          "role": "content",
+          "japanese": "みち",
+          "thai": "ถนน, ทาง"
+        },
+        {
+          "role": "content",
+          "japanese": "どこ",
+          "thai": "ที่ไหน"
+        },
+        {
+          "role": "content",
+          "japanese": "まっすぐ",
+          "thai": "ตรงไป"
+        },
+        {
+          "role": "content",
+          "japanese": "みぎ",
+          "thai": "ขวา"
+        },
+        {
+          "role": "content",
+          "japanese": "ひだり",
+          "thai": "ซ้าย"
+        },
+        {
+          "role": "content",
+          "japanese": "こうさてん",
+          "thai": "สี่แยก"
+        },
+        {
+          "role": "content",
+          "japanese": "かど",
+          "thai": "หัวมุม, มุม"
+        },
+        {
+          "role": "content",
+          "japanese": "まがる",
+          "thai": "เลี้ยว"
+        },
+        {
+          "role": "content",
+          "japanese": "あるいて",
+          "thai": "โดยการเดิน"
+        },
+        {
+          "role": "content",
+          "japanese": "～まで",
+          "thai": "จนถึง~, ถึง~"
+        },
+        {
+          "role": "content",
+          "japanese": "わかりません",
+          "thai": "ไม่เข้าใจ"
         }
       ]
     }
