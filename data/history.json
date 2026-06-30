@@ -191,7 +191,8 @@
     "おまつりにいく",
     "デリバリーサービスをりようする",
     "ゆうびんきょくのりよう",
-    "みだしなみ"
+    "みだしなみ",
+    "てんきときせつ"
   ],
   "used_words": [
     "こんにちは",
@@ -2305,7 +2306,18 @@
     "シャンプー",
     "タオル",
     "きがええる",
-    "みにつける"
+    "みにつける",
+    "きせつ",
+    "てんき",
+    "はれ",
+    "くもり",
+    "あめ",
+    "ゆき",
+    "かぜ",
+    "あつい",
+    "さむい",
+    "あたたかい",
+    "すずしい"
   ],
   "videos": [
     {
@@ -14164,6 +14176,73 @@
           "role": "content",
           "japanese": "みにつける",
           "thai": "สวมใส่ (เสื้อผ้า, เครื่องประดับ)"
+        }
+      ]
+    },
+    {
+      "title": "てんきときせつ",
+      "timestamp": "20260630_221453",
+      "video_filename": "video_20260630_221453_てんきときせつ.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "てんきときせつ",
+          "thai": "สภาพอากาศและฤดูกาล"
+        },
+        {
+          "role": "content",
+          "japanese": "きせつ",
+          "thai": "ฤดูกาล"
+        },
+        {
+          "role": "content",
+          "japanese": "てんき",
+          "thai": "สภาพอากาศ"
+        },
+        {
+          "role": "content",
+          "japanese": "はれ",
+          "thai": "อากาศแจ่มใส"
+        },
+        {
+          "role": "content",
+          "japanese": "くもり",
+          "thai": "มีเมฆมาก"
+        },
+        {
+          "role": "content",
+          "japanese": "あめ",
+          "thai": "ฝน"
+        },
+        {
+          "role": "content",
+          "japanese": "ゆき",
+          "thai": "หิมะ"
+        },
+        {
+          "role": "content",
+          "japanese": "かぜ",
+          "thai": "ลม"
+        },
+        {
+          "role": "content",
+          "japanese": "あつい",
+          "thai": "ร้อน"
+        },
+        {
+          "role": "content",
+          "japanese": "さむい",
+          "thai": "หนาว"
+        },
+        {
+          "role": "content",
+          "japanese": "あたたかい",
+          "thai": "อบอุ่น"
+        },
+        {
+          "role": "content",
+          "japanese": "すずしい",
+          "thai": "เย็นสบาย"
         }
       ]
     }
