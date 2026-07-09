@@ -246,7 +246,8 @@
     "このみとせんたく",
     "レストランでのちゅうもん",
     "てんき",
-    "そうじ・かたづけ"
+    "そうじ・かたづけ",
+    "たいのぶい"
   ],
   "used_words": [
     "こんにちは",
@@ -2965,7 +2966,18 @@
     "ふく",
     "せんざい",
     "スポンジ",
-    "ぞうきん"
+    "ぞうきん",
+    "あたま",
+    "かお",
+    "め",
+    "はな",
+    "くち",
+    "みみ",
+    "て",
+    "あし",
+    "うで",
+    "ゆび",
+    "おなか"
   ],
   "videos": [
     {
@@ -18509,6 +18521,73 @@
           "role": "content",
           "japanese": "ぞうきん",
           "thai": "ผ้าขี้ริ้ว, ผ้าเช็ด"
+        }
+      ]
+    },
+    {
+      "title": "たいのぶい",
+      "timestamp": "20260709_212102",
+      "video_filename": "video_20260709_212102_たいのぶい.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "たいのぶい",
+          "thai": "ส่วนต่างๆ ของร่างกาย"
+        },
+        {
+          "role": "content",
+          "japanese": "あたま",
+          "thai": "ศีรษะ, หัว"
+        },
+        {
+          "role": "content",
+          "japanese": "かお",
+          "thai": "ใบหน้า"
+        },
+        {
+          "role": "content",
+          "japanese": "め",
+          "thai": "ตา"
+        },
+        {
+          "role": "content",
+          "japanese": "はな",
+          "thai": "จมูก"
+        },
+        {
+          "role": "content",
+          "japanese": "くち",
+          "thai": "ปาก"
+        },
+        {
+          "role": "content",
+          "japanese": "みみ",
+          "thai": "หู"
+        },
+        {
+          "role": "content",
+          "japanese": "て",
+          "thai": "มือ"
+        },
+        {
+          "role": "content",
+          "japanese": "あし",
+          "thai": "เท้า, ขา"
+        },
+        {
+          "role": "content",
+          "japanese": "うで",
+          "thai": "แขน"
+        },
+        {
+          "role": "content",
+          "japanese": "ゆび",
+          "thai": "นิ้ว"
+        },
+        {
+          "role": "content",
+          "japanese": "おなか",
+          "thai": "ท้อง"
         }
       ]
     }
