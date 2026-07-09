@@ -244,7 +244,8 @@
     "ペットとくらす",
     "でんしゃやバスのりよう",
     "このみとせんたく",
-    "レストランでのちゅうもん"
+    "レストランでのちゅうもん",
+    "てんき"
   ],
   "used_words": [
     "こんにちは",
@@ -2941,7 +2942,18 @@
     "おいしい",
     "もちかえり",
     "よやく",
-    "おみず"
+    "おみず",
+    "せいれ",
+    "どんり",
+    "あめ",
+    "ゆき",
+    "かぜ",
+    "しょい",
+    "かんい",
+    "だんかい",
+    "りょうしい",
+    "たいふう",
+    "かさ"
   ],
   "videos": [
     {
@@ -18351,6 +18363,73 @@
           "role": "content",
           "japanese": "おみず",
           "thai": "น้ำเปล่า"
+        }
+      ]
+    },
+    {
+      "title": "てんき",
+      "timestamp": "20260709_044838",
+      "video_filename": "video_20260709_044838_てんき.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "てんき",
+          "thai": "สภาพอากาศ"
+        },
+        {
+          "role": "content",
+          "japanese": "せいれ",
+          "thai": "อากาศแจ่มใส"
+        },
+        {
+          "role": "content",
+          "japanese": "どんり",
+          "thai": "มีเมฆมาก"
+        },
+        {
+          "role": "content",
+          "japanese": "あめ",
+          "thai": "ฝน"
+        },
+        {
+          "role": "content",
+          "japanese": "ゆき",
+          "thai": "หิมะ"
+        },
+        {
+          "role": "content",
+          "japanese": "かぜ",
+          "thai": "ลม"
+        },
+        {
+          "role": "content",
+          "japanese": "しょい",
+          "thai": "ร้อน"
+        },
+        {
+          "role": "content",
+          "japanese": "かんい",
+          "thai": "หนาว"
+        },
+        {
+          "role": "content",
+          "japanese": "だんかい",
+          "thai": "อบอุ่น"
+        },
+        {
+          "role": "content",
+          "japanese": "りょうしい",
+          "thai": "เย็นสบาย"
+        },
+        {
+          "role": "content",
+          "japanese": "たいふう",
+          "thai": "พายุไต้ฝุ่น"
+        },
+        {
+          "role": "content",
+          "japanese": "かさ",
+          "thai": "ร่ม"
         }
       ]
     }
