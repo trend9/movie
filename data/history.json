@@ -275,7 +275,8 @@
     "ゆうびんきょくでのサービス",
     "やっきょく",
     "みちをきく",
-    "いえのへやとかぐ"
+    "いえのへやとかぐ",
+    "カフェをりようする"
   ],
   "used_words": [
     "こんにちは",
@@ -3313,7 +3314,18 @@
     "いす",
     "ベッド",
     "れいぞうこ",
-    "テレビ"
+    "テレビ",
+    "カフェ",
+    "コーヒー",
+    "こうちゃ",
+    "ケーキ",
+    "ジュース",
+    "ちゅうもんする",
+    "おかいけい",
+    "てんない",
+    "じちきり",
+    "せき",
+    "Wi-Fi"
   ],
   "videos": [
     {
@@ -20800,6 +20812,73 @@
           "role": "content",
           "japanese": "テレビ",
           "thai": "โทรทัศน์"
+        }
+      ]
+    },
+    {
+      "title": "カフェをりようする",
+      "timestamp": "20260712_165450",
+      "video_filename": "video_20260712_165450_カフェをりようする.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "カフェをりようする",
+          "thai": "การใช้บริการคาเฟ่"
+        },
+        {
+          "role": "content",
+          "japanese": "カフェ",
+          "thai": "คาเฟ่"
+        },
+        {
+          "role": "content",
+          "japanese": "コーヒー",
+          "thai": "กาแฟ"
+        },
+        {
+          "role": "content",
+          "japanese": "こうちゃ",
+          "thai": "ชาดำ"
+        },
+        {
+          "role": "content",
+          "japanese": "ケーキ",
+          "thai": "เค้ก"
+        },
+        {
+          "role": "content",
+          "japanese": "ジュース",
+          "thai": "น้ำผลไม้"
+        },
+        {
+          "role": "content",
+          "japanese": "ちゅうもんする",
+          "thai": "สั่ง"
+        },
+        {
+          "role": "content",
+          "japanese": "おかいけい",
+          "thai": "การชำระเงิน, บิล"
+        },
+        {
+          "role": "content",
+          "japanese": "てんない",
+          "thai": "ทานที่ร้าน"
+        },
+        {
+          "role": "content",
+          "japanese": "じちきり",
+          "thai": "ซื้อกลับบ้าน"
+        },
+        {
+          "role": "content",
+          "japanese": "せき",
+          "thai": "ที่นั่ง"
+        },
+        {
+          "role": "content",
+          "japanese": "Wi-Fi",
+          "thai": "ไวไฟ"
         }
       ]
     }
