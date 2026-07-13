@@ -284,7 +284,8 @@
     "ともだちといえですごす",
     "どうぶつえんでたのしむ",
     "デリバリーのちゅうもん",
-    "バスをりようする"
+    "バスをりようする",
+    "かぞくとしんせき"
   ],
   "used_words": [
     "こんにちは",
@@ -3421,7 +3422,18 @@
     "はっしゃ",
     "とうちゃく",
     "りょうがえ",
-    "こうつうけいICカード"
+    "こうつうけいICカード",
+    "おちちさん",
+    "おははさん",
+    "おあにさん",
+    "おあねさん",
+    "おとうと",
+    "いもうと",
+    "おじいさん",
+    "おばあさん",
+    "おっと",
+    "つま",
+    "こども"
   ],
   "videos": [
     {
@@ -21511,6 +21523,73 @@
           "role": "content",
           "japanese": "こうつうけいICカード",
           "thai": "บัตร IC สำหรับคมนาคม (เช่น Suica, Pasmo)"
+        }
+      ]
+    },
+    {
+      "title": "かぞくとしんせき",
+      "timestamp": "20260713_205601",
+      "video_filename": "video_20260713_205601_かぞくとしんせき.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "かぞくとしんせき",
+          "thai": "ครอบครัวและญาติ"
+        },
+        {
+          "role": "content",
+          "japanese": "おちちさん",
+          "thai": "พ่อ"
+        },
+        {
+          "role": "content",
+          "japanese": "おははさん",
+          "thai": "แม่"
+        },
+        {
+          "role": "content",
+          "japanese": "おあにさん",
+          "thai": "พี่ชาย"
+        },
+        {
+          "role": "content",
+          "japanese": "おあねさん",
+          "thai": "พี่สาว"
+        },
+        {
+          "role": "content",
+          "japanese": "おとうと",
+          "thai": "น้องชาย"
+        },
+        {
+          "role": "content",
+          "japanese": "いもうと",
+          "thai": "น้องสาว"
+        },
+        {
+          "role": "content",
+          "japanese": "おじいさん",
+          "thai": "ปู่/ตา"
+        },
+        {
+          "role": "content",
+          "japanese": "おばあさん",
+          "thai": "ย่า/ยาย"
+        },
+        {
+          "role": "content",
+          "japanese": "おっと",
+          "thai": "สามี"
+        },
+        {
+          "role": "content",
+          "japanese": "つま",
+          "thai": "ภรรยา"
+        },
+        {
+          "role": "content",
+          "japanese": "こども",
+          "thai": "ลูก/เด็กๆ"
         }
       ]
     }
