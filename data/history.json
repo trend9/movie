@@ -288,7 +288,8 @@
     "かぞくとしんせき",
     "でんしゃにのる",
     "にほんのしゅくじつとねんじゅうぎょうじ",
-    "きせつとてんき"
+    "きせつとてんき",
+    "スポーツとうんどう"
   ],
   "used_words": [
     "こんにちは",
@@ -3469,7 +3470,18 @@
     "くもり",
     "ゆき",
     "きおん",
-    "かさ"
+    "かさ",
+    "スポーツ",
+    "うんどう",
+    "ジム",
+    "はしる",
+    "あるく",
+    "およぐ",
+    "けんこう",
+    "あせ",
+    "つかれる",
+    "たいそう",
+    "ジョギング"
   ],
   "videos": [
     {
@@ -21827,6 +21839,73 @@
           "role": "content",
           "japanese": "かさ",
           "thai": "ร่ม"
+        }
+      ]
+    },
+    {
+      "title": "スポーツとうんどう",
+      "timestamp": "20260714_112355",
+      "video_filename": "video_20260714_112355_スポーツとうんどう.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "スポーツとうんどう",
+          "thai": "กีฬาและการออกกำลังกาย"
+        },
+        {
+          "role": "content",
+          "japanese": "スポーツ",
+          "thai": "กีฬา"
+        },
+        {
+          "role": "content",
+          "japanese": "うんどう",
+          "thai": "การออกกำลังกาย"
+        },
+        {
+          "role": "content",
+          "japanese": "ジム",
+          "thai": "ยิม"
+        },
+        {
+          "role": "content",
+          "japanese": "はしる",
+          "thai": "วิ่ง"
+        },
+        {
+          "role": "content",
+          "japanese": "あるく",
+          "thai": "เดิน"
+        },
+        {
+          "role": "content",
+          "japanese": "およぐ",
+          "thai": "ว่ายน้ำ"
+        },
+        {
+          "role": "content",
+          "japanese": "けんこう",
+          "thai": "สุขภาพ"
+        },
+        {
+          "role": "content",
+          "japanese": "あせ",
+          "thai": "เหงื่อ"
+        },
+        {
+          "role": "content",
+          "japanese": "つかれる",
+          "thai": "เหนื่อย"
+        },
+        {
+          "role": "content",
+          "japanese": "たいそう",
+          "thai": "กายบริหาร"
+        },
+        {
+          "role": "content",
+          "japanese": "ジョギング",
+          "thai": "การวิ่งจ็อกกิ้ง"
         }
       ]
     }
