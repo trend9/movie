@@ -285,7 +285,8 @@
     "どうぶつえんでたのしむ",
     "デリバリーのちゅうもん",
     "バスをりようする",
-    "かぞくとしんせき"
+    "かぞくとしんせき",
+    "でんしゃにのる"
   ],
   "used_words": [
     "こんにちは",
@@ -3433,7 +3434,18 @@
     "おばあさん",
     "おっと",
     "つま",
-    "こども"
+    "こども",
+    "えき",
+    "でんしゃ",
+    "きっぷ",
+    "かいさつぐち",
+    "ホーム",
+    "のりかえ",
+    "ざせき",
+    "うんちん",
+    "じこくひょう",
+    "ちえん",
+    "おりる"
   ],
   "videos": [
     {
@@ -21590,6 +21602,73 @@
           "role": "content",
           "japanese": "こども",
           "thai": "ลูก/เด็กๆ"
+        }
+      ]
+    },
+    {
+      "title": "でんしゃにのる",
+      "timestamp": "20260714_044813",
+      "video_filename": "video_20260714_044813_でんしゃにのる.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "でんしゃにのる",
+          "thai": "การขึ้นรถไฟ"
+        },
+        {
+          "role": "content",
+          "japanese": "えき",
+          "thai": "สถานี"
+        },
+        {
+          "role": "content",
+          "japanese": "でんしゃ",
+          "thai": "รถไฟ"
+        },
+        {
+          "role": "content",
+          "japanese": "きっぷ",
+          "thai": "ตั๋ว"
+        },
+        {
+          "role": "content",
+          "japanese": "かいさつぐち",
+          "thai": "ช่องตรวจตั๋ว"
+        },
+        {
+          "role": "content",
+          "japanese": "ホーム",
+          "thai": "ชานชาลา"
+        },
+        {
+          "role": "content",
+          "japanese": "のりかえ",
+          "thai": "เปลี่ยนขบวน"
+        },
+        {
+          "role": "content",
+          "japanese": "ざせき",
+          "thai": "ที่นั่ง"
+        },
+        {
+          "role": "content",
+          "japanese": "うんちん",
+          "thai": "ค่าโดยสาร"
+        },
+        {
+          "role": "content",
+          "japanese": "じこくひょう",
+          "thai": "ตารางเวลา"
+        },
+        {
+          "role": "content",
+          "japanese": "ちえん",
+          "thai": "ล่าช้า"
+        },
+        {
+          "role": "content",
+          "japanese": "おりる",
+          "thai": "ลง"
         }
       ]
     }
