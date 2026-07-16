@@ -303,7 +303,8 @@
     "おんせんにいく",
     "ともだちとやくそくをする",
     "そうじをする",
-    "じどうはんばいきでいんみものをばいう"
+    "じどうはんばいきでいんみものをばいう",
+    "いえでりょうりをする"
   ],
   "used_words": [
     "こんにちは",
@@ -3649,7 +3650,18 @@
     "おんかい",
     "れいたい",
     "カップ",
-    "ばいう"
+    "ばいう",
+    "なべ",
+    "フライパン",
+    "ほうちょう",
+    "まないた",
+    "ざいりょう",
+    "やさい",
+    "にく",
+    "しお",
+    "さとう",
+    "さくる",
+    "しょくべる"
   ],
   "videos": [
     {
@@ -23012,6 +23024,73 @@
           "role": "content",
           "japanese": "ばいう",
           "thai": "ซื้อ"
+        }
+      ]
+    },
+    {
+      "title": "いえでりょうりをする",
+      "timestamp": "20260716_045829",
+      "video_filename": "video_20260716_045829_いえでりょうりをする.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "いえでりょうりをする",
+          "thai": "ทำอาหารที่บ้าน"
+        },
+        {
+          "role": "content",
+          "japanese": "なべ",
+          "thai": "หม้อ"
+        },
+        {
+          "role": "content",
+          "japanese": "フライパン",
+          "thai": "กระทะ"
+        },
+        {
+          "role": "content",
+          "japanese": "ほうちょう",
+          "thai": "มีด"
+        },
+        {
+          "role": "content",
+          "japanese": "まないた",
+          "thai": "เขียง"
+        },
+        {
+          "role": "content",
+          "japanese": "ざいりょう",
+          "thai": "วัตถุดิบ"
+        },
+        {
+          "role": "content",
+          "japanese": "やさい",
+          "thai": "ผัก"
+        },
+        {
+          "role": "content",
+          "japanese": "にく",
+          "thai": "เนื้อสัตว์"
+        },
+        {
+          "role": "content",
+          "japanese": "しお",
+          "thai": "เกลือ"
+        },
+        {
+          "role": "content",
+          "japanese": "さとう",
+          "thai": "น้ำตาล"
+        },
+        {
+          "role": "content",
+          "japanese": "さくる",
+          "thai": "ทำ"
+        },
+        {
+          "role": "content",
+          "japanese": "しょくべる",
+          "thai": "กิน"
         }
       ]
     }
