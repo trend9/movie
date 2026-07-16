@@ -309,7 +309,8 @@
     "インターネットとWi-Fi",
     "ごみぶんべつ",
     "かでんせいひん",
-    "からだのふちょうとびょうき"
+    "からだのふちょうとびょうき",
+    "ATMでのそうさ"
   ],
   "used_words": [
     "こんにちは",
@@ -3721,7 +3722,18 @@
     "だるい",
     "びょういん",
     "くすり",
-    "しょうじょう"
+    "しょうじょう",
+    "ATM",
+    "キャッシュカード",
+    "PIN",
+    "げんきん",
+    "こうざばんごう",
+    "ざんだか",
+    "とりひき",
+    "そうきん",
+    "りょうしゅうしょ",
+    "そうさ",
+    "けんさく"
   ],
   "videos": [
     {
@@ -23486,6 +23498,73 @@
           "role": "content",
           "japanese": "しょうじょう",
           "thai": "อาการ"
+        }
+      ]
+    },
+    {
+      "title": "ATMでのそうさ",
+      "timestamp": "20260716_190355",
+      "video_filename": "video_20260716_190355_ATMでのそうさ.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "ATMでのそうさ",
+          "thai": "การทำธุรกรรมที่เอทีเอ็ม"
+        },
+        {
+          "role": "content",
+          "japanese": "ATM",
+          "thai": "เอทีเอ็ม"
+        },
+        {
+          "role": "content",
+          "japanese": "キャッシュカード",
+          "thai": "บัตรเงินสด"
+        },
+        {
+          "role": "content",
+          "japanese": "PIN",
+          "thai": "รหัส PIN"
+        },
+        {
+          "role": "content",
+          "japanese": "げんきん",
+          "thai": "เงินสด"
+        },
+        {
+          "role": "content",
+          "japanese": "こうざばんごう",
+          "thai": "เลขที่บัญชี"
+        },
+        {
+          "role": "content",
+          "japanese": "ざんだか",
+          "thai": "ยอดคงเหลือ"
+        },
+        {
+          "role": "content",
+          "japanese": "とりひき",
+          "thai": "การทำธุรกรรม"
+        },
+        {
+          "role": "content",
+          "japanese": "そうきん",
+          "thai": "การโอนเงิน"
+        },
+        {
+          "role": "content",
+          "japanese": "りょうしゅうしょ",
+          "thai": "ใบเสร็จรับเงิน"
+        },
+        {
+          "role": "content",
+          "japanese": "そうさ",
+          "thai": "การดำเนินการ"
+        },
+        {
+          "role": "content",
+          "japanese": "けんさく",
+          "thai": "การค้นหา"
         }
       ]
     }
