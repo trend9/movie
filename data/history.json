@@ -305,7 +305,8 @@
     "そうじをする",
     "じどうはんばいきでいんみものをばいう",
     "いえでりょうりをする",
-    "ぶんぼうぐをかいにいく"
+    "ぶんぼうぐをかいにいく",
+    "インターネットとWi-Fi"
   ],
   "used_words": [
     "こんにちは",
@@ -3673,7 +3674,18 @@
     "じょうぎ",
     "ホッチキス",
     "ファイル",
-    "テープ"
+    "テープ",
+    "インターネット",
+    "Wi-Fi",
+    "せつぞく",
+    "パスワード",
+    "つながる",
+    "でんぱ",
+    "ルーター",
+    "せってい",
+    "けんさく",
+    "ダウンロード",
+    "そくど"
   ],
   "videos": [
     {
@@ -23170,6 +23182,73 @@
           "role": "content",
           "japanese": "テープ",
           "thai": "เทป"
+        }
+      ]
+    },
+    {
+      "title": "インターネットとWi-Fi",
+      "timestamp": "20260716_100330",
+      "video_filename": "video_20260716_100330_インターネットとWi-Fi.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "インターネットとWi-Fi",
+          "thai": "อินเทอร์เน็ตและไวไฟ"
+        },
+        {
+          "role": "content",
+          "japanese": "インターネット",
+          "thai": "อินเทอร์เน็ต"
+        },
+        {
+          "role": "content",
+          "japanese": "Wi-Fi",
+          "thai": "ไวไฟ"
+        },
+        {
+          "role": "content",
+          "japanese": "せつぞく",
+          "thai": "การเชื่อมต่อ"
+        },
+        {
+          "role": "content",
+          "japanese": "パスワード",
+          "thai": "รหัสผ่าน"
+        },
+        {
+          "role": "content",
+          "japanese": "つながる",
+          "thai": "เชื่อมต่อ"
+        },
+        {
+          "role": "content",
+          "japanese": "でんぱ",
+          "thai": "สัญญาณ"
+        },
+        {
+          "role": "content",
+          "japanese": "ルーター",
+          "thai": "เราเตอร์"
+        },
+        {
+          "role": "content",
+          "japanese": "せってい",
+          "thai": "การตั้งค่า"
+        },
+        {
+          "role": "content",
+          "japanese": "けんさく",
+          "thai": "ค้นหา"
+        },
+        {
+          "role": "content",
+          "japanese": "ダウンロード",
+          "thai": "ดาวน์โหลด"
+        },
+        {
+          "role": "content",
+          "japanese": "そくど",
+          "thai": "ความเร็ว"
         }
       ]
     }
