@@ -408,7 +408,8 @@
     "かでんせいひんのこうにゅうとしよう",
     "ゆうびんやたくはいびんのりよう",
     "あたらしい すまいを さがす",
-    "がっこうでのまなび"
+    "がっこうでのまなび",
+    "からだのぶい"
   ],
   "used_words": [
     "こんにちは",
@@ -4909,7 +4910,18 @@
     "えんぴつ",
     "ノート",
     "しけん",
-    "きゅうみじかん"
+    "きゅうみじかん",
+    "あたま",
+    "め",
+    "はな",
+    "くち",
+    "みみ",
+    "て",
+    "あし",
+    "おはら",
+    "せなか",
+    "かた",
+    "うで"
   ],
   "videos": [
     {
@@ -31307,6 +31319,73 @@
           "role": "content",
           "japanese": "きゅうみじかん",
           "thai": "เวลาพัก"
+        }
+      ]
+    },
+    {
+      "title": "からだのぶい",
+      "timestamp": "20260730_172223",
+      "video_filename": "video_20260730_172223_からだのぶい.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "からだのぶい",
+          "thai": "ส่วนต่างๆ ของร่างกาย"
+        },
+        {
+          "role": "content",
+          "japanese": "あたま",
+          "thai": "ศีรษะ, หัว"
+        },
+        {
+          "role": "content",
+          "japanese": "め",
+          "thai": "ตา"
+        },
+        {
+          "role": "content",
+          "japanese": "はな",
+          "thai": "จมูก"
+        },
+        {
+          "role": "content",
+          "japanese": "くち",
+          "thai": "ปาก"
+        },
+        {
+          "role": "content",
+          "japanese": "みみ",
+          "thai": "หู"
+        },
+        {
+          "role": "content",
+          "japanese": "て",
+          "thai": "มือ"
+        },
+        {
+          "role": "content",
+          "japanese": "あし",
+          "thai": "ขา, เท้า"
+        },
+        {
+          "role": "content",
+          "japanese": "おはら",
+          "thai": "ท้อง"
+        },
+        {
+          "role": "content",
+          "japanese": "せなか",
+          "thai": "หลัง"
+        },
+        {
+          "role": "content",
+          "japanese": "かた",
+          "thai": "ไหล่"
+        },
+        {
+          "role": "content",
+          "japanese": "うで",
+          "thai": "แขน"
         }
       ]
     }
