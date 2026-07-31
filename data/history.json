@@ -411,7 +411,8 @@
     "がっこうでのまなび",
     "からだのぶい",
     "ひっこしをする",
-    "ばすやでんしゃにのる"
+    "ばすやでんしゃにのる",
+    "カフェにぎょうく"
   ],
   "used_words": [
     "こんにちは",
@@ -4945,7 +4946,18 @@
     "ほーむ",
     "おりる",
     "のる",
-    "ろせんず"
+    "ろせんず",
+    "カフェ",
+    "コーヒー",
+    "こうちゃ",
+    "ケーキ",
+    "サンドイッチ",
+    "ちゅうもんする",
+    "じちきり",
+    "てんないで",
+    "さとう",
+    "ミルク",
+    "おかいけい"
   ],
   "videos": [
     {
@@ -31544,6 +31556,73 @@
           "role": "content",
           "japanese": "ろせんず",
           "thai": "แผนที่เส้นทาง"
+        }
+      ]
+    },
+    {
+      "title": "カフェにぎょうく",
+      "timestamp": "20260731_020204",
+      "video_filename": "video_20260731_020204_カフェにぎょうく.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "カフェにぎょうく",
+          "thai": "ไปคาเฟ่"
+        },
+        {
+          "role": "content",
+          "japanese": "カフェ",
+          "thai": "คาเฟ่"
+        },
+        {
+          "role": "content",
+          "japanese": "コーヒー",
+          "thai": "กาแฟ"
+        },
+        {
+          "role": "content",
+          "japanese": "こうちゃ",
+          "thai": "ชาดำ"
+        },
+        {
+          "role": "content",
+          "japanese": "ケーキ",
+          "thai": "เค้ก"
+        },
+        {
+          "role": "content",
+          "japanese": "サンドイッチ",
+          "thai": "แซนด์วิช"
+        },
+        {
+          "role": "content",
+          "japanese": "ちゅうもんする",
+          "thai": "สั่ง"
+        },
+        {
+          "role": "content",
+          "japanese": "じちきり",
+          "thai": "ซื้อกลับบ้าน"
+        },
+        {
+          "role": "content",
+          "japanese": "てんないで",
+          "thai": "ทานที่ร้าน"
+        },
+        {
+          "role": "content",
+          "japanese": "さとう",
+          "thai": "น้ำตาล"
+        },
+        {
+          "role": "content",
+          "japanese": "ミルク",
+          "thai": "นม"
+        },
+        {
+          "role": "content",
+          "japanese": "おかいけい",
+          "thai": "เช็คบิล"
         }
       ]
     }
