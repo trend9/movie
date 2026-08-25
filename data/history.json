@@ -643,7 +643,8 @@
     "ホテルでのたいざい",
     "カフェで きゅうけい",
     "あさのみだしなみ",
-    "カラオケボックスをりようする"
+    "カラオケボックスをりようする",
+    "かぐ"
   ],
   "used_words": [
     "こんにちは",
@@ -7729,7 +7730,18 @@
     "ドリンクバー",
     "よやく",
     "かいけい",
-    "リモコン"
+    "リモコン",
+    "テーブル",
+    "いす",
+    "ベッド",
+    "たんす",
+    "ほんだな",
+    "ソファ",
+    "カーテン",
+    "じゅうたん",
+    "テレビ",
+    "れいぞうこ",
+    "でんとう"
   ],
   "videos": [
     {
@@ -49872,6 +49884,73 @@
           "role": "content",
           "japanese": "リモコン",
           "thai": "รีโมทคอนโทรล"
+        }
+      ]
+    },
+    {
+      "title": "かぐ",
+      "timestamp": "20260825_232535",
+      "video_filename": "video_20260825_232535_かぐ.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "かぐ",
+          "thai": "เฟอร์นิเจอร์"
+        },
+        {
+          "role": "content",
+          "japanese": "テーブル",
+          "thai": "โต๊ะ"
+        },
+        {
+          "role": "content",
+          "japanese": "いす",
+          "thai": "เก้าอี้"
+        },
+        {
+          "role": "content",
+          "japanese": "ベッド",
+          "thai": "เตียงนอน"
+        },
+        {
+          "role": "content",
+          "japanese": "たんす",
+          "thai": "ตู้ลิ้นชัก"
+        },
+        {
+          "role": "content",
+          "japanese": "ほんだな",
+          "thai": "ชั้นหนังสือ"
+        },
+        {
+          "role": "content",
+          "japanese": "ソファ",
+          "thai": "โซฟา"
+        },
+        {
+          "role": "content",
+          "japanese": "カーテン",
+          "thai": "ผ้าม่าน"
+        },
+        {
+          "role": "content",
+          "japanese": "じゅうたん",
+          "thai": "พรม"
+        },
+        {
+          "role": "content",
+          "japanese": "テレビ",
+          "thai": "โทรทัศน์"
+        },
+        {
+          "role": "content",
+          "japanese": "れいぞうこ",
+          "thai": "ตู้เย็น"
+        },
+        {
+          "role": "content",
+          "japanese": "でんとう",
+          "thai": "โคมไฟ"
         }
       ]
     }
