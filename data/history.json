@@ -745,7 +745,8 @@
     "いえのかくへや",
     "テーマ：ようふくのかいもの",
     "にちじょうのかんじょう",
-    "テーマ：アルバイトをさがす"
+    "テーマ：アルバイトをさがす",
+    "いちばでのかいもの"
   ],
   "used_words": [
     "こんにちは",
@@ -8953,7 +8954,18 @@
     "けいけん",
     "きんむち",
     "シフト",
-    "けんしゅう"
+    "けんしゅう",
+    "やさい",
+    "くだもの",
+    "さかな",
+    "にく",
+    "たまご",
+    "こめ",
+    "みそ",
+    "さけ",
+    "コーヒー",
+    "みず",
+    "パン"
   ],
   "videos": [
     {
@@ -57930,6 +57942,73 @@
           "role": "content",
           "japanese": "けんしゅう",
           "thai": "การฝึกอบรม, การฝึกงาน"
+        }
+      ]
+    },
+    {
+      "title": "いちばでのかいもの",
+      "timestamp": "20260930_061629",
+      "video_filename": "video_20260930_061629_いちばでのかいもの.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "いちばでのかいもの",
+          "thai": "การช็อปปิ้งที่ตลาด"
+        },
+        {
+          "role": "content",
+          "japanese": "やさい",
+          "thai": "ผัก"
+        },
+        {
+          "role": "content",
+          "japanese": "くだもの",
+          "thai": "ผลไม้"
+        },
+        {
+          "role": "content",
+          "japanese": "さかな",
+          "thai": "ปลา"
+        },
+        {
+          "role": "content",
+          "japanese": "にく",
+          "thai": "เนื้อสัตว์"
+        },
+        {
+          "role": "content",
+          "japanese": "たまご",
+          "thai": "ไข่"
+        },
+        {
+          "role": "content",
+          "japanese": "こめ",
+          "thai": "ข้าว"
+        },
+        {
+          "role": "content",
+          "japanese": "みそ",
+          "thai": "มิโซะ"
+        },
+        {
+          "role": "content",
+          "japanese": "さけ",
+          "thai": "สาเก"
+        },
+        {
+          "role": "content",
+          "japanese": "コーヒー",
+          "thai": "กาแฟ"
+        },
+        {
+          "role": "content",
+          "japanese": "みず",
+          "thai": "น้ำ"
+        },
+        {
+          "role": "content",
+          "japanese": "パン",
+          "thai": "ขนมปัง"
         }
       ]
     }
