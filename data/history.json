@@ -780,7 +780,8 @@
     "えきでのりよう",
     "スマートフォンやパソコンのりよう",
     "ゆうじんたくへのほうもん",
-    "テーマ：じてんしゃのりよう"
+    "テーマ：じてんしゃのりよう",
+    "しんたいのぶい"
   ],
   "used_words": [
     "こんにちは",
@@ -9373,7 +9374,18 @@
     "パンクする",
     "しゅうり",
     "サイクリング",
-    "みち"
+    "みち",
+    "かお",
+    "あたま",
+    "め",
+    "はな",
+    "くち",
+    "みみ",
+    "うで",
+    "て",
+    "あし",
+    "おはら",
+    "せなか"
   ],
   "videos": [
     {
@@ -60695,6 +60707,73 @@
           "role": "content",
           "japanese": "みち",
           "thai": "ถนน, ทาง"
+        }
+      ]
+    },
+    {
+      "title": "しんたいのぶい",
+      "timestamp": "20261017_021812",
+      "video_filename": "video_20261017_021812_しんたいのぶい.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "しんたいのぶい",
+          "thai": "ส่วนต่างๆ ของร่างกาย"
+        },
+        {
+          "role": "content",
+          "japanese": "かお",
+          "thai": "ใบหน้า"
+        },
+        {
+          "role": "content",
+          "japanese": "あたま",
+          "thai": "ศีรษะ, หัว"
+        },
+        {
+          "role": "content",
+          "japanese": "め",
+          "thai": "ตา"
+        },
+        {
+          "role": "content",
+          "japanese": "はな",
+          "thai": "จมูก"
+        },
+        {
+          "role": "content",
+          "japanese": "くち",
+          "thai": "ปาก"
+        },
+        {
+          "role": "content",
+          "japanese": "みみ",
+          "thai": "หู"
+        },
+        {
+          "role": "content",
+          "japanese": "うで",
+          "thai": "แขน"
+        },
+        {
+          "role": "content",
+          "japanese": "て",
+          "thai": "มือ"
+        },
+        {
+          "role": "content",
+          "japanese": "あし",
+          "thai": "ขา, เท้า"
+        },
+        {
+          "role": "content",
+          "japanese": "おはら",
+          "thai": "ท้อง"
+        },
+        {
+          "role": "content",
+          "japanese": "せなか",
+          "thai": "หลัง"
         }
       ]
     }
