@@ -868,7 +868,8 @@
     "テーマ：にほんごのべんきょう",
     "テーマ：しゃしんをさつる",
     "テーマ：ふくをかう",
-    "テーマ：ゆうえんちのりよう"
+    "テーマ：ゆうえんちのりよう",
+    "テーマ：たいのぶい"
   ],
   "used_words": [
     "こんにちは",
@@ -10429,7 +10430,18 @@
     "おみやげ",
     "まいご",
     "ならぶ",
-    "たのしい"
+    "たのしい",
+    "たい",
+    "あたま",
+    "かお",
+    "め",
+    "みみ",
+    "はな",
+    "くち",
+    "て",
+    "あし",
+    "うで",
+    "ゆび"
   ],
   "videos": [
     {
@@ -67647,6 +67659,73 @@
           "role": "content",
           "japanese": "たのしい",
           "thai": "สนุก"
+        }
+      ]
+    },
+    {
+      "title": "テーマ：たいのぶい",
+      "timestamp": "20261121_003531",
+      "video_filename": "video_20261121_003531_テーマ：たいのぶい.mp4",
+      "slides": [
+        {
+          "role": "title",
+          "japanese": "テーマ：たいのぶい",
+          "thai": "ส่วนต่างๆ ของร่างกาย"
+        },
+        {
+          "role": "content",
+          "japanese": "たい",
+          "thai": "ร่างกาย"
+        },
+        {
+          "role": "content",
+          "japanese": "あたま",
+          "thai": "หัว"
+        },
+        {
+          "role": "content",
+          "japanese": "かお",
+          "thai": "ใบหน้า"
+        },
+        {
+          "role": "content",
+          "japanese": "め",
+          "thai": "ตา"
+        },
+        {
+          "role": "content",
+          "japanese": "みみ",
+          "thai": "หู"
+        },
+        {
+          "role": "content",
+          "japanese": "はな",
+          "thai": "จมูก"
+        },
+        {
+          "role": "content",
+          "japanese": "くち",
+          "thai": "ปาก"
+        },
+        {
+          "role": "content",
+          "japanese": "て",
+          "thai": "มือ"
+        },
+        {
+          "role": "content",
+          "japanese": "あし",
+          "thai": "ขา"
+        },
+        {
+          "role": "content",
+          "japanese": "うで",
+          "thai": "แขน"
+        },
+        {
+          "role": "content",
+          "japanese": "ゆび",
+          "thai": "นิ้ว"
         }
       ]
     }
